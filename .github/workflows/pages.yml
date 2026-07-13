@@ -2,7 +2,7 @@ name: Publish site to gh-pages
 on:
   push:
     branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml']
+    paths: ['www/**', 'site/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,10 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build (locked version only)
+      - name: Build site
         run: |
           mkdir -p _site
-          cp site/turbium-locked.html _site/index.html
+          # public marketing site at root
+          cp -r www/* _site/
+          # locked internal brand platform at /platform/
+          mkdir -p _site/platform
+          cp site/turbium-locked.html _site/platform/index.html
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |
