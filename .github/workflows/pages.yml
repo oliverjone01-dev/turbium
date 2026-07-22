@@ -2,7 +2,7 @@ name: Publish site to gh-pages
 on:
   push:
     branches: [main]
-    paths: ['www/**', 'site/**', '.github/workflows/pages.yml']
+    paths: ['www/**', 'site/**', 'strategy/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -22,6 +22,9 @@ jobs:
           # locked internal brand platform at /platform/
           mkdir -p _site/platform
           cp site/turbium-locked.html _site/platform/index.html
+          # locked internal strategy room at /strategy/
+          mkdir -p _site/strategy
+          cp strategy/strategy-locked.html _site/strategy/index.html
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |
