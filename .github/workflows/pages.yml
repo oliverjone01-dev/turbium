@@ -2,7 +2,7 @@ name: Publish site to gh-pages
 on:
   push:
     branches: [main]
-    paths: ['www/**', 'site/**', 'strategy/**', '.github/workflows/pages.yml']
+    paths: ['www/**', 'site/**', 'strategy/**', 'atlas/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -25,6 +25,15 @@ jobs:
           # locked internal strategy room at /strategy/
           mkdir -p _site/strategy
           cp strategy/strategy-locked.html _site/strategy/index.html
+          # atlas projects: atlas/<project>/site/ -> /atlas/<project>/
+          for dir in atlas/*/site; do
+            [ -d "$dir" ] || continue
+            [ -n "$(ls -A "$dir" | grep -v '^\.gitkeep$')" ] || continue
+            project=$(basename "$(dirname "$dir")")
+            mkdir -p "_site/atlas/$project"
+            cp -r "$dir"/. "_site/atlas/$project/"
+            rm -f "_site/atlas/$project/.gitkeep"
+          done
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |
