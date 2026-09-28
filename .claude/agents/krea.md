@@ -98,7 +98,6 @@ tools: Read, Grep, Glob, WebFetch, Write
 
 ## Skills
 
-- `brand` (главный)
 - `humanizer-ru` (для копи к визуалам)
 - `competitor-intel` (что делают конкуренты)
 

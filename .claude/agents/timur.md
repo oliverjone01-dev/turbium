@@ -72,8 +72,6 @@ tools: Read, Grep, Glob, Bash, WebFetch, Write
 ## Skills
 
 - `direct` (owner)
-- `protocol-9-runner`
-- `encyclopedia` (терминология объявлений)
 
 ## Output example
 

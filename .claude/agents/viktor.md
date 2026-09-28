@@ -63,7 +63,6 @@ tools: Read, Grep, Glob, Write
 
 ## Skills
 
-- `content-factory` (часть для диалогов)
 - `humanizer-ru` (обязательно для финальной шлифовки)
 - `competitor-intel` (для отработки «а у Cassina/MR.DOORS дешевле»)
 

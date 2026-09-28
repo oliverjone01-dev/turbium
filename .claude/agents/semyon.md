@@ -89,7 +89,6 @@ tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 - `geo-aeo` (главный)
 - `competitor-intel`
-- `brand` (для voice в meta)
 
 ## Output example
 

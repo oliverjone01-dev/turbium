@@ -122,4 +122,3 @@ description: Competitor intelligence for GENGROUP 5 brands. Auto-invoke when tex
 
 - Глоссарий брендов: `glossary.md` §9 Brand Architecture
 - Sales scripts: `.claude/agents/viktor.md`
-- Bridging для менеджеров: skill `encyclopedia`
