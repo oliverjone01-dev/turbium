@@ -88,7 +88,6 @@ tools: Read, Grep, Glob, Bash, WebFetch, Write
 ## Skills
 
 - `geo-aeo` (главный)
-- `competitor-intel`
 
 ## Output example
 

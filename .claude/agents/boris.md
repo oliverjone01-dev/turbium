@@ -93,6 +93,5 @@ tools: Read, Grep, Glob, Bash, Write
 
 ## Skills
 
-- `cross-sell` (использование данных CRM для предложений)
 
 **Версия:** v2.0

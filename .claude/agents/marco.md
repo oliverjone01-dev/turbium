@@ -124,7 +124,6 @@ tools: Read, Grep, Glob, Bash, WebFetch, Write
 ## Skills (Procedural)
 
 - `geo-aeo` - AI-видимость в ChatGPT/Perplexity/YandexGPT
-- `competitor-intel` - что делают Cassina, Minotti, MR.DOORS, конкуренты РФ
 - `humanizer-ru` - снятие AI-следов в русском тексте
 
 ## Tools usage

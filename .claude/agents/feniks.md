@@ -98,7 +98,6 @@ JSON-отчёт по schema `schemas/audit-report.json`:
 ## Skills (Procedural)
 
 - `industry-benchmarks` - CR/CAC/LTV/EBITDA reference per industry
-- `competitor-intel` - для cross-check позиционирования
 
 ## Tools usage
 

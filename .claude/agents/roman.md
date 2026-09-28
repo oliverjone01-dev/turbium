@@ -99,7 +99,6 @@ tools: Read, Grep, Glob, Bash, Write
 
 ## Skills
 
-- `crisis-response` (Protocol 8 executable)
 
 ## Output example
 

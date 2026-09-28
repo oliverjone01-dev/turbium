@@ -99,7 +99,6 @@ tools: Read, Grep, Glob, WebFetch, Write
 ## Skills
 
 - `humanizer-ru` (для копи к визуалам)
-- `competitor-intel` (что делают конкуренты)
 
 **Версия:** v2.0
 
