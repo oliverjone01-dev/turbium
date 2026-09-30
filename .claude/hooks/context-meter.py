@@ -22,6 +22,8 @@ sessions/files/INDEX.md, напоминает сохранить их (скри�
 import hashlib
 import json
 import os
+import re
+import subprocess
 import sys
 from datetime import datetime, timezone
 
@@ -31,6 +33,10 @@ IDLE_MIN = int(os.environ.get("PEREEZD_IDLE_MIN", 60))
 IDLE_CTX = int(os.environ.get("PEREEZD_IDLE_CTX", 100_000))
 UPLOAD_DIRS = os.environ.get("PEREEZD_UPLOAD_DIRS", "/mnt/user-data/uploads:/mnt/attach")
 HASH_LIMIT = 50 * 1024 * 1024
+HASH_BUDGET = 200 * 1024 * 1024  # сколько байт новых файлов хэшировать за один запуск
+CACHE = os.path.join(os.environ.get("TMPDIR", "/tmp"), "pereezd-sha-cache.json")
+SAVE_SCRIPT = os.path.normpath(os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "..", "skills", "pereezd", "scripts", "save-file.sh"))
 
 
 def last_main_usage(path):
@@ -64,17 +70,27 @@ def minutes_since(ts):
     return (datetime.now(timezone.utc) - then).total_seconds() / 60
 
 
-def sha12(path):
+def sha12(path, cache):
+    st = os.stat(path)
+    key = f"{path}|{st.st_size}|{int(st.st_mtime)}"
+    if key in cache:
+        return cache[key], 0
     h = hashlib.sha256()
     with open(path, "rb") as f:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
-    return h.hexdigest()[:12]
+    cache[key] = h.hexdigest()[:12]
+    return cache[key], st.st_size
 
 
 def unsaved_uploads(registry):
-    """Файлы из папок загрузок, которых нет в реестре (по sha256 или имени)."""
-    out = []
+    """Файлы из папок загрузок, которых нет в реестре (по sha256, большие по имени)."""
+    try:
+        with open(CACHE) as f:
+            cache = json.load(f)
+    except Exception:
+        cache = {}
+    out, budget = [], HASH_BUDGET
     for d in UPLOAD_DIRS.split(":"):
         if not d or not os.path.isdir(d):
             continue
@@ -82,17 +98,39 @@ def unsaved_uploads(registry):
             for n in names:
                 fp = os.path.join(base, n)
                 try:
-                    if os.path.getsize(fp) <= HASH_LIMIT:
-                        known = f"| {sha12(fp)} |" in registry
+                    size = os.path.getsize(fp)
+                    if size <= HASH_LIMIT and (budget > 0 or fp in str(cache)):
+                        s12, spent = sha12(fp, cache)
+                        budget -= spent
+                        known = f"| {s12} |" in registry
                     else:
-                        known = n.replace(" ", "_") in registry
+                        name = re.escape(n.replace(" ", "_").replace("|", "_"))
+                        known = re.search(rf"(^|[-/ ]){name}[`) ]", registry, re.M) is not None
                 except OSError:
                     continue
                 if not known:
                     out.append(fp)
                 if len(out) >= 20:
-                    return out
+                    break
+    try:
+        with open(CACHE, "w") as f:
+            json.dump(cache, f)
+    except Exception:
+        pass
     return out
+
+
+def dirty_files(root):
+    """Файлы реестра, которые не закоммичены или не запушены: пропадут с контейнером."""
+    try:
+        r = subprocess.run(
+            ["git", "-C", root, "status", "--porcelain", "--branch", "--", "sessions/files"],
+            capture_output=True, text=True, timeout=2,
+        )
+    except Exception:
+        return False
+    lines = r.stdout.splitlines()
+    return any(not l.startswith("##") for l in lines) or (lines and "ahead" in lines[0])
 
 
 def files_note(root, new_session):
@@ -107,11 +145,17 @@ def files_note(root, new_session):
         notes.append(
             "[pereezd] В чате файлы, которых нет в реестре sessions/files/INDEX.md: "
             + ", ".join(fresh)
-            + ". Сохрани их скриптом scripts/save-file.sh скилла pereezd в этом же ходе, "
-            "чтобы следующая сессия не просила их повторно."
+            + f". Сохрани их в этом же ходе: bash \"{SAVE_SCRIPT}\" <файл> \"<суть>\". "
+            "ПДн, цены, договоры в публичный репозиторий не класть: для них --link <ссылка на "
+            "приватное хранилище>. Иначе следующая сессия попросит файлы повторно."
+        )
+    if registry and dirty_files(root):
+        notes.append(
+            "[pereezd] В sessions/files есть незакоммиченное или незапушенное: закоммить и запушь, "
+            "контейнер одноразовый."
         )
     if new_session and registry:
-        count = sum(1 for line in registry.splitlines() if line.startswith("| `"))
+        count = sum(1 for line in registry.splitlines() if line.startswith("| ") and "sha256" not in line)
         notes.append(
             f"[pereezd] Реестр файлов из прошлых чатов: sessions/files/INDEX.md ({count} шт.). "
             "Нужный файл бери оттуда, пользователя повторно не проси."

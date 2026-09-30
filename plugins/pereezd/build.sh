@@ -13,6 +13,6 @@ cp -r .claude-plugin skills commands hooks README.md "$tmp/"
 sed -i '/<!-- own -->/,/<!-- \/own -->/d' "$tmp/README.md"
 sed -i 's/"name": "TURBIUM"/"name": "pereezd"/' "$tmp/.claude-plugin/plugin.json"
 sed -i "s/Вариант 3/Вариант 2/" "$tmp/README.md"
-if grep -rqi 'turbium\|feniks' "$tmp"; then echo "в portable остались привязки:" >&2; grep -rni 'turbium\|feniks' "$tmp" >&2; exit 1; fi
+if grep -rqiE 'turbium|feniks|МЕА|ОЗОН|oliverjone' "$tmp"; then echo "в portable остались привязки:" >&2; grep -rniE 'turbium|feniks|МЕА|ОЗОН|oliverjone' "$tmp" >&2; exit 1; fi
 (cd "$tmp" && zip -qrX "$OLDPWD/dist/pereezd-plugin-portable.zip" .claude-plugin skills commands hooks README.md)
 for z in dist/*.zip; do echo "$z: $(unzip -l "$z" | tail -1 | awk '{print $2}') файлов"; done

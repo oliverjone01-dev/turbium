@@ -7,10 +7,14 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/context-meter.py\""
+            "command": "python3 \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/context-meter.py\"",
+            "timeout": 10
           }
         ]
       }
     ]
+  },
+  "env": {
+    "PEREEZD_PUBLIC_REPO": "1"
   }
 }
