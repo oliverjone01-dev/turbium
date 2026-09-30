@@ -90,7 +90,8 @@ def unsaved_uploads(registry):
             cache = json.load(f)
     except Exception:
         cache = {}
-    out, budget = [], HASH_BUDGET
+    cached = {k.rsplit("|", 2)[0] for k in cache}
+    out, budget, fresh_cache = [], HASH_BUDGET, {}
     for d in UPLOAD_DIRS.split(":"):
         if not d or not os.path.isdir(d):
             continue
@@ -99,9 +100,12 @@ def unsaved_uploads(registry):
                 fp = os.path.join(base, n)
                 try:
                     size = os.path.getsize(fp)
-                    if size <= HASH_LIMIT and (budget > 0 or fp in str(cache)):
+                    if size <= HASH_LIMIT and (budget > 0 or fp in cached):
                         s12, spent = sha12(fp, cache)
                         budget -= spent
+                        st = os.stat(fp)
+                        k = f"{fp}|{st.st_size}|{int(st.st_mtime)}"
+                        fresh_cache[k] = cache[k]
                         known = f"| {s12} |" in registry
                     else:
                         name = re.escape(n.replace(" ", "_").replace("|", "_"))
@@ -112,9 +116,13 @@ def unsaved_uploads(registry):
                     out.append(fp)
                 if len(out) >= 20:
                     break
+            if len(out) >= 20:
+                break
+        if len(out) >= 20:
+            break
     try:
         with open(CACHE, "w") as f:
-            json.dump(cache, f)
+            json.dump(fresh_cache, f)
     except Exception:
         pass
     return out
@@ -122,15 +130,17 @@ def unsaved_uploads(registry):
 
 def dirty_files(root):
     """Файлы реестра, которые не закоммичены или не запушены: пропадут с контейнером."""
+    def git(*args):
+        return subprocess.run(["git", "-C", root, *args], capture_output=True, text=True, timeout=2)
     try:
-        r = subprocess.run(
-            ["git", "-C", root, "status", "--porcelain", "--branch", "--", "sessions/files"],
-            capture_output=True, text=True, timeout=2,
-        )
+        if git("status", "--porcelain", "--", "sessions/files").stdout.strip():
+            return True
+        r = git("log", "--oneline", "@{u}..HEAD", "--", "sessions/files")
+        if r.returncode != 0:  # нет upstream: ветка не запушена целиком
+            return bool(git("log", "--oneline", "-1", "--", "sessions/files").stdout.strip())
+        return bool(r.stdout.strip())
     except Exception:
         return False
-    lines = r.stdout.splitlines()
-    return any(not l.startswith("##") for l in lines) or (lines and "ahead" in lines[0])
 
 
 def files_note(root, new_session):
