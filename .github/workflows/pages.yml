@@ -2,7 +2,7 @@ name: Publish site to gh-pages
 on:
   push:
     branches: [main]
-    paths: ['www/**', 'site/**', 'strategy/**', '.github/workflows/pages.yml']
+    paths: ['www/**', 'site/**', 'strategy/**', 'deploy/**', 'compose*.yaml', 'scripts/*landing.py', 'wordpress/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,6 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check landing and VPS package
+        run: |
+          python3 scripts/check-landing.py
+          node --check www/landing/assets/app.js
+          docker compose config --quiet
+          DOMAIN=example.com docker compose -f compose.vps.yaml config --quiet
+          docker compose run --rm --no-deps web caddy validate --config /etc/caddy/Caddyfile
+          DOMAIN=example.com docker compose -f compose.vps.yaml run --rm --no-deps web caddy validate --config /etc/caddy/Caddyfile
+          trap 'docker compose down' EXIT
+          docker compose up -d --wait --wait-timeout 90
+          curl --fail --retry 5 --retry-delay 2 http://127.0.0.1:8080/healthz.txt
+          curl --fail -o /dev/null http://127.0.0.1:8080/assets/app.js
+          curl --fail -o /dev/null http://127.0.0.1:8080/assets/country-team-900.webp
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/.env)" = "404"
       - name: Build site
         run: |
           mkdir -p _site
