@@ -126,7 +126,6 @@ tools: Read, Grep, Glob, Bash, WebFetch
 
 ## Skills (Procedural)
 
-- `protocol-9-runner` - Reality Audit с твоей частью
 - `cohort-analyzer` - разбор воронки
 - `source-resolver` - поиск выгрузки в semantic memory
 

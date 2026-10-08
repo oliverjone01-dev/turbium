@@ -123,10 +123,7 @@ tools: Read, Grep, Glob, Bash, WebFetch, Write
 
 ## Skills (Procedural)
 
-- `content-factory` - производство контента по шаблонам бренда
 - `geo-aeo` - AI-видимость в ChatGPT/Perplexity/YandexGPT
-- `competitor-intel` - что делают Cassina, Minotti, MR.DOORS, конкуренты РФ
-- `brand` - voice & tone карта по 5 брендам
 - `humanizer-ru` - снятие AI-следов в русском тексте
 
 ## Tools usage
