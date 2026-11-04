@@ -1,5 +1,11 @@
 # TURBIUM
 
+## Decoriya
+
+[Открыть демонстрацию ДЕКОРИИ](https://oliverjone01-dev.github.io/turbium/Decoriya/) · [Исходники и инструкция](Decoriya/README.md)
+
+Новогодний лендинг, витрина в стилистике Авито и семь страниц предложений с 35 слайдами. Партнёрский прототип, без публикации объявлений и отправки реальных заявок.
+
 ## Актуальный лендинг v3
 
 **[Открыть демо на любом устройстве](https://oliverjone01-dev.github.io/turbium/landing/)** · **[Развернуть на VPS](docs/landing/DEPLOY.md)** · **[Плагин WordPress](packages/turbium-landing-wordpress.zip)**

@@ -2,7 +2,7 @@ name: Publish site to gh-pages
 on:
   push:
     branches: [main]
-    paths: ['www/**', 'site/**', 'strategy/**', 'deploy/**', 'compose*.yaml', 'scripts/*landing.py', 'wordpress/**', '.github/workflows/pages.yml']
+    paths: ['www/**', 'site/**', 'strategy/**', 'Decoriya/**', 'deploy/**', 'compose*.yaml', 'scripts/*landing.py', 'wordpress/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: write
@@ -18,6 +18,9 @@ jobs:
         run: |
           python3 scripts/check-landing.py
           node --check www/landing/assets/app.js
+          node --check Decoriya/app.js
+          node --check Decoriya/data.js
+          python3 Decoriya/tools/check.py
           docker compose config --quiet
           DOMAIN=example.com docker compose -f compose.vps.yaml config --quiet
           docker compose run --rm --no-deps web caddy validate --config /etc/caddy/Caddyfile
@@ -39,6 +42,10 @@ jobs:
           # locked internal strategy room at /strategy/
           mkdir -p _site/strategy
           cp strategy/strategy-locked.html _site/strategy/index.html
+          # partner demonstration of DEKORIYA at /Decoriya/
+          mkdir -p _site/Decoriya
+          cp Decoriya/index.html Decoriya/styles.css Decoriya/app.js Decoriya/data.js _site/Decoriya/
+          cp -r Decoriya/assets _site/Decoriya/
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |

@@ -1,0 +1,38 @@
+{
+  "model": "gpt_image_2_5",
+  "quality": "max",
+  "resolution": "2k",
+  "date": "2026-11-04",
+  "images": [
+    {
+      "index": 0,
+      "name": "rus-hero",
+      "prompt": "Full architectural editorial photograph of a tasteful modern Russian folk inspired New Year entrance of an elegant Moscow family restaurant. Entire complete decorated doorway and two windows visible, full garland with warm micro lights, deep burgundy velvet bows, refined red gold hand-painted ornaments, one beautifully painted matryoshka on each side, a subtle stylized kokoshnik arch crest, small patterned wooden horses and wrapped gifts, natural snowy stone paving. Folk craft meets restrained contemporary architecture. Credible feasible professional decor installation, generous clear pedestrian route. Warm welcoming dusk, realistic light and materials. No people. Entire decor inside image with 10% safe margins; no clipped arch, props or ornaments. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    },
+    {
+      "index": 1,
+      "name": "ice-hero",
+      "prompt": "Full architectural commercial photograph of a complete modern boutique storefront decorated for New Year in icy blue, silver and clear faceted ornaments. Existing glass remains installed flush in dark metal frames. Entire lit fir garland around storefront visible with safe margins, translucent icicle ornaments suspended from decoration supports, tasteful pearl silver and pale blue baubles, warm boutique light balances cold twilight. Mannequins and merchandise clearly visible, doorway unblocked. Credible executable decor, no impossible ice architecture, no loose glass panels. Full scene from pavement to top garland. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    },
+    {
+      "index": 2,
+      "name": "pastel-hero",
+      "prompt": "Full interior editorial architecture photograph of a refined Moscow patisserie Christmas installation: complete 2.2 metre tree in blush pink, lavender, mint and pearl ornaments, soft satin bows, warm pin lights; a tasteful small carved carousel horse beside the tree, pastel gift boxes on floor, subtle cream arch details and marble counter background. Elegant restrained contemporary patisserie, not fantasy palace. All decoration entirely visible including star top and tree base, clear walking space. Believable physical materials, premium photography, no people. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    },
+    {
+      "index": 3,
+      "name": "rus-technical",
+      "prompt": "Photorealistic technical-design axonometric illustration on warm off-white studio background of an intact real restaurant entrance with complete seasonal Russian folk inspired Christmas installation. Deep burgundy ribbons, red gold hand-painted ornaments, small painted matryoshka figures, stylized kokoshnik crest, fir garland and warm micro lights, cream stone facade. On left: detached samples of ONLY removable decorations (baubles, ribbon, one miniature painted ornament) connected with fine dark burgundy leader lines. Building, door, glass and stone stay assembled and intact. Entire model and samples fit inside generous margins. Realistic feasible material proportions and accurate shadows. No exploded architectural elements. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    },
+    {
+      "index": 4,
+      "name": "ice-technical",
+      "prompt": "Photorealistic axonometric technical design illustration on clean warm white background of an intact complete boutique storefront with blue silver New Year fir garland, clear faceted suspended ornaments, translucent icicle accents and tiny warm lights. Shop glazing stays fully installed flush INSIDE frame, entire architecture static. Samples on left ONLY removable seasonal decorations: silver baubles, pale-blue satin ribbon, clear faceted acrylic icicle; fine dark green callout lines. Complete facade and clear walkway, no loose glass panel, no exploded window parts or stone. High precision credible decor display. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    },
+    {
+      "index": 5,
+      "name": "pastel-technical",
+      "prompt": "Photorealistic technical design axonometric illustration on clean warm off-white background of a complete 2.2 metre Christmas tree in blush pink lavender mint pearl palette, satin bows and warm lights, realistic natural fir needles. Small tasteful carved carousel horse and pastel gift boxes beside base. On left separate decoration samples ONLY: satin bow, three baubles, small light-string detail, fine burgundy leader lines. Balanced spacious educational composition, full tree including topper and base visible. Realistic physically feasible assembly, clear hierarchy. Unified premium editorial series for a seasonal decoration studio. Canon EOS R5 Mark II, RF 15–35mm, 24mm, f/8, ISO100 visual aesthetic, exquisite professional architectural commercial photography, subtle film tone, rich material textures, straight verticals. Landscape 4:3, high detail. NO text, lettering, logos, captions, watermarks, UI or infographic panels; labels will be set separately."
+    }
+  ]
+}
