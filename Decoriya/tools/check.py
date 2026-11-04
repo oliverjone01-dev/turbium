@@ -5,16 +5,18 @@ ROOT=Path(__file__).resolve().parents[1]
 script=(ROOT/'data.js').read_text()
 probe=subprocess.run(['node','-e',script+'\nconsole.log(JSON.stringify(DEKORIYA.ads));'],check=True,capture_output=True,text=True)
 ads=json.loads(probe.stdout)
-assert len(ads)==7
-assert len({a['id'] for a in ads})==7
+assert len(ads)==10
+assert len({a['id'] for a in ads})==10
 assert sum(a['phase']=='start' for a in ads)==4
 assert sum(a['phase']=='test' for a in ads)==3
+assert sum(a['phase']=='creative' for a in ads)==3
 for ad in ads:
-    assert len(ad['slides'])==5
-    assert len(ad['body'])==4
+    assert len(ad['slides'])==(6 if ad['phase']=='creative' else 5)
+    if ad['phase']=='creative':assert len(ad['slideLabels'])==6
+    assert len(ad['body'])==(6 if ad['phase']=='creative' else 4)
     assert len(ad['includes'])==3
     for src in ad['slides']+[ad['photo']]:
-        p=ROOT/src
+        p=ROOT/src.split('?')[0]
         assert p.is_file(),src
         assert p.stat().st_size>1000,src
         if p.suffix=='.svg':
@@ -29,4 +31,4 @@ js=(ROOT/'app.js').read_text()
 assert not re.search(r'\b(fetch|XMLHttpRequest|WebSocket)\s*\(',js)
 assert 'decoriya-favorites' in js
 assert 'contact-form' in js
-print('PASS: 7 offers, 35 slides, all local resources, no fabricated prices or remote form endpoint')
+print('PASS: 10 offers, 53 slides (18 new), all local resources, no remote form endpoint')

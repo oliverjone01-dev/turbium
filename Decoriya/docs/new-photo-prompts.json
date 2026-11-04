@@ -1,0 +1,186 @@
+{
+  "status": "Просмотрено после получения 10 карточек JOYLED. Девять фотографий оставлены как концепции для ДЕКОРИИ; статус клиентских объектов не заявляется.",
+  "model": "gpt_image_2_5",
+  "quality": "max",
+  "resolution": "2k",
+  "aspect_ratio": "4:3",
+  "images": [
+    {
+      "index": 1,
+      "job_id": "ce0b6b6a-950b-4546-89d0-3c7599c80a39",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "commercial-full",
+      "prompt": "Use case: ads-marketing. Asset: photographic background for 1600×1200 Avito ad. A tightly framed inviting independent restaurant entrance in Moscow at early blue hour, frontal three-quarter architectural photograph. Dark forest-green double doors at center-right, beige limestone facade, warm amber restaurant interior and bronze sconces. Exceptionally abundant but realistically buildable Christmas fir garlands surround doorway and both side windows, tactile burgundy velvet ribbons folded in soft natural loops, large brushed champagne-gold ornaments 12–25 cm, tiny warm-white string lights with restrained brightness, two lush fir planters. The full decorative arch and door visible, no upper building floors, no empty street foreground; scene and foliage fill the 4:3 frame edge to edge. Door opening and shallow steps remain unobstructed; no props in walking path. Light fresh snow on foliage edges, pavement dark and subtly damp without mirror-like CGI. Dramatic warm/cool photographic contrast, detailed dark needles and velvet folds, emotionally inviting as a magazine cover. Main decor occupies central and right areas, top-left slightly quieter stone shadow for later headline but no artificial blank background. No lettering, no logos, no graphics, no people. Not an illumination manufacturer showroom; fir and velvet are the main product. Camera aesthetic: Canon EOS R5 Mark II, rectilinear RF 15–35mm at approximately 30mm, f/8, low ISO, tripod. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "60170f8e9d65dff4a5b8bf281b3bbfc4fc3d9b9e3f31fae83c84e92287374ab6",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 2,
+      "job_id": "22bf596f-c5c6-4599-8e23-c2f673b47b4a",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "home-full",
+      "prompt": "Use case: ads-marketing. Asset: photographic background for 1600×1200 Avito ad. An intimate tightly framed Christmas front entrance of an inhabited contemporary country house near Moscow at blue hour. Front door in natural dark oak with a narrow glass sidelight; pale warm stone facade and dark metal wall lamps. Abundant asymmetric dark-green fir arch naturally arranged around door and porch, red and burgundy velvet oversized bow above one side, clusters of matte champagne and muted red baubles, wreath on door, warm tiny string lights threaded into garland. Snow-dusted fir planters at edges of two broad steps, center passage clear. Warm interior glimpsed through sidelight; no impossible glow from unlit surfaces. Close 28–35 mm equivalent photograph, arch and door fill frame, little pavement and no roof/sky. Textured pine, satin versus velvet distinction, softly falling few snowflakes, restrained evening luminosity, emotional sense of arriving home. Do not introduce a palace or giant custom sculpture. Composition with door center-right and darker foliage upper-left for later readable overlay. No text, no graphics, no logos, no people. Camera aesthetic: Canon EOS R5 Mark II, rectilinear RF 15–35mm at approximately 30mm, f/8, low ISO, tripod. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "0f4c29ed13f61420d22142357315ac5c1c31e04bdc0589f3b96f9d36c49a8191",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 3,
+      "job_id": "2fa915fb-3fdb-42a4-8aee-9e08087cb99e",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "window-full",
+      "prompt": "Use case: ads-marketing. Asset: photographic background for 1600×1200 Avito ad. A close architectural editorial photo of an upscale small fashion boutique Christmas display in Moscow, early blue hour. A large intact glass window framed by charcoal-bronze metal and pale limestone, an adjacent narrow glass entrance on right. Rich sculptural fir garland wraps outer window edges, muted burgundy velvet ribbons and champagne gold ornaments, warm micro string lights. Through clean believable reflective glazing, exactly two mannequins wearing elegant neutral wool coats, one small leather bag on a plinth, well lit and clearly visible. A few suspended matte champagne ornaments at different heights around perimeter, not covering faces or product. Christmas decor abundant and visually fills frame margins but center merchandise retains clean breathing space. Window fills nearly whole 4:3 photo; no distant whole-building framing, no empty floor, no crowds or cars. Physically plausible suspension, real glass continuity, restrained window reflections and natural light falloff, warm inside versus cool dusk. Main window center-right, dark upper-left edge available for headline overlay. No words, price signs, logos, watermarks or graphics. No people. Camera aesthetic: Canon EOS R5 Mark II, rectilinear RF 15–35mm at approximately 30mm, f/8, low ISO, tripod. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "2efd8b74503fb5ffffbc49007bb8766c9872af3f5feae5bdb2376176037bcdc8",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 4,
+      "job_id": "39c974e7-6fd3-4273-84ca-7a0cefd0d2f9",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "commercial-angle",
+      "ref": "ce0b6b6a-950b-4546-89d0-3c7599c80a39",
+      "prompt": "Create a second photograph of this EXACT SAME finished object, taking one small step toward the entrance and slightly to the side. A closer three-quarter architectural view at 35mm; keep the full doorway or central shop window and enough of the fir frame visible. Fill the frame with decoration, actual architecture and warm interior. Preserve every door, window mullion, planter, ornament palette, wreath and bow placement; do not add decorations or invent another establishment. Do not turn a glass window into open air. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "fe6a32fb53940a4960cda33cb79966f774607f5d25323696d76221a84bb7b48f",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 5,
+      "job_id": "580e3abe-09c0-47a3-8b5d-e4bceb338b28",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "commercial-detail",
+      "ref": "ce0b6b6a-950b-4546-89d0-3c7599c80a39",
+      "prompt": "Create one intimate material-detail photograph of this EXACT SAME decoration. Use a believable 70mm lens at f/5.6, focus on one burgundy velvet ribbon beside real fir needles, champagne-gold baubles and restrained warm string lights. Dense tactile foreground fills the frame with background architecture softly recognizable and optically defocused. Keep folds, seams, velvet pile and actual varied needle lengths believable. Reflections must correspond to this location. Preserve the exact palette and materials of reference, no new props or ornaments. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "d2d689bca8203dcfba2ba1e5a7a31b94db58ce5cfddf869b2675193bd0363bbc",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 6,
+      "job_id": "3539c531-7ebe-43d3-a25d-fdb1569b3a6e",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "home-angle",
+      "ref": "22bf596f-c5c6-4599-8e23-c2f673b47b4a",
+      "prompt": "Create a second photograph of this EXACT SAME finished object, taking one small step toward the entrance and slightly to the side. A closer three-quarter architectural view at 35mm; keep the full doorway or central shop window and enough of the fir frame visible. Fill the frame with decoration, actual architecture and warm interior. Preserve every door, window mullion, planter, ornament palette, wreath and bow placement; do not add decorations or invent another establishment. Do not turn a glass window into open air. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "f13f8115f2fbd4a8de040d88d9622d78780c1d8403fd1b06c7c4ff5690255ed2",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 7,
+      "job_id": "15644284-ece8-4bb4-978e-4f6bed001a0c",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "home-detail",
+      "ref": "22bf596f-c5c6-4599-8e23-c2f673b47b4a",
+      "prompt": "Create one intimate material-detail photograph of this EXACT SAME decoration. Use a believable 70mm lens at f/5.6, focus on one burgundy velvet ribbon beside real fir needles, champagne-gold baubles and restrained warm string lights. Dense tactile foreground fills the frame with background architecture softly recognizable and optically defocused. Keep folds, seams, velvet pile and actual varied needle lengths believable. Reflections must correspond to this location. Preserve the exact palette and materials of reference, no new props or ornaments. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "06fd3917ae505dd1054c1f071bc022b9372024782a9a24c2118d903773d627fa",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 8,
+      "job_id": "441270e5-ecfb-48ed-b0d3-7373d736a02d",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "window-angle",
+      "ref": "2fa915fb-3fdb-42a4-8aee-9e08087cb99e",
+      "prompt": "Create a second photograph of this EXACT SAME finished object, taking one small step toward the entrance and slightly to the side. A closer three-quarter architectural view at 35mm; keep the full doorway or central shop window and enough of the fir frame visible. Fill the frame with decoration, actual architecture and warm interior. Preserve every door, window mullion, planter, ornament palette, wreath and bow placement; do not add decorations or invent another establishment. Do not turn a glass window into open air. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "aeac23b7dd0ad554df9334b10d54f8cdc1e6a22559df74c8188bcfe75edcc473",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 9,
+      "job_id": "a92c14cd-dc73-42e7-8bf9-481805068488",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "window-detail",
+      "ref": "2fa915fb-3fdb-42a4-8aee-9e08087cb99e",
+      "prompt": "Create one intimate material-detail photograph of this EXACT SAME decoration. Use a believable 70mm lens at f/5.6, focus on one burgundy velvet ribbon beside real fir needles, champagne-gold baubles and restrained warm string lights. Dense tactile foreground fills the frame with background architecture softly recognizable and optically defocused. Keep folds, seams, velvet pile and actual varied needle lengths believable. Reflections must correspond to this location. Preserve the exact palette and materials of reference, no new props or ornaments. No text or people. Photograph the scene as a real on-location architectural editorial shoot, not a render. Preserve the specified design and any reference geometry, proportions, and materials. Use natural perspective, straight verticals, an appropriate rectilinear lens, and believable depth of field without wide-angle stretching or uniform oversharpening. Keep lighting consistent with actual windows, fixtures, and weather, with realistic falloff, contact shadows, reflections, gentle highlight roll-off, and naturally deep shadows. Show distinct material properties and correctly scaled textures, joints, and subtle surface variations without invented wear. Use restrained processing, plausible white balance, and natural color. If people are present, render them with lifelike anatomy, natural posture and expressions, subtle facial asymmetry, realistic eyes, hair, hands, and clothing; retain skin pores, fine facial hair, and nuanced skin tones where the framing resolves them, without exaggerated texture or beauty retouching. Match their lighting, focus, scale, and shadows to the scene. Avoid CGI gloss, waxy skin, uncanny faces, malformed fingers, fake bokeh, HDR halos, excessive clarity, bloom, saturation, and impossible reflections. Prioritize photographic credibility over dramatic polish.",
+      "sha256": "9b43963c35a7b4f77a377fcaac17d2b15fb152b5336a2cb7c51aaef702416759",
+      "dimensions": [
+        2336,
+        1744
+      ]
+    },
+    {
+      "index": 10,
+      "job_id": "d9c1df4e-4044-4c73-8ebe-cbf8786521a9",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "commercial-before",
+      "ref": "ce0b6b6a-950b-4546-89d0-3c7599c80a39",
+      "prompt": "Edit the provided architectural photograph to show the EXACT SAME place BEFORE Christmas decoration. Remove only all festive fir garlands, Christmas wreaths, velvet ribbons, baubles, seasonal string lights and decorative fir arrangements from the facade/window/door. Keep original permanent wall lamps and interior lighting ON with physically plausible warm light. Do not remove or move actual architecture. Preserve the precise camera position, framing, walls, doorway, window mullions, intact glazing, shop mannequins and merchandise if present, steps, ordinary planters, snow and pavement. Fill newly revealed surfaces with the exact existing stone/wood/window materials. The door and window proportions and positions must match reference exactly, not another building. No labels, text, watermarks or graphics. Match light, exposure, color and realism of reference, with correct contact shadows, subtle grain, realistic material textures and glass reflections. Output a photographic undecorated view, for a side-by-side CONCEPT comparison; do not make a triptych.",
+      "dimensions": [
+        2336,
+        1744
+      ],
+      "sha256": "49732acffa8e9cee3cfba71ee34d6265b172697e3156f0b80b2a7ed579496a27"
+    },
+    {
+      "index": 11,
+      "job_id": "c26e058f-1d51-4ae1-8339-b4ea82d3e7c6",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "home-before",
+      "ref": "22bf596f-c5c6-4599-8e23-c2f673b47b4a",
+      "prompt": "Edit the provided architectural photograph to show the EXACT SAME place BEFORE Christmas decoration. Remove only all festive fir garlands, Christmas wreaths, velvet ribbons, baubles, seasonal string lights and decorative fir arrangements from the facade/window/door. Keep original permanent wall lamps and interior lighting ON with physically plausible warm light. Do not remove or move actual architecture. Preserve the precise camera position, framing, walls, doorway, window mullions, intact glazing, shop mannequins and merchandise if present, steps, ordinary planters, snow and pavement. Fill newly revealed surfaces with the exact existing stone/wood/window materials. The door and window proportions and positions must match reference exactly, not another building. No labels, text, watermarks or graphics. Match light, exposure, color and realism of reference, with correct contact shadows, subtle grain, realistic material textures and glass reflections. Output a photographic undecorated view, for a side-by-side CONCEPT comparison; do not make a triptych.",
+      "dimensions": [
+        2336,
+        1744
+      ],
+      "sha256": "4fdf09f7b821f08abd6299517fd5ae24506003b5729c720cebe7cb8ad5e6f9dc"
+    },
+    {
+      "index": 12,
+      "job_id": "731b704e-c6ba-4656-a60d-04c601ce46c8",
+      "status": "completed",
+      "type": "image",
+      "model": "gpt_image_2_5",
+      "key": "window-before",
+      "ref": "2fa915fb-3fdb-42a4-8aee-9e08087cb99e",
+      "prompt": "Edit the provided architectural photograph to show the EXACT SAME place BEFORE Christmas decoration. Remove only all festive fir garlands, Christmas wreaths, velvet ribbons, baubles, seasonal string lights and decorative fir arrangements from the facade/window/door. Keep original permanent wall lamps and interior lighting ON with physically plausible warm light. Do not remove or move actual architecture. Preserve the precise camera position, framing, walls, doorway, window mullions, intact glazing, shop mannequins and merchandise if present, steps, ordinary planters, snow and pavement. Fill newly revealed surfaces with the exact existing stone/wood/window materials. The door and window proportions and positions must match reference exactly, not another building. No labels, text, watermarks or graphics. Match light, exposure, color and realism of reference, with correct contact shadows, subtle grain, realistic material textures and glass reflections. Output a photographic undecorated view, for a side-by-side CONCEPT comparison; do not make a triptych.",
+      "dimensions": [
+        2336,
+        1744
+      ],
+      "sha256": "12cc718a4bd8d5c8dd81b05802b7a19e99abd10865bc34a761935605f7e53a2a"
+    }
+  ]
+}
