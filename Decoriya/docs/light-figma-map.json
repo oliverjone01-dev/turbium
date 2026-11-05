@@ -1,0 +1,472 @@
+{
+  "fileKey": "kOyQ3hsCfqZ1vmqeHWxFoF",
+  "pageId": "110:2",
+  "series": [
+    {
+      "id": "commercial",
+      "rootId": "113:2",
+      "cards": [
+        {
+          "id": "commercial",
+          "n": 1,
+          "nodeId": "113:5",
+          "headingId": "113:12"
+        },
+        {
+          "id": "commercial",
+          "n": 2,
+          "nodeId": "113:19",
+          "headingId": "113:26"
+        },
+        {
+          "id": "commercial",
+          "n": 3,
+          "nodeId": "113:45",
+          "headingId": "113:52"
+        },
+        {
+          "id": "commercial",
+          "n": 4,
+          "nodeId": "113:64",
+          "headingId": "113:71"
+        },
+        {
+          "id": "commercial",
+          "n": 5,
+          "nodeId": "113:80",
+          "headingId": "113:87"
+        },
+        {
+          "id": "commercial",
+          "n": 6,
+          "nodeId": "113:97",
+          "headingId": "113:104"
+        },
+        {
+          "id": "commercial",
+          "n": 7,
+          "nodeId": "113:113",
+          "headingId": "113:120"
+        },
+        {
+          "id": "commercial",
+          "n": 8,
+          "nodeId": "113:124",
+          "headingId": "113:131"
+        },
+        {
+          "id": "commercial",
+          "n": 9,
+          "nodeId": "113:156",
+          "headingId": "113:163"
+        },
+        {
+          "id": "commercial",
+          "n": 10,
+          "nodeId": "113:189",
+          "headingId": "113:196"
+        }
+      ]
+    },
+    {
+      "id": "home",
+      "rootId": "117:59",
+      "cards": [
+        {
+          "id": "home",
+          "n": 1,
+          "nodeId": "117:62",
+          "headingId": "117:69"
+        },
+        {
+          "id": "home",
+          "n": 2,
+          "nodeId": "117:76",
+          "headingId": "117:83"
+        },
+        {
+          "id": "home",
+          "n": 3,
+          "nodeId": "117:102",
+          "headingId": "117:109"
+        },
+        {
+          "id": "home",
+          "n": 4,
+          "nodeId": "117:121",
+          "headingId": "117:128"
+        },
+        {
+          "id": "home",
+          "n": 5,
+          "nodeId": "117:137",
+          "headingId": "117:144"
+        },
+        {
+          "id": "home",
+          "n": 6,
+          "nodeId": "117:154",
+          "headingId": "117:161"
+        },
+        {
+          "id": "home",
+          "n": 7,
+          "nodeId": "117:170",
+          "headingId": "117:177"
+        },
+        {
+          "id": "home",
+          "n": 8,
+          "nodeId": "117:181",
+          "headingId": "117:188"
+        },
+        {
+          "id": "home",
+          "n": 9,
+          "nodeId": "117:213",
+          "headingId": "117:220"
+        },
+        {
+          "id": "home",
+          "n": 10,
+          "nodeId": "117:246",
+          "headingId": "117:253"
+        }
+      ]
+    },
+    {
+      "id": "interior",
+      "rootId": "117:260",
+      "cards": [
+        {
+          "id": "interior",
+          "n": 1,
+          "nodeId": "117:263",
+          "headingId": "117:270"
+        },
+        {
+          "id": "interior",
+          "n": 2,
+          "nodeId": "117:277",
+          "headingId": "117:284"
+        },
+        {
+          "id": "interior",
+          "n": 3,
+          "nodeId": "117:303",
+          "headingId": "117:310"
+        },
+        {
+          "id": "interior",
+          "n": 4,
+          "nodeId": "117:322",
+          "headingId": "117:329"
+        },
+        {
+          "id": "interior",
+          "n": 5,
+          "nodeId": "117:338",
+          "headingId": "117:345"
+        },
+        {
+          "id": "interior",
+          "n": 6,
+          "nodeId": "117:355",
+          "headingId": "117:362"
+        },
+        {
+          "id": "interior",
+          "n": 7,
+          "nodeId": "117:371",
+          "headingId": "117:378"
+        },
+        {
+          "id": "interior",
+          "n": 8,
+          "nodeId": "117:382",
+          "headingId": "117:389"
+        },
+        {
+          "id": "interior",
+          "n": 9,
+          "nodeId": "117:414",
+          "headingId": "117:421"
+        },
+        {
+          "id": "interior",
+          "n": 10,
+          "nodeId": "117:447",
+          "headingId": "117:454"
+        }
+      ]
+    },
+    {
+      "id": "window",
+      "rootId": "117:461",
+      "cards": [
+        {
+          "id": "window",
+          "n": 1,
+          "nodeId": "117:464",
+          "headingId": "117:471"
+        },
+        {
+          "id": "window",
+          "n": 2,
+          "nodeId": "117:478",
+          "headingId": "117:485"
+        },
+        {
+          "id": "window",
+          "n": 3,
+          "nodeId": "117:504",
+          "headingId": "117:511"
+        },
+        {
+          "id": "window",
+          "n": 4,
+          "nodeId": "117:523",
+          "headingId": "117:530"
+        },
+        {
+          "id": "window",
+          "n": 5,
+          "nodeId": "117:539",
+          "headingId": "117:546"
+        },
+        {
+          "id": "window",
+          "n": 6,
+          "nodeId": "117:556",
+          "headingId": "117:563"
+        },
+        {
+          "id": "window",
+          "n": 7,
+          "nodeId": "117:572",
+          "headingId": "117:579"
+        },
+        {
+          "id": "window",
+          "n": 8,
+          "nodeId": "117:583",
+          "headingId": "117:590"
+        },
+        {
+          "id": "window",
+          "n": 9,
+          "nodeId": "117:615",
+          "headingId": "117:622"
+        },
+        {
+          "id": "window",
+          "n": 10,
+          "nodeId": "117:648",
+          "headingId": "117:655"
+        }
+      ]
+    },
+    {
+      "id": "rus",
+      "rootId": "118:230",
+      "cards": [
+        {
+          "id": "rus",
+          "n": 1,
+          "nodeId": "118:233",
+          "headingId": "118:240"
+        },
+        {
+          "id": "rus",
+          "n": 2,
+          "nodeId": "118:247",
+          "headingId": "118:254"
+        },
+        {
+          "id": "rus",
+          "n": 3,
+          "nodeId": "118:273",
+          "headingId": "118:280"
+        },
+        {
+          "id": "rus",
+          "n": 4,
+          "nodeId": "118:292",
+          "headingId": "118:299"
+        },
+        {
+          "id": "rus",
+          "n": 5,
+          "nodeId": "118:308",
+          "headingId": "118:315"
+        },
+        {
+          "id": "rus",
+          "n": 6,
+          "nodeId": "118:325",
+          "headingId": "118:332"
+        },
+        {
+          "id": "rus",
+          "n": 7,
+          "nodeId": "118:341",
+          "headingId": "118:348"
+        },
+        {
+          "id": "rus",
+          "n": 8,
+          "nodeId": "118:352",
+          "headingId": "118:359"
+        },
+        {
+          "id": "rus",
+          "n": 9,
+          "nodeId": "118:384",
+          "headingId": "118:391"
+        },
+        {
+          "id": "rus",
+          "n": 10,
+          "nodeId": "118:417",
+          "headingId": "118:424"
+        }
+      ]
+    },
+    {
+      "id": "ice",
+      "rootId": "118:431",
+      "cards": [
+        {
+          "id": "ice",
+          "n": 1,
+          "nodeId": "118:434",
+          "headingId": "118:441"
+        },
+        {
+          "id": "ice",
+          "n": 2,
+          "nodeId": "118:448",
+          "headingId": "118:455"
+        },
+        {
+          "id": "ice",
+          "n": 3,
+          "nodeId": "118:474",
+          "headingId": "118:481"
+        },
+        {
+          "id": "ice",
+          "n": 4,
+          "nodeId": "118:493",
+          "headingId": "118:500"
+        },
+        {
+          "id": "ice",
+          "n": 5,
+          "nodeId": "118:509",
+          "headingId": "118:516"
+        },
+        {
+          "id": "ice",
+          "n": 6,
+          "nodeId": "118:526",
+          "headingId": "118:533"
+        },
+        {
+          "id": "ice",
+          "n": 7,
+          "nodeId": "118:542",
+          "headingId": "118:549"
+        },
+        {
+          "id": "ice",
+          "n": 8,
+          "nodeId": "118:553",
+          "headingId": "118:560"
+        },
+        {
+          "id": "ice",
+          "n": 9,
+          "nodeId": "118:585",
+          "headingId": "118:592"
+        },
+        {
+          "id": "ice",
+          "n": 10,
+          "nodeId": "118:618",
+          "headingId": "118:625"
+        }
+      ]
+    },
+    {
+      "id": "pastel",
+      "rootId": "118:632",
+      "cards": [
+        {
+          "id": "pastel",
+          "n": 1,
+          "nodeId": "118:635",
+          "headingId": "118:642"
+        },
+        {
+          "id": "pastel",
+          "n": 2,
+          "nodeId": "118:649",
+          "headingId": "118:656"
+        },
+        {
+          "id": "pastel",
+          "n": 3,
+          "nodeId": "118:675",
+          "headingId": "118:682"
+        },
+        {
+          "id": "pastel",
+          "n": 4,
+          "nodeId": "118:694",
+          "headingId": "118:701"
+        },
+        {
+          "id": "pastel",
+          "n": 5,
+          "nodeId": "118:710",
+          "headingId": "118:717"
+        },
+        {
+          "id": "pastel",
+          "n": 6,
+          "nodeId": "118:727",
+          "headingId": "118:734"
+        },
+        {
+          "id": "pastel",
+          "n": 7,
+          "nodeId": "118:743",
+          "headingId": "118:750"
+        },
+        {
+          "id": "pastel",
+          "n": 8,
+          "nodeId": "118:754",
+          "headingId": "118:761"
+        },
+        {
+          "id": "pastel",
+          "n": 9,
+          "nodeId": "118:786",
+          "headingId": "118:793"
+        },
+        {
+          "id": "pastel",
+          "n": 10,
+          "nodeId": "118:819",
+          "headingId": "118:826"
+        }
+      ]
+    }
+  ],
+  "authoring": "Native editable text, vector shapes, logo/icons and separate photographic fills",
+  "export": "PNG 1600x1200",
+  "keyTextSize": 56,
+  "bodyTextSize": 48
+}
