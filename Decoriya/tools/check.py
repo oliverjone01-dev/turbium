@@ -5,12 +5,12 @@ ROOT=Path(__file__).resolve().parents[1]
 script=(ROOT/'data.js').read_text()
 probe=subprocess.run(['node','-e',script+'\nconsole.log(JSON.stringify(DEKORIYA.ads));'],check=True,capture_output=True,text=True)
 ads=json.loads(probe.stdout)
-assert len(ads)==21
-assert len({a['id'] for a in ads})==21
+assert len(ads)==22
+assert len({a['id'] for a in ads})==22
 assert sum(a['phase']=='start' for a in ads)==4
 assert sum(a['phase']=='test' for a in ads)==3
 assert sum(a['phase']=='creative' for a in ads)==7
-assert sum(a['phase']=='fairytale' for a in ads)==7
+assert sum(a['phase']=='fairytale' for a in ads)==8
 for ad in ads:
     assert len(ad['slides'])==(10 if ad['phase'] in ['fairytale','creative'] else 5)
     if ad['phase'] in ['creative','fairytale']:assert len(ad['slideLabels'])==len(ad['slides'])
@@ -32,4 +32,4 @@ js=(ROOT/'app.js').read_text()
 assert not re.search(r'\b(fetch|XMLHttpRequest|WebSocket)\s*\(',js)
 assert 'decoriya-favorites' in js
 assert 'contact-form' in js
-print('PASS: 21 offers, 175 slides (70 creative, 70 fairytale), all local resources, no remote form endpoint')
+print('PASS: 22 offers, 185 slides (70 creative, 80 fairytale), all local resources, no remote form endpoint')
