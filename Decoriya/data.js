@@ -206,7 +206,28 @@ DEKORIYA.ads.push(...[
     ]
   }
 ]);
+// Seven complete photographic campaigns. Earlier versions remain available.
+for (const id of ['commercial','home','interior','window','rus','ice','pastel']) {
+  const original=DEKORIYA.ads.find(ad=>ad.id===id);
+  const refined=DEKORIYA.ads.find(ad=>ad.id===id+'-new');
+  const ad=JSON.parse(JSON.stringify(refined || original));
+  Object.assign(ad,{
+    id:id+'-fairytale', phase:'fairytale', slideCount:10,
+    hero:'fairytale/'+id,
+    slideLabels:['Обложка','Зоны оформления','Три комплектации','До монтажа','Материалы и детали','Монтаж','Другие зоны','Условия работы','Этапы проекта','Запрос на расчёт'],
+    visualization:'Бесплатная 3D-визуализация до заказа',
+    terms:['Три комплектации под бюджет','Договор, безнал и закрывающие документы','Время монтажа согласуем заранее.']
+  });
+  if (!refined) ad.body=[
+    ...original.body.slice(0,2),
+    '📐 До заказа подготовим бесплатную 3D-визуализацию и предложим три комплектации. Сравним состав и стоимость оформления по вашему пространству.',
+    'Работаем по договору, с безналичным расчётом и закрывающими документами. Материалы, крепления, состав и стоимость согласуем до работ. Демонтаж обсудим заранее.',
+    'Выезд и замер бесплатно после подписания договора. Время монтажа согласуем с вами и режимом работы объекта. Наличие ёлки, реквизит и дополнительные зоны включаем в расчёт по согласованному составу.',
+    original.body[original.body.length-1]
+  ];
+  DEKORIYA.ads.push(ad);
+}
 DEKORIYA.ads.forEach(ad => {
-  ad.slides = Array.from({length:ad.slideCount || 5},(_,i)=>`assets/slides/${ad.id}-${i+1}.webp?v=20261105-2`);
-  ad.photo = `assets/photos/${ad.hero}.webp?v=20261105-2`;
+  ad.slides = Array.from({length:ad.slideCount || 5},(_,i)=>`assets/slides/${ad.id}-${i+1}.webp?v=20261105-fairytale`);
+  ad.photo = `assets/photos/${ad.hero}.webp?v=20261105-fairytale`;
 });
