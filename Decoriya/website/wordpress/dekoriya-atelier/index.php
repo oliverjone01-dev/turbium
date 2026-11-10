@@ -1,0 +1,1 @@
+<?php if (!defined('ABSPATH')) { exit; } get_header(); if (is_home() || is_front_page()) { echo dekoriya_render_landing(); } else { echo '<main class="wrap section project-fallback">'; while (have_posts()) { the_post(); the_title('<h1>', '</h1>'); the_content(); } echo '</main>'; } get_footer();

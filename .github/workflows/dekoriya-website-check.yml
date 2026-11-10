@@ -1,0 +1,34 @@
+name: Check DEKORIYA business website
+on:
+  pull_request:
+    paths: ['Decoriya/website/**', '.github/workflows/dekoriya-website-check.yml']
+  push:
+    branches: [main, codex/dekoriya-atelier-v4]
+    paths: ['Decoriya/website/**', '.github/workflows/dekoriya-website-check.yml']
+permissions:
+  contents: read
+jobs:
+  frontend-and-theme:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Decoriya/website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validate links, data and JavaScript
+        run: |
+          python3 tools/check.py
+          node --check app.js
+          node --check motion.js
+          node --check motion-config.js
+      - name: Build and lint WordPress theme
+        run: |
+          python3 tools/package-wordpress.py
+          for file in wordpress/dekoriya-atelier/*.php; do php -l "$file"; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dekoriya-atelier-wordpress-v4
+          path: Decoriya/website/wordpress/dekoriya-atelier-v4.zip

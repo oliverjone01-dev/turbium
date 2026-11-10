@@ -1,0 +1,46 @@
+{
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "burgundy",
+          "name": "burgundy",
+          "color": "#57212F"
+        },
+        {
+          "slug": "ivory",
+          "name": "ivory",
+          "color": "#F6F0E5"
+        },
+        {
+          "slug": "ink",
+          "name": "ink",
+          "color": "#281C20"
+        },
+        {
+          "slug": "muted",
+          "name": "muted",
+          "color": "#6D5A60"
+        },
+        {
+          "slug": "rose",
+          "name": "rose",
+          "color": "#E8D9D3"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1312px"
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "golos",
+          "name": "Golos Text",
+          "fontFamily": "Golos, Arial, sans-serif"
+        }
+      ]
+    }
+  }
+}
