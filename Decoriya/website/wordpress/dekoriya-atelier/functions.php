@@ -7,9 +7,10 @@ add_action('after_setup_theme', function () {
 });
 add_action('wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
-    $version = wp_get_theme()->get('Version') . '.' . max(filemtime(get_template_directory() . '/site.css'), filemtime(get_template_directory() . '/wow.css'), filemtime(get_template_directory() . '/app.js'), filemtime(get_template_directory() . '/motion.js'));
+    $version = wp_get_theme()->get('Version') . '.' . max(filemtime(get_template_directory() . '/site.css'), filemtime(get_template_directory() . '/wow.css'), filemtime(get_template_directory() . '/spatial.css'), filemtime(get_template_directory() . '/app.js'), filemtime(get_template_directory() . '/motion.js'));
     wp_enqueue_style('dekoriya-base', $uri . '/site.css', array(), $version);
     wp_enqueue_style('dekoriya-wow', $uri . '/wow.css', array('dekoriya-base'), $version);
+    wp_enqueue_style('dekoriya-spatial', $uri . '/spatial.css', array('dekoriya-wow'), $version);
     wp_enqueue_script('dekoriya-motion-config', $uri . '/motion-config.js', array(), $version, array('in_footer' => true, 'strategy' => 'defer'));
     wp_enqueue_script('dekoriya-motion', $uri . '/motion.js', array('dekoriya-motion-config'), $version, array('in_footer' => true, 'strategy' => 'defer'));
     wp_enqueue_script('dekoriya-app', $uri . '/app.js', array('dekoriya-motion'), $version, array('in_footer' => true, 'strategy' => 'defer'));

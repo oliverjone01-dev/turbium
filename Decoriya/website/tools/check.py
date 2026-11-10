@@ -34,9 +34,9 @@ if inline!=media:errors.append('Embedded gallery data differs from media.json; r
 for m in media:
  for key in ('src','thumb','medium','original'):
   if m.get(key)and not(root/m[key]).is_file():errors.append(m['id']+': missing '+m[key])
- if m['kind']=='concept' and ('ИИ'not in m['kindLabel'] or m.get('original')):errors.append(m['id']+': misleading concept type')
+ if m['kind']=='concept' and ('Идея'not in m['kindLabel'] or m.get('original')):errors.append(m['id']+': misleading concept type')
  if m['kind']=='retouch' and not m.get('original'):errors.append(m['id']+': retouch needs source')
-for name in ('app.js','motion.js','motion-config.js','site.css','wow.css'):
+for name in ('app.js','motion.js','motion-config.js','site.css','wow.css','spatial.css'):
  if not(root/name).is_file():errors.append('Missing runtime '+name)
 for p in root.rglob('*.html'):
  if 'wordpress'in p.parts:continue

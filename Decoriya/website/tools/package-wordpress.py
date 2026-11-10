@@ -5,7 +5,7 @@ for path in ['assets','media']:
  target=theme/path
  if target.exists():shutil.rmtree(target)
  shutil.copytree(root/path,target,ignore=shutil.ignore_patterns('*.png') if path=='assets' else None)
-for name in ['index.html','site.css','wow.css','motion-config.js','motion.js','app.js','media.json','motion-map.html','design-system.html']:
+for name in ['index.html','site.css','wow.css','spatial.css','motion-config.js','motion.js','app.js','media.json','motion-map.html','design-system.html']:
  if(root/name).exists():shutil.copyfile(root/name,theme/name)
 (theme/'template-parts').mkdir(exist_ok=True)
 s=(root/'index.html').read_text();body=re.search(r'<body>(.*)</body>',s,re.S).group(1);body=re.sub(r'<script src="(?:motion-config|motion|app)\.js"[^>]*></script>','',body)
@@ -16,7 +16,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Многослойный hero, редактируемый оффер, галереи и адаптивная анимация без внешних JS-библиотек.
-Version: 4.0.0
+Version: 5.0.0
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -32,9 +32,10 @@ add_action('after_setup_theme', function () {
 });
 add_action('wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
-    $version = wp_get_theme()->get('Version') . '.' . max(filemtime(get_template_directory() . '/site.css'), filemtime(get_template_directory() . '/wow.css'), filemtime(get_template_directory() . '/app.js'), filemtime(get_template_directory() . '/motion.js'));
+    $version = wp_get_theme()->get('Version') . '.' . max(filemtime(get_template_directory() . '/site.css'), filemtime(get_template_directory() . '/wow.css'), filemtime(get_template_directory() . '/spatial.css'), filemtime(get_template_directory() . '/app.js'), filemtime(get_template_directory() . '/motion.js'));
     wp_enqueue_style('dekoriya-base', $uri . '/site.css', array(), $version);
     wp_enqueue_style('dekoriya-wow', $uri . '/wow.css', array('dekoriya-base'), $version);
+    wp_enqueue_style('dekoriya-spatial', $uri . '/spatial.css', array('dekoriya-wow'), $version);
     wp_enqueue_script('dekoriya-motion-config', $uri . '/motion-config.js', array(), $version, array('in_footer' => true, 'strategy' => 'defer'));
     wp_enqueue_script('dekoriya-motion', $uri . '/motion.js', array('dekoriya-motion-config'), $version, array('in_footer' => true, 'strategy' => 'defer'));
     wp_enqueue_script('dekoriya-app', $uri . '/app.js', array('dekoriya-motion'), $version, array('in_footer' => true, 'strategy' => 'defer'));
@@ -75,8 +76,8 @@ function dekoriya_render_landing() {
 # Export foundations for WordPress editor use without altering the frontend runtime.
 palette={'burgundy':'#57212F','ivory':'#F6F0E5','ink':'#281C20','muted':'#6D5A60','rose':'#E8D9D3'}
 theme_json={'version':3,'settings':{'color':{'palette':[{'slug':k,'name':k,'color':v}for k,v in palette.items()]},'layout':{'contentSize':'1312px'},'typography':{'fontFamilies':[{'slug':'golos','name':'Golos Text','fontFamily':'Golos, Arial, sans-serif'}]}}};(theme/'theme.json').write_text(json.dumps(theme_json,indent=2))
-if (root/'qa/figma-hero-desktop.png').exists():shutil.copyfile(root/'qa/figma-hero-desktop.png',theme/'screenshot.png')
-zip_path=root/'wordpress/dekoriya-atelier-v4.zip'
+if (root/'qa/hero-desktop-v5.png').exists():shutil.copyfile(root/'qa/hero-desktop-v5.png',theme/'screenshot.png')
+zip_path=root/'wordpress/dekoriya-atelier-v5.zip'
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=6)as z:
  for f in theme.rglob('*'):
   if f.is_file():z.write(f,str(f.relative_to(theme.parent)))

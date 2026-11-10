@@ -48,7 +48,7 @@ jobs:
           cp -r Decoriya/assets _site/Decoriya/
           # DEKORIYA business website lives beside the partner demonstration
           mkdir -p _site/Decoriya/website
-          cp Decoriya/website/index.html Decoriya/website/site.css Decoriya/website/wow.css Decoriya/website/app.js Decoriya/website/motion.js Decoriya/website/motion-config.js Decoriya/website/motion-map.html Decoriya/website/design-system.html Decoriya/website/qa.html _site/Decoriya/website/
+          cp Decoriya/website/index.html Decoriya/website/site.css Decoriya/website/wow.css Decoriya/website/spatial.css Decoriya/website/app.js Decoriya/website/motion.js Decoriya/website/motion-config.js Decoriya/website/motion-map.html Decoriya/website/design-system.html Decoriya/website/qa.html _site/Decoriya/website/
           cp -r Decoriya/website/assets Decoriya/website/media _site/Decoriya/website/
           touch _site/.nojekyll
       - name: Push to gh-pages
