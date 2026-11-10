@@ -80,9 +80,11 @@
   function setupSpatial(){
     document.querySelectorAll('[data-spatial]').forEach(button=>{
       let pinned=false;const closed=button.querySelector('.teaser-hint-text').textContent;
-      const set=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Собрать композицию':closed};
+      const set=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Вернуть общий вид':closed};
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
-      button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
+      let pointerFrame=0,pointX=0,pointY=0;
+      button.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches||e.pointerType!=='mouse')return;const r=button.getBoundingClientRect();pointX=clamp((e.clientX-r.left)/r.width*2-1,-1,1);pointY=clamp((e.clientY-r.top)/r.height*2-1,-1,1);if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;button.style.setProperty('--scene-rx',(-pointY*3)+'deg');button.style.setProperty('--scene-ry',(pointX*4)+'deg')})});
+      button.addEventListener('pointerleave',()=>{if(pointerFrame){cancelAnimationFrame(pointerFrame);pointerFrame=0}button.style.removeProperty('--scene-rx');button.style.removeProperty('--scene-ry');if(!pinned)set(false)});
       button.addEventListener('click',()=>{pinned=!pinned;set(pinned)});
       button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
       button.addEventListener('blur',()=>{if(!pinned)set(false)});

@@ -1,0 +1,67 @@
+{
+  "version": "6.1.0",
+  "date": "2026-11-11",
+  "layout": {
+    "errors": "",
+    "rows": [
+      "360125%0 px10 переносов0 ошибокOK13225",
+      "390100%0 px10 переносов0 ошибокOK10982",
+      "390125%0 px10 переносов0 ошибокOK12946",
+      "360100%0 px10 переносов0 ошибокOK11007",
+      "600100%0 px10 переносов0 ошибокOK10443",
+      "600125%0 px10 переносов0 ошибокOK11568",
+      "768100%0 px10 переносов0 ошибокOK8928",
+      "768125%0 px10 переносов0 ошибокOK10587",
+      "900100%0 px10 переносов0 ошибокOK8690",
+      "900125%0 px10 переносов0 ошибокOK10168",
+      "1024100%0 px10 переносов0 ошибокOK8911",
+      "1024125%0 px10 переносов0 ошибокOK10013",
+      "1440100%0 px10 переносов0 ошибокOK8865",
+      "1440125%0 px10 переносов0 ошибокOK9798",
+      "1920125%0 px10 переносов0 ошибокOK9822",
+      "1920100%0 px10 переносов0 ошибокOK8884"
+    ],
+    "status": "Проверено 16 вариантов. Нарушений: 0"
+  },
+  "portraitSourceSHA256": "650b34c6a747d47994718ce51ff91c0e45c3b912cf507f635f8cee257317be7a",
+  "handsRetouched": true,
+  "actualPointer": {
+    "rx": 1.2073202054794523,
+    "ry": 2.759615384615385,
+    "matrix3d": true
+  },
+  "mobileTap": {
+    "expandedThenCollapsed": true,
+    "individualLabels": [
+      "Камень и фактура",
+      "Флористика",
+      "Свет и мебель"
+    ]
+  },
+  "physicalSafariIosAndroidTested": false,
+  "systemReducedMotionToggleTested": false,
+  "wordpress": {
+    "wp": "6.8",
+    "php": "8.3",
+    "theme": "6.1.0",
+    "heroImagesLoaded": 4,
+    "expanded": "true",
+    "glintMask": "url(\"http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/studio/entrance-photo-v61.webp\")",
+    "oldPlanes": 0,
+    "rasterImages": [
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/studio/entrance-photo-v61.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/studio/window-photo-v61.webp"
+      },
+      {
+        "loaded": true,
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/studio/interior-photo-v61.webp"
+      }
+    ],
+    "sceneCount": 3
+  }
+}

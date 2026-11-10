@@ -1,5 +1,5 @@
 {
-  "version": "6.0.0",
+  "version": "6.1.0",
   "fileKey": "SsbOVLwLJnNFPwaeQ3bRqJ",
   "pageId": "109:1663",
   "desktop": "109:1664",
@@ -9,31 +9,40 @@
   "variants": [
     {
       "id": "111:1194",
-      "name": "Category=entrance, State=Assembled"
+      "name": "Category=entrance, State=Rest"
     },
     {
       "id": "111:1195",
-      "name": "Category=entrance, State=Exploded"
+      "name": "Category=entrance, State=Focus"
     },
     {
       "id": "111:1196",
-      "name": "Category=window, State=Assembled"
+      "name": "Category=window, State=Rest"
     },
     {
       "id": "111:1197",
-      "name": "Category=window, State=Exploded"
+      "name": "Category=window, State=Focus"
     },
     {
       "id": "111:1198",
-      "name": "Category=interior, State=Assembled"
+      "name": "Category=interior, State=Rest"
     },
     {
       "id": "111:1199",
-      "name": "Category=interior, State=Exploded"
+      "name": "Category=interior, State=Focus"
     }
   ],
   "galleryControl": "116:1112",
-  "audit": {
+  "priorV5": {
+    "pageId": "93:2",
+    "desktop": "93:3",
+    "mobile": "93:521"
+  },
+  "motionImplementation": "Raster Rest/Focus native states and Smart Animate. Exact pointer tilt, lift, zoom, glint and other effects execute in the shared browser/WordPress frontend.",
+  "pageName": "07 STUDIO / v6.1",
+  "approvedFaceSourceUnchanged": true,
+  "lowerPortraitRetouched": true,
+  "priorV6Audit": {
     "pageId": "109:1663",
     "roots": [
       {
@@ -66,12 +75,5 @@
         "variants": 6
       }
     ]
-  },
-  "approvedPortraitUnchanged": true,
-  "priorV5": {
-    "pageId": "93:2",
-    "desktop": "93:3",
-    "mobile": "93:521"
-  },
-  "motionImplementation": "Editable native states and Smart Animate; exact maquette planes, pointer movement, text, strokes and sunlight pattern execute in the website."
+  }
 }
