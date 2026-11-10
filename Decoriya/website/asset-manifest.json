@@ -558,5 +558,125 @@
     "path": "assets/spatial/window-surface.svg",
     "bytes": 719,
     "sha256": "5be3ec4e8bb32a4edc4267724738417bca7c73e9920d65f1177ee4bcb3725a8a"
+  },
+  {
+    "path": "assets/studio/atelier-ribbon-pattern.svg",
+    "bytes": 1421,
+    "sha256": "1b2138f99109cc5cf1fae18fd70702f91f0f5b9576c446a779de67c904efc60d"
+  },
+  {
+    "path": "assets/studio/continuous-desk-v6.png",
+    "bytes": 1429869,
+    "sha256": "ee5aba634400aab90b052c35730c15c588ca7e0074f1279a8b5b65371e802f64"
+  },
+  {
+    "path": "assets/studio/continuous-desk-v6.webp",
+    "bytes": 212330,
+    "sha256": "7d01668a9c5929ae9ea23bba4227b8bf157eacb90c7ef49a6d677fdb33db8cfc"
+  },
+  {
+    "path": "assets/studio/entrance-assembled-v6.svg",
+    "bytes": 18929,
+    "sha256": "31bfee91fd001c21baf865464b57f1c80efb1ae017e53768c2317d70de22b7d2"
+  },
+  {
+    "path": "assets/studio/entrance-decor-v6.svg",
+    "bytes": 14956,
+    "sha256": "a9ff6b6d69661805e54293329c01f95a3918abe76695045b1b968bba442c2d95"
+  },
+  {
+    "path": "assets/studio/entrance-light-v6.svg",
+    "bytes": 653,
+    "sha256": "4628141d7ca48a3f36ebe5b15b552153c5b4942b782cbf732a71a37b4f478c51"
+  },
+  {
+    "path": "assets/studio/entrance-structure-v6.svg",
+    "bytes": 3177,
+    "sha256": "9dccf39d598d56582a993ee55138cb4b84ae9e155f05a541dedc3055f11b3944"
+  },
+  {
+    "path": "assets/studio/entrance-surface-v6.svg",
+    "bytes": 727,
+    "sha256": "59b0c59126fc34a613b4e2b8d499646cc858c35cd66796743f1f31e7dfb45f28"
+  },
+  {
+    "path": "assets/studio/hands-native-mask.svg",
+    "bytes": 1892,
+    "sha256": "7fcca5d82b275146d5634555ba26317a31ffbc92f19ffab17dcff60b8fe19a6d"
+  },
+  {
+    "path": "assets/studio/interior-assembled-v6.svg",
+    "bytes": 13473,
+    "sha256": "d3d99de2360d2e04ce36361f4b2b3b37c80a77681e8b3586901196bc0bd34413"
+  },
+  {
+    "path": "assets/studio/interior-decor-v6.svg",
+    "bytes": 11021,
+    "sha256": "3a897beefabc29c696182f0689ff6ee34344104e1145df03d0fcc1697fa3c664"
+  },
+  {
+    "path": "assets/studio/interior-light-v6.svg",
+    "bytes": 784,
+    "sha256": "4eb30c132ac106c14b511b540f0c8d640dc7b3774cdc2fb3672229905d5b61d6"
+  },
+  {
+    "path": "assets/studio/interior-structure-v6.svg",
+    "bytes": 1525,
+    "sha256": "07d92880948a4c47e29951ae683e67433c5c57db950530e393e4d837527d5b8a"
+  },
+  {
+    "path": "assets/studio/interior-surface-v6.svg",
+    "bytes": 727,
+    "sha256": "f85332819eb1fe9fd9faa3338ca496eea90da47bcc6bc66892baa8d64c154a3e"
+  },
+  {
+    "path": "assets/studio/materials-wide-v6.png",
+    "bytes": 2438211,
+    "sha256": "88f7d7d2541ec935c4feaf4fe7a852c89189e8051646f1514f75f9627aba52bd"
+  },
+  {
+    "path": "assets/studio/materials-wide-v6.webp",
+    "bytes": 338988,
+    "sha256": "892d69451f2db2e36bf4fe99bf70c2b17d08ad2edaf459c08b249a2c118741d1"
+  },
+  {
+    "path": "assets/studio/planes-v6.json",
+    "bytes": 234,
+    "sha256": "0e3ce449c6f51785b00842da4586ab148f23799191125b118ddade10873513a6"
+  },
+  {
+    "path": "assets/studio/studio-penthouse-v6.png",
+    "bytes": 2371457,
+    "sha256": "0bfe2545a479572e00d8414f38f10297aa3cefabd5dec6dd83a922437cbc27b6"
+  },
+  {
+    "path": "assets/studio/studio-penthouse-v6.webp",
+    "bytes": 309248,
+    "sha256": "6a0a41bd2020039fdd95004bddd701ee056cadb8872f75298851a9c3c7de44fe"
+  },
+  {
+    "path": "assets/studio/window-assembled-v6.svg",
+    "bytes": 10729,
+    "sha256": "b3dfd14704f5d90d68a358b2d3b93b679d2650c5c15aadeb2c9b5e9d75df1c95"
+  },
+  {
+    "path": "assets/studio/window-decor-v6.svg",
+    "bytes": 8382,
+    "sha256": "9d75afd3f3410f505c85bbc1b17e54ee42a8dcd4b6916601862fdb9440877f75"
+  },
+  {
+    "path": "assets/studio/window-light-v6.svg",
+    "bytes": 988,
+    "sha256": "c2d7d6b1375b43305b60402b4df62e901373141b8a222e10ccfa4448660c67bd"
+  },
+  {
+    "path": "assets/studio/window-structure-v6.svg",
+    "bytes": 1210,
+    "sha256": "e7db13fc2871ee2287d8e4b93d584a1b1b64dc7a6748a26779d76e603edcbd78"
+  },
+  {
+    "path": "assets/studio/window-surface-v6.svg",
+    "bytes": 723,
+    "sha256": "15d849911a5517342ff9e424f36b34e418054c20695ffd19fa7775ed29ba729a"
   }
 ]

@@ -73,14 +73,14 @@
       if(Math.abs(room.targetX-room.x)+Math.abs(room.targetY-room.y)>.002)schedule();
     }}
     if(reduced.matches)return;
-    if(material&&fine.matches){const r=material.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){const p=clamp((innerHeight-r.top)/(innerHeight+r.height));material.style.setProperty('--parallax-y',((p-.5)*2*C.parallax.material)+'px')}}
+    if(material){const r=material.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){const p=clamp((innerHeight-r.top)/(innerHeight+r.height));material.style.setProperty('--parallax-y',((p-.5)*2*(fine.matches?C.parallax.material:C.parallax.mobile))+'px')}}
     if(steps){const r=steps.getBoundingClientRect(),p=clamp((innerHeight*.75-r.top)/(r.height+innerHeight*.25));steps.style.setProperty('--process-progress',p);steps.querySelectorAll('li').forEach((li,i)=>li.classList.toggle('active',p>i/3));}
   }
   function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(updateScroll)}
   function setupSpatial(){
     document.querySelectorAll('[data-spatial]').forEach(button=>{
-      let pinned=false;
-      const set=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Собрать композицию':'Разобрать по слоям'};
+      let pinned=false;const closed=button.querySelector('.teaser-hint-text').textContent;
+      const set=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Собрать композицию':closed};
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
       button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
       button.addEventListener('click',()=>{pinned=!pinned;set(pinned)});
@@ -94,6 +94,8 @@
   })}
   function boot(){
     setupEditorial();entrance();observeReveals();setupSpatial();setupMagnetic();
+    const contact=document.querySelector('#contact');
+    if(contact&&'IntersectionObserver'in window)new IntersectionObserver(es=>contact.classList.toggle('pattern-active',es[0].isIntersecting&&es[0].intersectionRatio>=.15),{threshold:.15}).observe(contact);
     material=document.querySelector('[data-parallax]');steps=document.querySelector('.steps');back=document.querySelector('.back-top');
     back?.addEventListener('click',()=>scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'}));
     hero?.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches||e.pointerType!=='mouse')return;const r=hero.getBoundingClientRect();room.targetX=clamp((e.clientX-r.left)/r.width*2-1,-1,1);room.targetY=clamp((e.clientY-r.top)/r.height*2-1,-1,1);schedule()});

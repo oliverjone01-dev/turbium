@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0",
+  "version": "6.0.0",
   "date": "2026-11-10",
   "kind": "self-check",
   "geometry": {
@@ -20,113 +20,97 @@
     "variants": 16,
     "failures": 0
   },
-  "motionObserved": [
-    {
-      "label": "start",
-      "active": 10,
-      "words": 13,
-      "first": [
-        {
-          "text": "Сначала",
-          "transform": "none",
-          "opacity": "1"
-        },
-        {
-          "text": "пространство.",
-          "transform": "none",
-          "opacity": "1"
-        },
-        {
-          "text": "Затем",
-          "transform": "none",
-          "opacity": "1"
-        }
-      ],
-      "wordAnimations": 0
-    },
-    {
-      "label": "middle",
-      "active": 19,
-      "words": 13,
-      "first": [
-        {
-          "text": "Сначала",
-          "transform": "matrix(0.999993, 0.00365345, -0.00365345, 0.999993, 0, 5.28978)",
-          "opacity": "0.930224"
-        },
-        {
-          "text": "пространство.",
-          "transform": "matrix(0.999988, 0.00482736, -0.00482736, 0.999988, 0, 6.98947)",
-          "opacity": "0.907804"
-        },
-        {
-          "text": "Затем",
-          "transform": "matrix(0.99998, 0.00635594, -0.00635594, 0.99998, 0, 9.20272)",
-          "opacity": "0.87861"
-        }
-      ],
-      "wordAnimations": 13
-    },
-    {
-      "label": "rest",
-      "active": 0,
-      "words": 13,
-      "first": [
-        {
-          "text": "Сначала",
-          "transform": "none",
-          "opacity": "1"
-        },
-        {
-          "text": "пространство.",
-          "transform": "none",
-          "opacity": "1"
-        },
-        {
-          "text": "Затем",
-          "transform": "none",
-          "opacity": "1"
-        }
-      ],
-      "wordAnimations": 0
-    },
-    {
-      "label": "icons",
-      "animatedPaths": 10,
-      "paths": 10
-    }
-  ],
-  "portraitSha256": {
-    "webp": "650b34c6a747d47994718ce51ff91c0e45c3b912cf507f635f8cee257317be7a",
-    "png": "01ee0f9b44976cb978d5acf98db500f037409269466825ee4e2e7fda4e35e76b",
-    "bothUnchangedFromV4": true
+  "hero": {
+    "desktopContentWidth": 1713,
+    "desktopTableBounds": [
+      -32.265625,
+      1730.28125
+    ],
+    "mobileContentWidth": 375,
+    "mobileTableBounds": [
+      -152.5,
+      527.5
+    ],
+    "portraitUnchangedFromV5": true,
+    "portraitSHA256": "650b34c6a747d47994718ce51ff91c0e45c3b912cf507f635f8cee257317be7a",
+    "hands": "Original portrait pixels, native contour mask; luminance filter removed; contact shadow added"
   },
-  "pointerObserved": {
-    "roomX": -16.83334425150588,
-    "roomY": -5.341123226242561,
-    "subjectPositionUnchanged": true
+  "gallery": {
+    "nextButton": "01 / 05 -> 02 / 05",
+    "nativeMouseDrag": [
+      {
+        "before": 0,
+        "after": 708
+      },
+      {
+        "before": 708,
+        "after": 1416
+      }
+    ],
+    "dragOpensViewer": false,
+    "conceptBadges": 0,
+    "uniqueDescriptions": 20,
+    "mobileConceptViewerCounter": "01 / 15"
   },
-  "wordpress": {
-    "version": "6.8",
-    "php": "8.3",
-    "spatialStylesLoaded": true,
-    "heroImagesLoaded": 4,
-    "windowPlanes": 4,
-    "expandedAfterClick": true,
-    "viewerOriginalToggle": true,
-    "viewerNext": true,
-    "escapeFocusReturn": true,
-    "entranceFilter": 5
+  "pattern": {
+    "firstPhase": {
+      "mask": "179.882% 0px",
+      "opacity": 0.0351339,
+      "state": "running"
+    },
+    "secondPhase": {
+      "mask": "-74.4753% 0px",
+      "opacity": 0.0899795,
+      "state": "running"
+    },
+    "outsideViewport": "paused"
   },
-  "mobile": {
-    "width": 390,
-    "menuAnchor": true,
-    "teaserTapOpenClose": true,
-    "roomX": "0px"
+  "material": {
+    "shiftBefore": -21.43582695984703,
+    "shiftAfter": 19.25250956022945,
+    "beforeFrame": [
+      244.65625,
+      944.65625
+    ],
+    "beforeImage": [
+      103.2204,
+      1043.2204
+    ],
+    "afterFrame": [
+      -59.34375,
+      640.65625
+    ],
+    "afterImage": [
+      -160.0912,
+      779.9088
+    ],
+    "edgesCovered": true,
+    "configuredAmplitudeDesktop": 105,
+    "configuredAmplitudeMobile": 36
+  },
+  "copyLint": {
+    "errors": 0,
+    "warnings": 1,
+    "assessment": "Parallel two-sentence gallery cards intentionally have a consistent rhythm; no forced variation added."
   },
   "limits": [
     "Physical iOS/Android and Safari/Firefox not run",
-    "System-level reduced-motion UI not run; code reviewed",
-    "No CRM or complete CMS content editor"
-  ]
+    "System reduced-motion toggle not run; implementation reviewed",
+    "Full CMS editor and CRM remain outside the current frontend iteration"
+  ],
+  "wordpress": {
+    "version": "6.8",
+    "php": "8.3",
+    "themeVersion": "6.0.0",
+    "newHeroImagesLoaded": 4,
+    "nativeMaskURIRewritten": true,
+    "conceptBadges": 0,
+    "ratingRemoved": true,
+    "maquetteClickExpanded": true,
+    "conceptViewer": "06 / 15",
+    "individualCopy": true,
+    "originalToggle": true,
+    "retouchNextCounter": "02 / 05",
+    "escapeFocusReturn": true
+  }
 }

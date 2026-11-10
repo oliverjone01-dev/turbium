@@ -16,7 +16,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Многослойный hero, редактируемый оффер, галереи и адаптивная анимация без внешних JS-библиотек.
-Version: 5.0.0
+Version: 6.0.0
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -76,8 +76,8 @@ function dekoriya_render_landing() {
 # Export foundations for WordPress editor use without altering the frontend runtime.
 palette={'burgundy':'#57212F','ivory':'#F6F0E5','ink':'#281C20','muted':'#6D5A60','rose':'#E8D9D3'}
 theme_json={'version':3,'settings':{'color':{'palette':[{'slug':k,'name':k,'color':v}for k,v in palette.items()]},'layout':{'contentSize':'1312px'},'typography':{'fontFamilies':[{'slug':'golos','name':'Golos Text','fontFamily':'Golos, Arial, sans-serif'}]}}};(theme/'theme.json').write_text(json.dumps(theme_json,indent=2))
-if (root/'qa/hero-desktop-v5.png').exists():shutil.copyfile(root/'qa/hero-desktop-v5.png',theme/'screenshot.png')
-zip_path=root/'wordpress/dekoriya-atelier-v5.zip'
+if (root/'qa/hero-desktop-v6.png').exists():shutil.copyfile(root/'qa/hero-desktop-v6.png',theme/'screenshot.png')
+zip_path=root/'wordpress/dekoriya-atelier-v6.zip'
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=6)as z:
  for f in theme.rglob('*'):
   if f.is_file():z.write(f,str(f.relative_to(theme.parent)))
