@@ -443,5 +443,120 @@
     "path": "assets/originals/real-white.jpg",
     "bytes": 186605,
     "sha256": "51b105dfaa88bfe95cdedcc65a23d0d31a897649fc10f7bb9b56239304c73b77"
+  },
+  {
+    "path": "assets/spatial/entrance-assembled.svg",
+    "bytes": 20011,
+    "sha256": "1e548fde691a6ceb1d149f2154feda8a89ff50b64eb57b028170ce67ac7119f8"
+  },
+  {
+    "path": "assets/spatial/entrance-decor.svg",
+    "bytes": 18040,
+    "sha256": "894d9485219847f670821c04da93bafdeb9ef4837e4933e5aae93216880b7528"
+  },
+  {
+    "path": "assets/spatial/entrance-light.svg",
+    "bytes": 477,
+    "sha256": "362593ff0eedf5118c18aef2f3765a7e7600b63d29721d36099223820bf9dd2c"
+  },
+  {
+    "path": "assets/spatial/entrance-structure.svg",
+    "bytes": 917,
+    "sha256": "470cc34deb59e51e083ba84e997bd93a8929c48e7cb982c7ffa651e0d5f92db5"
+  },
+  {
+    "path": "assets/spatial/entrance-surface.svg",
+    "bytes": 856,
+    "sha256": "743966e3d0d6cab022e9b2a21894d9d462c500295a11a1e1389e669f091709b7"
+  },
+  {
+    "path": "assets/spatial/executive-desk-v5.png",
+    "bytes": 1486459,
+    "sha256": "6152d2b803b3a13ae0791871b38c911e0dfa2b6b35f2bef91b7bff0cd662a471"
+  },
+  {
+    "path": "assets/spatial/executive-desk-v5.webp",
+    "bytes": 225208,
+    "sha256": "5ad2e6f5ca92dba2245513b0cdfe54c7950e65a5e7a6ca87ceedb3cfd5b03ae6"
+  },
+  {
+    "path": "assets/spatial/icon-concept.svg",
+    "bytes": 729,
+    "sha256": "baf88de72c2210e1846fd0361e3bf7533bfb27d39d061a3bc1c42b3c9cfba197"
+  },
+  {
+    "path": "assets/spatial/icon-discuss.svg",
+    "bytes": 581,
+    "sha256": "816befea7e3544b493c00b2e34eb4cdce74ed4359d621eeea6269749ede8cb98"
+  },
+  {
+    "path": "assets/spatial/icon-install.svg",
+    "bytes": 600,
+    "sha256": "a590020b0d7be81fb53339291abe8e2e2d3c3c28d97edc89daaf06c537ee05d5"
+  },
+  {
+    "path": "assets/spatial/interior-assembled.svg",
+    "bytes": 12574,
+    "sha256": "006ed86fb84eff2238ad8001b1952d48fc544596a16998e268e0589b04979538"
+  },
+  {
+    "path": "assets/spatial/interior-decor.svg",
+    "bytes": 10458,
+    "sha256": "45222c35d7941489b5e724884039a4f1d373c3fe276fdd0b9aaded28c65824bd"
+  },
+  {
+    "path": "assets/spatial/interior-light.svg",
+    "bytes": 459,
+    "sha256": "b32b868862b6e4032adebce0ce2e30903a56e992049fe21b526140f17ee2909a"
+  },
+  {
+    "path": "assets/spatial/interior-structure.svg",
+    "bytes": 1069,
+    "sha256": "209434e59902c3715126c5ca0a3c80678f246b84728a4d4f491c5d1a7d94af3d"
+  },
+  {
+    "path": "assets/spatial/interior-surface.svg",
+    "bytes": 867,
+    "sha256": "442ad2dd5d980a9ece4587e9e958d5725c4607e6ca5975b4f0ebf0c3d4fe4544"
+  },
+  {
+    "path": "assets/spatial/office-room-v5.png",
+    "bytes": 2022542,
+    "sha256": "a4d8a0cca1557276cbd6934da3383efaf0ae8983da804b36d8f1ec6e95e3361f"
+  },
+  {
+    "path": "assets/spatial/office-room-v5.webp",
+    "bytes": 172208,
+    "sha256": "38daa249801a15e0a224190ae4d8ee5203e049389526776c1ae53d6192716be1"
+  },
+  {
+    "path": "assets/spatial/planes.json",
+    "bytes": 382,
+    "sha256": "4fb095295db791595c98693222bf4f66523b9490e0a83a277c4b879fb0093471"
+  },
+  {
+    "path": "assets/spatial/window-assembled.svg",
+    "bytes": 8000,
+    "sha256": "25b9c7029539a6604c7212d7f722a4fd54e7d5c3b4a210ffec58cdfb9489a5af"
+  },
+  {
+    "path": "assets/spatial/window-decor.svg",
+    "bytes": 5773,
+    "sha256": "94302f337b989a047efc6c4d519cb6b077113c25592197adbf00dc5b6bb6aa08"
+  },
+  {
+    "path": "assets/spatial/window-light.svg",
+    "bytes": 539,
+    "sha256": "a679eebc308b0b6610c7d2158ad2fd3b02d7031034aa5941d3229edbbd3adb67"
+  },
+  {
+    "path": "assets/spatial/window-structure.svg",
+    "bytes": 1248,
+    "sha256": "4060c7f2271baf6489e7bf1f447c99f196fa69bccd2c9ed57bf74a494374dbe2"
+  },
+  {
+    "path": "assets/spatial/window-surface.svg",
+    "bytes": 719,
+    "sha256": "5be3ec4e8bb32a4edc4267724738417bca7c73e9920d65f1177ee4bcb3725a8a"
   }
 ]

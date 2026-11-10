@@ -6,7 +6,7 @@ arrow='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14
 def btn(t,href):return '<a class="btn primary" href="'+href+'">'+E(t)+arrow+'</a>'
 def card(x,i):
  return f'<article class="media-card" data-category="{x["category"]}"><a href="media/{x["id"]}.html" class="media-open" data-media="{x["id"]}"><div class="media-image"><img src="{x["thumb"]}" srcset="{x["thumb"]} 640w, {x["medium"]} 1280w" sizes="(max-width:767px)82vw,40vw" alt="{E(x["alt"])}" loading="lazy" draggable="false"><span class="media-badge">{E(x["kindLabel"])}</span><span class="media-open-icon">{arrow}</span></div><div class="media-card-heading"><span class="media-index">{i:02}</span><h3>{E(x["title"])}</h3></div><p>{E(x["categoryLabel"])}</p></a></article>'
-def rail(items,id):return f'<div class="media-rail" id="{id}-rail" data-rail="{id}" tabindex="0" role="region" aria-label="Галерея: '+('портфолио'if id=='works' else'ИИ-направления')+'">'+''.join(card(x,i+1)for i,x in enumerate(items))+'</div>'
+def rail(items,id):return f'<div class="media-rail" id="{id}-rail" data-rail="{id}" tabindex="0" role="region" aria-label="Галерея: '+('портфолио'if id=='works' else'идеи оформления')+'">'+''.join(card(x,i+1)for i,x in enumerate(items))+'</div>'
 page=(p/'index.html').read_text()
 for kind,rid in [('retouch','works'),('concept','ideas')]:
  items=[m for m in media if m['kind']==kind]

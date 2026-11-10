@@ -1,7 +1,7 @@
 # Установка и развитие на WordPress
 
 1. В корне фронтенда выполнить `python3 tools/package-wordpress.py`.
-2. На staging WordPress загрузить `wordpress/dekoriya-atelier-v4.zip` через «Внешний вид → Темы → Добавить → Загрузить» и активировать.
+2. На staging WordPress загрузить `wordpress/dekoriya-atelier-v5.zip` через «Внешний вид → Темы → Добавить → Загрузить» и активировать.
 3. Установить русский язык сайта в общих настройках. В «Настроить → Декория: главная» изменить три строки hero и ссылку обращения. В текущей версии обращение открывает анкету Олеси на Профи.ру.
 4. Проверить меню, галереи, исходник/ретушь, фильтр, контактное действие и мобильную компоновку. Не отключать индексацию на staging.
 
@@ -10,7 +10,7 @@
 Локальная повторная проверка через официальный npm-пакет:
 
 ```sh
-npm exec --yes --package=@wp-playground/cli -- wp-playground-cli server --port=8770 --workers=1 --php=8.3 --wp=6.8 --blueprint="$PWD/tools/wp-blueprint.json" --mount="$PWD/wordpress/dekoriya-atelier:/wordpress/wp-content/themes/dekoriya-atelier"
+npm exec --yes --package=@wp-playground/cli -- wp-playground-cli server --port=8773 --workers=1 --php=8.3 --wp=6.8 --blueprint="$PWD/tools/wp-blueprint.json" --mount="$PWD/wordpress/dekoriya-atelier:/wordpress/wp-content/themes/dekoriya-atelier"
 ```
 
 Playground использует временную установку и SQLite. Это проверка реального выполнения PHP и фронтенда, не нагрузочный тест боевого хостинга/MySQL. Для полной матрицы темы на CI предусмотрен `php -l`.

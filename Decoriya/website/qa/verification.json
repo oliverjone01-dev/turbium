@@ -1,8 +1,8 @@
 {
+  "version": "5.0.0",
   "date": "2026-11-10",
-  "scope": "Frontend, Figma and staging WordPress theme",
-  "layout": {
-    "browser": "Chrome",
+  "kind": "self-check",
+  "geometry": {
     "widths": [
       360,
       390,
@@ -18,48 +18,115 @@
       1.25
     ],
     "variants": 16,
-    "failures": 0,
-    "method": "Authored QA page observed through native browser UI; font scaling, not browser zoom"
+    "failures": 0
   },
-  "gallery": {
-    "retouches": 5,
-    "concepts": 15,
-    "wordpress": "6.8",
-    "php": "8.3",
-    "observed": [
-      "retouch/original toggle",
-      "ArrowRight",
-      "Escape",
-      "focus return",
-      "entrance filter yields 5"
-    ]
-  },
-  "figma": {
-    "file": "SsbOVLwLJnNFPwaeQ3bRqJ",
-    "desktop": "53:2",
-    "mobile": "53:364",
-    "motionMap": "59:2261",
-    "intro": "59:2107",
-    "introSeconds": 2,
-    "sampledSeconds": [
-      0,
-      0.5,
-      1,
-      1.5
-    ],
-    "fontMismatches": 0
-  },
-  "notRun": [
-    "physical iOS/Android",
-    "Safari/Firefox",
-    "system reduced-motion UI run",
-    "production hosting/plugin combinations",
-    "field performance"
+  "motionObserved": [
+    {
+      "label": "start",
+      "active": 10,
+      "words": 13,
+      "first": [
+        {
+          "text": "Сначала",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "пространство.",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "Затем",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ],
+      "wordAnimations": 0
+    },
+    {
+      "label": "middle",
+      "active": 19,
+      "words": 13,
+      "first": [
+        {
+          "text": "Сначала",
+          "transform": "matrix(0.999993, 0.00365345, -0.00365345, 0.999993, 0, 5.28978)",
+          "opacity": "0.930224"
+        },
+        {
+          "text": "пространство.",
+          "transform": "matrix(0.999988, 0.00482736, -0.00482736, 0.999988, 0, 6.98947)",
+          "opacity": "0.907804"
+        },
+        {
+          "text": "Затем",
+          "transform": "matrix(0.99998, 0.00635594, -0.00635594, 0.99998, 0, 9.20272)",
+          "opacity": "0.87861"
+        }
+      ],
+      "wordAnimations": 13
+    },
+    {
+      "label": "rest",
+      "active": 0,
+      "words": 13,
+      "first": [
+        {
+          "text": "Сначала",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "пространство.",
+          "transform": "none",
+          "opacity": "1"
+        },
+        {
+          "text": "Затем",
+          "transform": "none",
+          "opacity": "1"
+        }
+      ],
+      "wordAnimations": 0
+    },
+    {
+      "label": "icons",
+      "animatedPaths": 10,
+      "paths": 10
+    }
   ],
-  "github": {
-    "repository": "oliverjone01-dev/turbium",
-    "branch": "codex/dekoriya-atelier-v4",
-    "publicImageUploadAuthorized": true,
-    "authorizedMedia": "ИИ-портрет Олеси, пять исходных фотографий портфолио и все изображения сайта"
-  }
+  "portraitSha256": {
+    "webp": "650b34c6a747d47994718ce51ff91c0e45c3b912cf507f635f8cee257317be7a",
+    "png": "01ee0f9b44976cb978d5acf98db500f037409269466825ee4e2e7fda4e35e76b",
+    "bothUnchangedFromV4": true
+  },
+  "pointerObserved": {
+    "roomX": -16.83334425150588,
+    "roomY": -5.341123226242561,
+    "subjectPositionUnchanged": true
+  },
+  "wordpress": {
+    "version": "6.8",
+    "php": "8.3",
+    "spatialStylesLoaded": true,
+    "heroImagesLoaded": 4,
+    "windowPlanes": 4,
+    "expandedAfterClick": true,
+    "viewerOriginalToggle": true,
+    "viewerNext": true,
+    "escapeFocusReturn": true,
+    "entranceFilter": 5
+  },
+  "mobile": {
+    "width": 390,
+    "menuAnchor": true,
+    "teaserTapOpenClose": true,
+    "roomX": "0px"
+  },
+  "limits": [
+    "Physical iOS/Android and Safari/Firefox not run",
+    "System-level reduced-motion UI not run; code reviewed",
+    "No CRM or complete CMS content editor"
+  ]
 }
