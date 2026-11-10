@@ -1,87 +1,77 @@
 {
-  "version": "5.0.0",
+  "version": "6.0.0",
   "fileKey": "SsbOVLwLJnNFPwaeQ3bRqJ",
-  "pageId": "93:2",
-  "desktop": "93:3",
-  "mobile": "93:521",
-  "motionBoard": "99:1194",
-  "teaserSet": "96:260",
-  "iconSet": "96:267",
+  "pageId": "109:1663",
+  "desktop": "109:1664",
+  "mobile": "109:2510",
+  "motionBoard": "116:1119",
+  "teaserSet": "111:1200",
   "variants": [
     {
-      "id": "96:254",
+      "id": "111:1194",
       "name": "Category=entrance, State=Assembled"
     },
     {
-      "id": "96:255",
+      "id": "111:1195",
       "name": "Category=entrance, State=Exploded"
     },
     {
-      "id": "96:256",
+      "id": "111:1196",
       "name": "Category=window, State=Assembled"
     },
     {
-      "id": "96:257",
+      "id": "111:1197",
       "name": "Category=window, State=Exploded"
     },
     {
-      "id": "96:258",
+      "id": "111:1198",
       "name": "Category=interior, State=Assembled"
     },
     {
-      "id": "96:259",
+      "id": "111:1199",
       "name": "Category=interior, State=Exploded"
     }
   ],
-  "iconVariants": [
-    {
-      "id": "96:261",
-      "name": "Step=discuss, State=Rest"
-    },
-    {
-      "id": "96:262",
-      "name": "Step=discuss, State=Active"
-    },
-    {
-      "id": "96:263",
-      "name": "Step=concept, State=Rest"
-    },
-    {
-      "id": "96:264",
-      "name": "Step=concept, State=Active"
-    },
-    {
-      "id": "96:265",
-      "name": "Step=install, State=Rest"
-    },
-    {
-      "id": "96:266",
-      "name": "Step=install, State=Active"
-    }
-  ],
-  "audit": [
-    {
-      "id": "93:3",
-      "width": 1440,
-      "height": 8161.5,
-      "texts": 135,
-      "aiCaptions": [],
-      "nonGolos": []
-    },
-    {
-      "id": "93:521",
-      "width": 390,
-      "height": 10418.5,
-      "texts": 131,
-      "aiCaptions": [],
-      "nonGolos": []
-    }
-  ],
-  "priorV4": {
-    "pageId": "50:2",
-    "desktop": "53:2",
-    "mobile": "53:364"
+  "galleryControl": "116:1112",
+  "audit": {
+    "pageId": "109:1663",
+    "roots": [
+      {
+        "id": "109:1664",
+        "width": 1440,
+        "height": 8176.5,
+        "nonGolos": [],
+        "visibleIdeaBadges": [],
+        "instances": 55,
+        "imageFills": 26,
+        "bound": 294
+      },
+      {
+        "id": "109:2510",
+        "width": 390,
+        "height": 10530.5,
+        "nonGolos": [],
+        "visibleIdeaBadges": [],
+        "instances": 52,
+        "imageFills": 26,
+        "bound": 284
+      }
+    ],
+    "visibleRatingOrAI": [],
+    "viewerCount": 50,
+    "componentSets": [
+      {
+        "id": "111:1200",
+        "name": "DK6/Architectural maquette",
+        "variants": 6
+      }
+    ]
   },
-  "motionImplementation": "Native component states and Smart Animate; actual CSS 3D, pointer room, masked words and icon strokes in website",
-  "approvedPortraitUnchanged": true
+  "approvedPortraitUnchanged": true,
+  "priorV5": {
+    "pageId": "93:2",
+    "desktop": "93:3",
+    "mobile": "93:521"
+  },
+  "motionImplementation": "Editable native states and Smart Animate; exact maquette planes, pointer movement, text, strokes and sunlight pattern execute in the website."
 }

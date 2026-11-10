@@ -1,0 +1,20 @@
+{
+  "entrance": [
+    "surface",
+    "structure",
+    "decor",
+    "light"
+  ],
+  "window": [
+    "surface",
+    "structure",
+    "decor",
+    "light"
+  ],
+  "interior": [
+    "surface",
+    "structure",
+    "decor",
+    "light"
+  ]
+}
