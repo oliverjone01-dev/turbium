@@ -1,0 +1,16 @@
+wordpress/*.zip
+wordpress/dekoriya-atelier/assets/
+wordpress/dekoriya-atelier/media/
+wordpress/dekoriya-atelier/template-parts/
+wordpress/dekoriya-atelier/index.html
+wordpress/dekoriya-atelier/site.css
+wordpress/dekoriya-atelier/wow.css
+wordpress/dekoriya-atelier/app.js
+wordpress/dekoriya-atelier/motion.js
+wordpress/dekoriya-atelier/motion-config.js
+wordpress/dekoriya-atelier/media.json
+wordpress/dekoriya-atelier/motion-map.html
+wordpress/dekoriya-atelier/design-system.html
+wordpress/dekoriya-atelier/screenshot.png
+__pycache__/
+.DS_Store

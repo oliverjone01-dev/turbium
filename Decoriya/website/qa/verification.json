@@ -1,0 +1,65 @@
+{
+  "date": "2026-11-10",
+  "scope": "Frontend, Figma and staging WordPress theme",
+  "layout": {
+    "browser": "Chrome",
+    "widths": [
+      360,
+      390,
+      600,
+      768,
+      900,
+      1024,
+      1440,
+      1920
+    ],
+    "textScale": [
+      1,
+      1.25
+    ],
+    "variants": 16,
+    "failures": 0,
+    "method": "Authored QA page observed through native browser UI; font scaling, not browser zoom"
+  },
+  "gallery": {
+    "retouches": 5,
+    "concepts": 15,
+    "wordpress": "6.8",
+    "php": "8.3",
+    "observed": [
+      "retouch/original toggle",
+      "ArrowRight",
+      "Escape",
+      "focus return",
+      "entrance filter yields 5"
+    ]
+  },
+  "figma": {
+    "file": "SsbOVLwLJnNFPwaeQ3bRqJ",
+    "desktop": "53:2",
+    "mobile": "53:364",
+    "motionMap": "59:2261",
+    "intro": "59:2107",
+    "introSeconds": 2,
+    "sampledSeconds": [
+      0,
+      0.5,
+      1,
+      1.5
+    ],
+    "fontMismatches": 0
+  },
+  "notRun": [
+    "physical iOS/Android",
+    "Safari/Firefox",
+    "system reduced-motion UI run",
+    "production hosting/plugin combinations",
+    "field performance"
+  ],
+  "github": {
+    "repository": "oliverjone01-dev/turbium",
+    "branch": "codex/dekoriya-atelier-v4",
+    "publicImageUploadAuthorized": true,
+    "authorizedMedia": "ИИ-портрет Олеси, пять исходных фотографий портфолио и все изображения сайта"
+  }
+}
