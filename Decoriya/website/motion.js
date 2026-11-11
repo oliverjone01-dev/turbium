@@ -142,7 +142,14 @@
         if(reduced.matches){staticView();return}
         if(!open&&progress===0){paint();return}
         if(allReady()&&loadedSrc===sourceKey()){play();return}
-        hint.textContent='Готовим анимацию…';prepare().then(ok=>{target=wanted?1:0;if(ok)play();else{button.dataset.sequenceReady='fallback';staticView()}});
+        hint.textContent='Готовим анимацию…';
+        // A slow first download must not leave the control indefinitely busy.
+        // Keep decoding in the background; the next interaction can use it.
+        Promise.race([prepare(),new Promise(resolve=>setTimeout(()=>resolve(false),5000))]).then(ok=>{
+          target=wanted?1:0;
+          if(ok)play();
+          else{button.removeAttribute('aria-busy');button.dataset.sequenceReady='fallback';staticView()}
+        });
       };
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
       button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
