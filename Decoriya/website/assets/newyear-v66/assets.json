@@ -1,0 +1,64 @@
+{
+  "entrance-atlas-1536.webp": {
+    "bytes": 113412,
+    "width": 1536,
+    "height": 512,
+    "passes": 3
+  },
+  "entrance-atlas-2172.webp": {
+    "bytes": 214100,
+    "width": 2172,
+    "height": 724,
+    "passes": 3
+  },
+  "entrance-closed.webp": {
+    "bytes": 35214,
+    "width": 720,
+    "height": 720,
+    "source": "browser export of the same CSS passes"
+  },
+  "window-atlas-1536.webp": {
+    "bytes": 114562,
+    "width": 1536,
+    "height": 512,
+    "passes": 3
+  },
+  "window-atlas-2172.webp": {
+    "bytes": 212360,
+    "width": 2172,
+    "height": 724,
+    "passes": 3
+  },
+  "window-closed.webp": {
+    "bytes": 23352,
+    "width": 720,
+    "height": 720,
+    "source": "browser export of the same CSS passes"
+  },
+  "interior-atlas-1536.webp": {
+    "bytes": 91762,
+    "width": 1536,
+    "height": 512,
+    "passes": 3
+  },
+  "interior-atlas-2172.webp": {
+    "bytes": 168060,
+    "width": 2172,
+    "height": 724,
+    "passes": 3
+  },
+  "interior-closed.webp": {
+    "bytes": 20212,
+    "width": 720,
+    "height": 720,
+    "source": "browser export of the same CSS passes"
+  },
+  "room-960.webp": {
+    "bytes": 13906,
+    "width": 960
+  },
+  "room-1672.webp": {
+    "bytes": 31368,
+    "width": 1672
+  }
+}

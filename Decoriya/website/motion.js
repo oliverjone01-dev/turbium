@@ -78,106 +78,58 @@
   }
   function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(updateScroll)}
   function setupSpatial(){
-    const S=C.spatial,controllers=[];
-    const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;let measuredBps=null;
-    const fast=()=>!network?.saveData&&measuredBps!==null&&measuredBps>400000;
+    // Three fixed raster passes share one cached atlas. Only CSS transforms move.
     document.querySelectorAll('[data-spatial]').forEach(button=>{
-      const canvas=button.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:true});
-      if(!ctx)return;
+      const images=[...button.querySelectorAll('img[data-layer-src]')];
       const hint=button.querySelector('.teaser-hint-text'),closed=hint.textContent;
-      const poster=button.querySelector('.sequence-open'),posterSrc=poster.dataset.openSrc;let posterReady=false,posterRequested=false;
-      let compact=null,compactJob=null,highJob=null,hq=null,hqWidth=0,hqHeight=0,hqKey='';
-      let hovered=false,wanted=false,request=0,progress=0,target=0,raf=0,last=0,lastPaint=0,draws=0,maxGap=0,requestedAt=0;
-      const fullUrls=()=>Array.from({length:6},(_,i)=>new URL(button.dataset.fullBase+button.dataset.scene+'-'+(matchMedia('(max-width:767px)').matches?'mobile-':'')+'strip-'+i+'.webp?v=6.4.2-clean',document.baseURI).href);
-      const paint=()=>{button.classList.toggle('is-open',wanted&&(!!compact||reduced.matches||button.dataset.sequenceReady==='error')&&(posterReady||!!compact));button.classList.toggle('sequence-hold',wanted&&!!compact&&!posterReady);button.setAttribute('aria-expanded',String(wanted));hint.textContent=wanted?'Собрать обратно':closed};
-      poster.addEventListener('load',()=>{if(posterRequested&&poster.naturalWidth){posterReady=true;if(!button.classList.contains('is-playing')&&(compact||reduced.matches||button.dataset.sequenceReady==='error'))paint()}});
-      const stop=()=>{if(raf)cancelAnimationFrame(raf);raf=0;last=0;button.classList.remove('is-playing')};
-      const settle=()=>{stop();if(!compact){paint();return}progress=target;draw();paint();button.dataset.frame=String(Math.round(progress*(S.frames-1)))};
-      const draw=()=>{
-        if(!compact)return;
-        const fw=hq?hqWidth:compact.naturalWidth/8,fh=hq?hqHeight:compact.naturalHeight/6;
-        if(canvas.width!==fw||canvas.height!==fh){canvas.width=fw;canvas.height=fh}
-        const p=progress*(S.frames-1),a=Math.floor(p),b=Math.min(S.frames-1,a+1),mix=p-a;
-        const frame=(i)=>{if(hq)ctx.drawImage(hq[i],0,0,fw,fh);else ctx.drawImage(compact,i%8*fw,Math.floor(i/8)*fh,fw,fh,0,0,fw,fh)};
-        ctx.clearRect(0,0,fw,fh);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1-mix;frame(a);
-        if(mix>.001){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=mix;frame(b)}
-        ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';button.dataset.frame=String(Math.round(p));draws++;
+      let wanted=false,hovered=false,ready=false,loading=null,failed=false;
+      const paint=()=>{
+        const open=wanted&&ready;
+        button.classList.toggle('layers-ready',ready);
+        button.classList.toggle('is-open',open);
+        button.setAttribute('aria-expanded',String(open));
+        button.dataset.layersReady=ready?'true':failed?'error':loading?'loading':'idle';
+        hint.textContent=failed&&wanted?'Не удалось загрузить. Повторить':wanted&&!ready?'Загружаем оформление…':open?'Собрать обратно':closed;
       };
-      const upgrade=()=>{
-        if(!fast()||reduced.matches||hq||highJob||!window.Worker||!window.OffscreenCanvas||!window.createImageBitmap)return;
-        const urls=fullUrls(),key=urls.join('|');
-        highJob=new Promise(resolve=>{
-          const worker=new Worker(new URL('worker-v2.js',urls[0]));const timer=setTimeout(()=>{worker.terminate();resolve(false)},20000);
-          worker.onerror=()=>{clearTimeout(timer);worker.terminate();resolve(false)};
-          worker.onmessage=e=>{
-            if(e.data.type==='progress')return;
-            clearTimeout(timer);worker.terminate();
-            if(e.data.error){resolve(false);return}
-            if(key!==fullUrls().join('|')){for(const f of e.data.frames)f.close();resolve(false);return}
-            hq=e.data.frames;hqWidth=e.data.width;hqHeight=e.data.height;hqKey=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=hqWidth+'x'+hqHeight;resolve(true);
-          };
-          worker.postMessage({urls,columns:S.columns,rows:S.rows});
-        }).catch(()=>false).finally(()=>{highJob=null});
-      };
-      const tick=now=>{
-        raf=0;if(document.hidden){last=0;return}
-        const dt=last?Math.min(100,now-last):0;if(last)maxGap=Math.max(maxGap,now-last);last=now;
-        const direction=Math.sign(target-progress);progress=clamp(progress+direction*dt/S.duration);
-        if(direction>0)progress=Math.min(progress,target);else progress=Math.max(progress,target);
-        if(now-lastPaint>=15.5||Math.abs(progress-target)<.00001){draw();lastPaint=now}
-        if(Math.abs(progress-target)<.00001){stop();button.dataset.draws=String(draws);button.dataset.maxFrameGap=Math.round(maxGap)+'ms';paint();upgrade()}
-        else raf=requestAnimationFrame(tick);
-      };
-      const play=()=>{
-        paint();if(reduced.matches){settle();return}if(!compact||progress===target){stop();return}
-        button.classList.add('is-playing');if(!raf){last=0;lastPaint=0;draws=0;maxGap=0;draw();button.dataset.startDelayMs=String(Math.round(performance.now()-requestedAt));raf=requestAnimationFrame(tick)}
+      const loadImage=async image=>{
+        if(!image.dataset.layerLoaded){
+          image.srcset=image.dataset.layerSrcset;
+          image.src=image.dataset.layerSrc;
+          if(image.decode)await image.decode();
+          else if(!image.complete||!image.naturalWidth)await new Promise((resolve,reject)=>{
+            image.addEventListener('load',resolve,{once:true});
+            image.addEventListener('error',reject,{once:true});
+          });
+          if(!image.naturalWidth)throw new Error('Empty layer image');
+          image.dataset.layerLoaded='true';
+        }
       };
       const prepare=()=>{
-        if(compact)return Promise.resolve(true);if(compactJob)return compactJob;
-        const started=performance.now(),controller=new AbortController();let timer;
-        const keepAlive=()=>{clearTimeout(timer);timer=setTimeout(()=>controller.abort(),60000)};keepAlive();
-        button.setAttribute('aria-busy','true');button.dataset.sequenceReady='loading';
-        compactJob=(async()=>{
-          const response=await fetch(new URL(button.dataset.compact,document.baseURI),{signal:controller.signal,cache:'force-cache'});
-          if(!response.ok)throw new Error('Camera HTTP '+response.status);
-          keepAlive();let blob,loaded=0;const total=Number(response.headers.get('Content-Length'))||Number(button.dataset.compactBytes);
-          if(response.body&&response.body.getReader){
-            const reader=response.body.getReader(),chunks=[];
-            while(true){const part=await reader.read();if(part.done)break;chunks.push(part.value);loaded+=part.value.length;keepAlive();button.dataset.loadedBytes=String(loaded);if(wanted)hint.textContent='Загружаем ракурсы… '+(total?Math.min(100,Math.round(loaded/total*100))+'%':Math.round(loaded/1024)+' КБ')}
-            blob=new Blob(chunks,{type:'image/webp'});
-          }else blob=await response.blob();
-          const image=new Image();image.decoding='async';const url=URL.createObjectURL(blob);
-          try{image.src=url;await image.decode()}finally{URL.revokeObjectURL(url)}
-          if(image.naturalWidth%8||image.naturalHeight%6)throw new Error('Invalid compact camera dimensions');
-          compact=image;measuredBps=blob.size/Math.max(.001,(performance.now()-started)/1000);button.dataset.measuredBps=String(Math.round(measuredBps));button.dataset.sequenceSource='compact-atlas';button.dataset.frameSize=image.naturalWidth/8+'x'+image.naturalHeight/6;button.dataset.sequenceReady='true';button.dataset.loadMs=String(Math.round(performance.now()-started));return true;
-        })().catch(error=>{button.dataset.sequenceReady='error';button.dataset.sequenceError=String(error);return false}).finally(()=>{clearTimeout(timer);compactJob=null;button.removeAttribute('aria-busy')});
-        return compactJob;
+        if(ready)return Promise.resolve(true);
+        if(loading)return loading;
+        failed=false;
+        loading=Promise.all(images.map(loadImage)).then(()=>{
+          ready=true;button.dataset.atlas=images[0].currentSrc;return true;
+        }).catch(error=>{
+          failed=true;button.dataset.layersError=String(error);return false;
+        }).finally(()=>{
+          loading=null;button.removeAttribute('aria-busy');paint();
+        });
+        if(wanted)button.setAttribute('aria-busy','true');
+        paint();return loading;
       };
-      const set=open=>{
-        const current=++request;wanted=open;target=open?1:0;requestedAt=performance.now();
-        if(open&&!posterRequested){posterRequested=true;poster.src=posterSrc}
-        if(reduced.matches){progress=target;stop();if(compact)draw();paint();return}
-        if(!open&&progress===0){stop();paint();return}
-        if(compact){play();return}
-        hint.textContent='Загружаем ракурсы…';
-        prepare().then(ok=>{if(current!==request)return;target=wanted?1:0;if(ok)play();else{progress=target;stop();paint()}});
-      };
-      button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;set(true)}});
-      button.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;if(!button.matches(':focus-visible'))set(false)}});
-      button.addEventListener('click',e=>{const mouse=e.pointerType==='mouse'||(!e.pointerType&&e.detail>0&&fine.matches);if(mouse){if(!wanted)set(true);return}set(!wanted)});
+      const set=open=>{wanted=open;if(open&&!ready)prepare();paint()};
+      button.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse'){hovered=true;set(true)}});
+      button.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'){hovered=false;if(!button.matches(':focus-visible'))set(false)}});
+      button.addEventListener('click',event=>{
+        const mouse=event.pointerType==='mouse'||(!event.pointerType&&event.detail>0&&matchMedia('(hover:hover) and (pointer:fine)').matches);
+        if(mouse){if(!wanted||failed)set(true);return}set(!wanted);
+      });
       button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
       button.addEventListener('blur',()=>{if(!hovered)set(false)});
-      button.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
-      reduced.addEventListener('change',()=>{progress=target;stop();paint()});
-      controllers.push({button,preload:prepare,resume:()=>{if(compact&&progress!==target&&!reduced.matches)play()},settle,resize:()=>{if(hq&&hqKey!==fullUrls().join('|')){for(const f of hq)f.close();hq=null;button.dataset.sequenceSource='compact-atlas'}settle()}});
+      button.addEventListener('keydown',event=>{if(event.key==='Escape')set(false)});
+      paint();
     });
-    // No speculative frame downloads: a hover/tap loads one compact file.
-    // Higher detail is optional only after measured fast transfer.
-    if('IntersectionObserver'in window){
-      const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)controllers.find(c=>c.button===e.target)?.settle()}));controllers.forEach(c=>observer.observe(c.button));
-    }
-    document.addEventListener('visibilitychange',()=>{if(!document.hidden)controllers.forEach(c=>c.resume())});
-    addEventListener('resize',()=>controllers.forEach(c=>c.resize()),{passive:true});
   }
   function setupMagnetic(){document.querySelectorAll('[data-magnetic]').forEach(el=>{
     el.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches||e.pointerType!=='mouse')return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)/r.width*10,y=(e.clientY-r.top-r.height/2)/r.height*10;el.style.transform=`translate3d(${clamp(x,-5,5)}px,${clamp(y,-5,5)}px,0)`});el.addEventListener('pointerleave',()=>el.style.transform='');
