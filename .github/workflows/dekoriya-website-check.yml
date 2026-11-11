@@ -3,7 +3,7 @@ on:
   pull_request:
     paths: ['Decoriya/website/**', '.github/workflows/dekoriya-website-check.yml']
   push:
-    branches: [main, codex/dekoriya-camera-v64]
+    branches: [main, codex/dekoriya-camera-v641]
     paths: ['Decoriya/website/**', '.github/workflows/dekoriya-website-check.yml']
 permissions:
   contents: read
@@ -24,6 +24,7 @@ jobs:
           node --check app.js
           node --check motion.js
           node --check motion-config.js
+          node --check assets/camera-v64/worker.js
       - name: Build and lint WordPress theme
         run: |
           python3 tools/package-wordpress.py

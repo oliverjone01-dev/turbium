@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.4.0",
+  "version": "6.4.1",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -95,8 +95,8 @@ window.DK_MOTION=Object.freeze({
       "selector": "[data-spatial] .sequence-canvas",
       "trigger": "Hover мышью; фокус клавиатуры; клик/тап; Escape",
       "effect": "48 настоящих ракурсов каждой из трёх 3D-сцен. Камера проходит 30° по горизонтали и поднимается на 12°. Раскрытие 1 — свет, 2 — декор, 3 — поверхности, в левую сторону.",
-      "desktop": "1800 мс. Canvas рисует соседние кадры WebP-атласа с плавным смешиванием; геометрия каждого кадра отрендерена в Blender. Обратное воспроизведение с текущей позиции.",
-      "mobile": "Тап открывает, повторный собирает. Мобильный атлас 384×288 на кадр; загружается по взаимодействию. Canvas работает только во время перехода.",
+      "desktop": "1800 мс. Worker декодирует небольшие части вне основного потока; Canvas смешивает соседние готовые кадры; геометрия каждого кадра отрендерена в Blender. Обратное воспроизведение с текущей позиции.",
+      "mobile": "Тап открывает, повторный собирает. Мобильные части по восемь кадров 384×288; загружается по взаимодействию. Canvas работает только во время перехода.",
       "reduced": "Мгновенное переключение двух статичных ракурсов; атлас не запрашивается.",
       "source": "tools/render-camera-v64.py; assets/camera-v64; motion.js:setupSpatial; motion-config.js:spatial"
     },
@@ -183,8 +183,9 @@ window.DK_MOTION=Object.freeze({
     "renderer": "Blender48-frame-camera-sequence",
     "duration": 1800,
     "frames": 48,
-    "columns": 8,
-    "rows": 6,
+    "columns": 4,
+    "stripFrames": 8,
+    "rows": 2,
     "cameraOrbitDegrees": 30,
     "cameraElevationDegrees": 12,
     "order": [

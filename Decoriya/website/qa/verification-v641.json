@@ -1,0 +1,45 @@
+{
+  "version": "6.4.1",
+  "desktop": [
+    {
+      "draws": "108",
+      "frame": "47",
+      "maxGap": "34ms",
+      "ready": "true",
+      "scene": "entrance",
+      "source": "worker-bitmaps"
+    },
+    {
+      "draws": "106",
+      "frame": "47",
+      "maxGap": "42ms",
+      "ready": "true",
+      "scene": "window",
+      "source": "worker-bitmaps"
+    },
+    {
+      "draws": "105",
+      "frame": "47",
+      "maxGap": "42ms",
+      "ready": "true",
+      "scene": "interior",
+      "source": "worker-bitmaps"
+    }
+  ],
+  "mobile": {
+    "draws": "107",
+    "frame": "47",
+    "maxGap": "33ms",
+    "overflow": false,
+    "size": "384x288",
+    "source": "worker-bitmaps"
+  },
+  "wordpress": {
+    "frame": 47,
+    "source": "worker-bitmaps",
+    "size": "512x384",
+    "ready": true
+  },
+  "reason": "Public cold triple upload of large texture paused267ms; decoder now in Worker, small independently transferable frames.",
+  "coverage": "Chrome desktop/mobile viewport and WordPress; no physical device/Safari test."
+}

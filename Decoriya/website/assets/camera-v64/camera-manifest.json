@@ -4921,5 +4921,28 @@
         }
       ]
     }
+  },
+  "encoding": {
+    "strips": 6,
+    "framesPerStrip": 8,
+    "columns": 4,
+    "rows": 2,
+    "desktopFrame": [
+      512,
+      384
+    ],
+    "mobileFrame": [
+      384,
+      288
+    ]
+  },
+  "runtimeEncoding": {
+    "worker": "worker.js",
+    "strips": 6,
+    "framesPerStrip": 8,
+    "columns": 4,
+    "rows": 2,
+    "frameBlend": "Two independent ImageBitmap frames; capped60 draws/sec",
+    "legacyAtlases": "Retained only for cached6.4.0 pages"
   }
 }
