@@ -1,0 +1,56 @@
+{
+  "version": "6.2.0",
+  "date": "2026-11-11",
+  "geometry": {
+    "errors": "",
+    "rows": [
+      "360100%0 px10 переносов0 ошибокOK11142",
+      "390100%0 px10 переносов0 ошибокOK11042",
+      "390125%0 px10 переносов0 ошибокOK13006",
+      "360125%0 px10 переносов0 ошибокOK13360",
+      "600100%0 px10 переносов0 ошибокOK10503",
+      "600125%0 px10 переносов0 ошибокOK11628",
+      "768100%0 px10 переносов0 ошибокOK8973",
+      "768125%0 px10 переносов0 ошибокOK10632",
+      "900100%0 px10 переносов0 ошибокOK8735",
+      "900125%0 px10 переносов0 ошибокOK10213",
+      "1024100%0 px10 переносов0 ошибокOK8956",
+      "1024125%0 px10 переносов0 ошибокOK10058",
+      "1440100%0 px10 переносов0 ошибокOK8900",
+      "1440125%0 px10 переносов0 ошибокOK9833",
+      "1920100%0 px10 переносов0 ошибокOK8919",
+      "1920125%0 px10 переносов0 ошибокOK9857"
+    ],
+    "status": "Проверено 16 вариантов. Нарушений: 0"
+  },
+  "raster": {
+    "planes": 9,
+    "posters": 3,
+    "webpTotalBytes": 968348,
+    "webSize": [
+      960,
+      720
+    ],
+    "masterSize": [
+      1448,
+      1086
+    ]
+  },
+  "interaction": {
+    "desktop": "Three scenes opened; independent XYZ planes and camera matrix verified. Opening and closing intermediate frames saved.",
+    "mobile": "390x844 window tap opens; repeat closes; no horizontal overflow.",
+    "config": "1100ms / yaw -9deg / pitch 10deg custom properties verified after reload.",
+    "wordpress": "WordPress 6.8/PHP8.3, all nine plates loaded at960px; window opens and camera is3D."
+  },
+  "figma": {
+    "reviewFrame": "132:426",
+    "states": 6,
+    "layersPerState": 3,
+    "nativePerspective": "2D approximation; actual perspective in CSS"
+  },
+  "limitations": [
+    "No physical Safari/iOS/Android test.",
+    "System reduced-motion toggle not run; CSS branch inspected.",
+    "This is a public interactive prototype and starter WordPress theme, not a full CMS editor."
+  ]
+}

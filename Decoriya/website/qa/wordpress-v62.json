@@ -1,0 +1,62 @@
+[
+  {
+    "camera": "matrix(0.94, 0, 0, 0.94, 0, 0)",
+    "duration": "1100ms",
+    "expanded": "false",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/entrance-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/entrance-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/entrance-light.webp",
+        "width": 960
+      }
+    ],
+    "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/entrance-poster.webp"
+  },
+  {
+    "camera": "matrix3d(0.815344, -0.0180004, 0.114137, 0, 0, 0.813437, 0.128286, 0, -0.140314, -0.154242, 0.978019, 0, -3.5849, -7.1698, 0, 1)",
+    "duration": "1100ms",
+    "expanded": "true",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/window-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/window-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/window-light.webp",
+        "width": 960
+      }
+    ],
+    "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/window-poster.webp"
+  },
+  {
+    "camera": "matrix(0.94, 0, 0, 0.94, 0, 0)",
+    "duration": "1100ms",
+    "expanded": "false",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/interior-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/interior-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/interior-light.webp",
+        "width": 960
+      }
+    ],
+    "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/exploded-v62/interior-poster.webp"
+  }
+]

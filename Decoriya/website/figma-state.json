@@ -1,5 +1,5 @@
 {
-  "version": "6.1.0",
+  "version": "6.2.0",
   "fileKey": "SsbOVLwLJnNFPwaeQ3bRqJ",
   "pageId": "109:1663",
   "desktop": "109:1664",
@@ -9,27 +9,27 @@
   "variants": [
     {
       "id": "111:1194",
-      "name": "Category=entrance, State=Rest"
+      "name": "Category=entrance, State=Closed"
     },
     {
       "id": "111:1195",
-      "name": "Category=entrance, State=Focus"
+      "name": "Category=entrance, State=Exploded"
     },
     {
       "id": "111:1196",
-      "name": "Category=window, State=Rest"
+      "name": "Category=window, State=Closed"
     },
     {
       "id": "111:1197",
-      "name": "Category=window, State=Focus"
+      "name": "Category=window, State=Exploded"
     },
     {
       "id": "111:1198",
-      "name": "Category=interior, State=Rest"
+      "name": "Category=interior, State=Closed"
     },
     {
       "id": "111:1199",
-      "name": "Category=interior, State=Focus"
+      "name": "Category=interior, State=Exploded"
     }
   ],
   "galleryControl": "116:1112",
@@ -38,8 +38,8 @@
     "desktop": "93:3",
     "mobile": "93:521"
   },
-  "motionImplementation": "Raster Rest/Focus native states and Smart Animate. Exact pointer tilt, lift, zoom, glint and other effects execute in the shared browser/WordPress frontend.",
-  "pageName": "07 STUDIO / v6.1",
+  "motionImplementation": "Six Closed/Exploded states use independent raster planes; native 2D affine projection approximates browser perspective. Exact 1100ms camera and layer movement run in CSS in browser and WordPress.",
+  "pageName": "07 STUDIO / v6.2",
   "approvedFaceSourceUnchanged": true,
   "lowerPortraitRetouched": true,
   "priorV6Audit": {
@@ -75,5 +75,19 @@
         "variants": 6
       }
     ]
+  },
+  "reviewFrame": "132:426",
+  "v62": {
+    "desktopHeight": 8211.5,
+    "mobileHeight": 10590.5,
+    "reviewFrame": "132:426",
+    "planesPerScene": 3,
+    "windowProjection": "front-right, matching entrance/interior",
+    "nativeCamera": "2D approximation",
+    "browserCamera": {
+      "pitch": 10,
+      "yaw": -9,
+      "duration": 1100
+    }
   }
 }
