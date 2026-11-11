@@ -1,0 +1,37 @@
+{
+  "version": "6.4.4",
+  "lateDownload": {
+    "afterFiveSeconds": {
+      "busy": "true",
+      "loaded": "3",
+      "playing": false
+    },
+    "latePlayback": {
+      "busy": null,
+      "frame": "9",
+      "playing": true,
+      "ready": "true",
+      "source": "worker-bitmaps"
+    },
+    "end": {
+      "expanded": "true",
+      "frame": "47",
+      "playing": false,
+      "ready": "true",
+      "source": "worker-bitmaps"
+    }
+  },
+  "leaveWhileLoading": {
+    "expanded": "false",
+    "frame": "0",
+    "playing": false,
+    "ready": "true",
+    "source": "worker-bitmaps"
+  },
+  "hoverReturnsClosed": {
+    "expanded": "false",
+    "frame": "0",
+    "playing": false
+  },
+  "physicalDevices": "not tested — no access"
+}
