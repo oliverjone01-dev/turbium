@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.2.0",
+  "version": "6.3.0",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -92,13 +92,13 @@ window.DK_MOTION=Object.freeze({
     },
     {
       "id": "services",
-      "selector": "[data-spatial] .raster-camera; .raster-plane",
+      "selector": "[data-spatial] .raster-stage; .raster-plane",
       "trigger": "Hover мышью; фокус клавиатуры; клик/тап; Escape",
-      "effect": "Взрыв-схема из трёх независимых прозрачных растров: поверхности, декор и свет. У всех сцен общий правый ракурс; витрина перерисована. Камера поворачивается вправо и вверх вместе с разлётом.",
-      "desktop": "1100 мс, perspective 1100 px. Камера X 10° / Y −9°, масштаб .94→.81; плавная обратная сборка. Планы XYZ: поверхности (−38,30,−50), декор (25,−8,60), свет (85,−22,145) px.",
-      "mobile": "Тап раскрывает, повторный собирает. Вертикальная прокрутка свободна; движение не зависит от положения указателя.",
-      "reduced": "Статичная взрыв-схема включается без движения. Подписи доступны; никаких циклических эффектов.",
-      "source": "motion-config.js: spatial; motion.js: setupSpatial(), prepare(); spatial.css: .raster-camera, .raster-plane; assets/exploded-v62/*.webp"
+      "effect": "Девять чистых прозрачных аксонометрических растров: поверхности, декор, свет. Разобранный ракурс нарисован заранее; пунктирные направляющие сохраняют связь деталей.",
+      "desktop": "1250 мс. Поверхности расходятся вниз-влево, декор и свет вверх-вправо. Только translate/opacity; стены не наклоняются CSS-поворотом. Это переход между растровыми видами, не непрерывная 3D-камера.",
+      "mobile": "Тап раскрывает, повторный собирает. Процентные смещения, три WebP со своим прозрачным слоем на сцену; без покадрового JS.",
+      "reduced": "Мгновенное переключение собранного и разобранного видов без движения.",
+      "source": "motion-config.js: spatial; motion.js: setupSpatial; spatial.css: .raster-stage/.raster-plane; assets/axonometric-v63"
     },
     {
       "id": "directions",
@@ -180,33 +180,26 @@ window.DK_MOTION=Object.freeze({
     "duration": 900
   },
   "spatial": {
-    "duration": 1100,
-    "perspective": 1100,
-    "posterFade": 150,
-    "posterReturnDelay": 950,
-    "camera": {
-      "pitch": 10,
-      "yaw": -9,
-      "x": -4,
-      "y": -8,
-      "closedScale": 0.94,
-      "openScale": 0.81
-    },
+    "renderer": "prerendered-axonometric-independent-raster-plates",
+    "duration": 1250,
+    "posterFade": 250,
+    "posterReturnDelay": 1000,
+    "camera": "A more elevated front-right view is baked into the open raster. No CSS X/Y camera rotation, no live 3D orbit.",
     "planes": {
       "surfaces": {
-        "x": -38,
-        "y": 30,
-        "z": -50
+        "fromX": "17%",
+        "fromY": "-12%",
+        "to": "0,0"
       },
       "decor": {
-        "x": 25,
-        "y": -8,
-        "z": 60
+        "fromX": "-20%",
+        "fromY": "16%",
+        "to": "0,0"
       },
       "light": {
-        "x": 85,
-        "y": -22,
-        "z": 145
+        "fromX": "-35%",
+        "fromY": "23%",
+        "to": "0,0"
       }
     }
   }

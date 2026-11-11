@@ -5,6 +5,111 @@
     "sha256": "ff532f9e8789f09a9fdffc3c0954eedfb0a48be77b2e2eb90f5f82e4f347f50c"
   },
   {
+    "path": "assets/axonometric-v63/entrance-decor.png",
+    "bytes": 381230,
+    "sha256": "72604d6cd97165296b71bbe83c005244fb815a65f71ca767eedf4ca221e0604c"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance-decor.webp",
+    "bytes": 49986,
+    "sha256": "a60e7baae8a4ac78a58244edb49e3fc3c93f7e23eb4e26f8d27ca853509d1697"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance-light.png",
+    "bytes": 94564,
+    "sha256": "ddf9b811d5b2e9d45a4d2780978d24f6333d4edfe2785a366184991bd0125a7f"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance-light.webp",
+    "bytes": 10042,
+    "sha256": "0cece7a2dc6262d8716abe1e55489af16074e1abdb096f5b74bc48c8a2e421f9"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance-surfaces.png",
+    "bytes": 688632,
+    "sha256": "f805a6f5cb9427e39677fb8bd01e1f4bc55a666d593a3fff16e403a999c0430d"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance-surfaces.webp",
+    "bytes": 51692,
+    "sha256": "7ce0558c0d85f0f6f2b32e79edfc0cb541957fbd92a48c3c44d176782c2caba8"
+  },
+  {
+    "path": "assets/axonometric-v63/entrance.png",
+    "bytes": 1279105,
+    "sha256": "49fb08a70fc1e6c3e7dc5fbc4f1d37efbe8f1b1fc73ddb5133c686157ccf3b1c"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-decor.png",
+    "bytes": 205180,
+    "sha256": "8f6f50a5b10f12aefab6f6ac4a9fb9163c7deb46d153dc9710f7faada660d14f"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-decor.webp",
+    "bytes": 25050,
+    "sha256": "9d89e531dbe5a012fff2423dde90b8ecc0c15ac76b6ceb88bf7881a33cf056c8"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-light.png",
+    "bytes": 85355,
+    "sha256": "fa344ffe973d553c061e6086b02fad3c52d2c1b1d2ff04235a12bb3ccd769899"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-light.webp",
+    "bytes": 9392,
+    "sha256": "8212aecd181784bb906d96a559cc5133682d00833852d8bc2bdfcb1999ca343b"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-surfaces.png",
+    "bytes": 808581,
+    "sha256": "f46abf27b37518cb89d51df8da50333e37b972cc7c29f150d8e0e109dba58676"
+  },
+  {
+    "path": "assets/axonometric-v63/interior-surfaces.webp",
+    "bytes": 59180,
+    "sha256": "8312efa10bb76506d4f727a86a6fe9dd7d7a95e3477c7b4efe4eda504d4acec9"
+  },
+  {
+    "path": "assets/axonometric-v63/interior.png",
+    "bytes": 1235974,
+    "sha256": "02853ca66ccc5e4b065afeb0c47d6f1134df34668c848d1a00951922230fe4b1"
+  },
+  {
+    "path": "assets/axonometric-v63/window-decor.png",
+    "bytes": 248835,
+    "sha256": "a8fa34ae2ad2cf7cb769dfa5fe3a51db9a80ad159f637a2cbf632b99b8acf40d"
+  },
+  {
+    "path": "assets/axonometric-v63/window-decor.webp",
+    "bytes": 27598,
+    "sha256": "87b6b32219f74c3166dfba2d878b6c5f7a93b0cc559ec55b286b1da872a5a626"
+  },
+  {
+    "path": "assets/axonometric-v63/window-light.png",
+    "bytes": 88177,
+    "sha256": "3c20bf391df443c04d90d15c74e631fd6d5ae5115b9f17061dd2f8f5bb7bffba"
+  },
+  {
+    "path": "assets/axonometric-v63/window-light.webp",
+    "bytes": 9428,
+    "sha256": "1a95adcd2dc272b23394e2308fe3b49c91fa7791c1b7f6b85e5a69b97f62cb1c"
+  },
+  {
+    "path": "assets/axonometric-v63/window-surfaces.png",
+    "bytes": 615241,
+    "sha256": "69a3b73be01b097c1c839a641259b5b164606888362979a83374d0a39ee73992"
+  },
+  {
+    "path": "assets/axonometric-v63/window-surfaces.webp",
+    "bytes": 37876,
+    "sha256": "31c4e7fb54c493d21e324332869caa2ecc6187105d1b6352b5616dd3da7c2cdc"
+  },
+  {
+    "path": "assets/axonometric-v63/window.png",
+    "bytes": 1273617,
+    "sha256": "a7ad0def85bf61a0e57215204ef5435566d5e49910739640740e34e05787b419"
+  },
+  {
     "path": "assets/exploded-v62/entrance-decor.png",
     "bytes": 626439,
     "sha256": "e017b0827f54030620c92ade5f021d7d587527e6a9a3b23d9b131638b97e7173"

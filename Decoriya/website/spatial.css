@@ -60,29 +60,29 @@
 @media(max-width:374px){.hero-content h1{font-size:40px}.spatial-teaser{height:320px}.hero-actions>.under-link{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.hero-backdrop,.hero-daylight,.hero-anchor{transform:none!important}.raster-scene,.raster-scene img,.raster-glint,.editorial-word,.step-icon *{transition:none!important;animation:none!important}.step-icon .icon-detail,.step-icon .icon-accent{transform:none!important}.material-photo picture{transform:none!important;will-change:auto}.contact-pattern{animation:none;mask-image:none;opacity:.035}.drag-cursor{display:none}.raster-scene,.spatial-teaser.is-open .raster-scene{transform:none!important}.raster-glint{display:none}}
 
-/* v6.2: actual independent photographic plates, projected by a shared GPU camera. */
-.exploded-teaser{height:400px;perspective:var(--scene-perspective,1100px);perspective-origin:50% 42%;--explode-time:1100ms;--explode-ease:cubic-bezier(.22,.61,.36,1)}
-.exploded-teaser .raster-camera{inset:0 0 94px;transform-style:preserve-3d;transform-origin:50% 52%;transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(var(--scene-closed-scale,.94));transition:transform var(--explode-time) var(--explode-ease)}
-.raster-poster,.raster-plane{position:absolute;inset:0;display:block;transform-style:preserve-3d;backface-visibility:hidden}
-.exploded-teaser .raster-camera img{position:absolute;inset:0;object-fit:contain;filter:none;width:100%;height:100%;user-select:none}
-.raster-poster{z-index:4;opacity:1;transition:opacity var(--poster-fade,150ms) linear var(--poster-return-delay,950ms);transform:translateZ(.1px)}
-.raster-plane{opacity:0;transition:transform var(--explode-time) var(--explode-ease),opacity var(--poster-fade,150ms) linear var(--poster-return-delay,950ms);transform:translate3d(0,0,0)}
-.raster-surfaces{z-index:1}.raster-decor{z-index:2}.raster-light{z-index:3}
-.exploded-teaser.is-open .raster-camera{transform:translate3d(var(--scene-camera-x,-4px),var(--scene-camera-y,-8px),0) rotateX(var(--scene-pitch,10deg)) rotateY(var(--scene-yaw,-9deg)) scale(var(--scene-open-scale,.81))}
+/* v6.3: baked axonometric view; clipped raster assemblies translate without deformation. */
+.exploded-teaser{height:400px;perspective:none;--explode-time:1250ms;--explode-ease:cubic-bezier(.22,.61,.36,1)}
+.exploded-teaser:focus-visible{outline:none}
+.exploded-teaser:focus-visible .teaser-hint{outline:2px solid var(--burgundy);outline-offset:5px}
+.exploded-teaser .raster-camera{inset:0 0 94px;transform:none!important;transition:none;transform-style:flat}
+.raster-stage{position:absolute;left:0;top:50%;width:100%;aspect-ratio:4/3;transform:translateY(-50%)}
+.raster-poster,.raster-plane{position:absolute;inset:0;display:block;backface-visibility:hidden}
+.exploded-teaser .raster-camera img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;filter:none!important;user-select:none}
+.raster-poster{z-index:4;opacity:1;transform:scale(.94);transition:opacity var(--poster-fade,250ms) linear var(--poster-return-delay,1000ms)}
+.raster-plane{opacity:0;transition:transform var(--explode-time) var(--explode-ease),opacity 250ms linear var(--poster-return-delay,1000ms);transform:translate(var(--layer-from-x),var(--layer-from-y));will-change:auto}
+.exploded-teaser.is-open .raster-plane{opacity:1;transform:translate(0,0);transition-delay:0ms}
 .exploded-teaser.is-open .raster-poster{opacity:0;transition-delay:0ms}
-.exploded-teaser.is-open .raster-plane{opacity:1;transition-delay:0ms}
-.exploded-teaser.is-open .raster-surfaces{transform:translate3d(var(--surfaces-x,-38px),var(--surfaces-y,30px),var(--surfaces-z,-50px))}
-.exploded-teaser.is-open .raster-decor{transform:translate3d(var(--decor-x,25px),var(--decor-y,-8px),var(--decor-z,60px))}
-.exploded-teaser.is-open .raster-light{transform:translate3d(var(--light-x,85px),var(--light-y,-22px),var(--light-z,145px))}
-.exploded-teaser.is-open .raster-decor img{filter:drop-shadow(-5px 12px 8px #57212f12)}
+.raster-surfaces{--layer-from-x:17%;--layer-from-y:-12%}
+.raster-decor{--layer-from-x:-20%;--layer-from-y:16%}
+.raster-light{--layer-from-x:-35%;--layer-from-y:23%}
 .exploded-teaser .teaser-layers{bottom:50px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:left;align-items:start}
 .exploded-teaser .teaser-layers>span{padding:0;background:transparent;border:0;border-radius:0;font-size:10px;line-height:1.35;letter-spacing:0}
 .exploded-teaser .teaser-layers small{display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
 .exploded-teaser .teaser-layers small:before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:currentColor;vertical-align:middle;margin-right:4px}
 @media(max-width:1200px){.exploded-teaser{height:365px}}
 @media(max-width:767px){.exploded-teaser{height:365px}.exploded-teaser .raster-camera{inset:0 0 94px}.exploded-teaser .teaser-layers>span{font-size:10px}.exploded-teaser .teaser-layers small{font-size:8.5px}}
-@media(prefers-reduced-motion:reduce){.exploded-teaser .raster-camera,.exploded-teaser.is-open .raster-camera{transform:scale(.82)!important}.exploded-teaser .raster-plane,.exploded-teaser .raster-poster{transition:none!important}.exploded-teaser .teaser-layers{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.exploded-teaser .raster-camera{transform:none!important}.exploded-teaser .raster-plane,.exploded-teaser .raster-poster,.exploded-teaser .teaser-layers,.exploded-teaser .teaser-plus{transition:none!important}}
 
-.exploded-teaser.is-open .raster-light img{filter:drop-shadow(0 4px 6px #ddba7633)}
-
-@media(prefers-reduced-motion:reduce){.exploded-teaser .teaser-plus{transition:none!important}}
+.raster-guides{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:#8c7863;stroke-width:2;stroke-dasharray:4 6;opacity:0;transition:opacity 250ms linear;pointer-events:none}
+.exploded-teaser.is-open .raster-guides{opacity:.42;transition-delay:850ms}
+@media(prefers-reduced-motion:reduce){.raster-guides{transition:none!important}}

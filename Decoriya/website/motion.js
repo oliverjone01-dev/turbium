@@ -81,7 +81,7 @@
     document.querySelectorAll('[data-spatial]').forEach(button=>{
       let pinned=false,requested=false,ready=!button.classList.contains('exploded-teaser'),loading=null;
       const closed=button.querySelector('.teaser-hint-text').textContent;
-      if(button.classList.contains('exploded-teaser')){const S=C.spatial,M=S.camera;const values={'--explode-time':S.duration+'ms','--scene-perspective':S.perspective+'px','--poster-fade':S.posterFade+'ms','--poster-return-delay':S.posterReturnDelay+'ms','--scene-pitch':M.pitch+'deg','--scene-yaw':M.yaw+'deg','--scene-camera-x':M.x+'px','--scene-camera-y':M.y+'px','--scene-closed-scale':M.closedScale,'--scene-open-scale':M.openScale};for(const [layer,v]of Object.entries(S.planes))for(const axis of ['x','y','z'])values['--'+layer+'-'+axis]=v[axis]+'px';for(const [name,value]of Object.entries(values))button.style.setProperty(name,String(value))}
+      if(button.classList.contains('exploded-teaser')){const S=C.spatial;for(const [name,value]of Object.entries({'--explode-time':S.duration+'ms','--poster-fade':S.posterFade+'ms','--poster-return-delay':S.posterReturnDelay+'ms'}))button.style.setProperty(name,value)}
       const paint=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Собрать обратно':closed};
       const prepare=()=>{if(ready)return Promise.resolve(true);if(loading)return loading;
         button.setAttribute('aria-busy','true');
@@ -94,7 +94,7 @@
           if(img.complete&&!img.naturalWidth){const base=img.src.split('?')[0];img.src=base+'?retry='+Date.now()}
         }))).then(()=>{ready=true;button.dataset.platesReady='true';return true}).catch(()=>false).finally(()=>{button.removeAttribute('aria-busy');loading=null});return loading;
       };
-      const set=open=>{requested=open;if(!open||ready){paint(open);return}button.querySelector('.teaser-hint-text').textContent='Готовим разбор…';prepare().then(ok=>{if(ok)paint(requested);else{paint(false);button.querySelector('.teaser-hint-text').textContent='Повторить загрузку слоёв'}})};
+      const set=open=>{requested=open;if(!open||ready){paint(open);return}button.querySelector('.teaser-hint-text').textContent='Готовим разбор…';prepare().then(ok=>{if(ok)paint(requested);else{pinned=false;paint(false);button.querySelector('.teaser-hint-text').textContent='Повторить загрузку слоёв'}})};
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
       button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
       button.addEventListener('click',()=>{pinned=!pinned;set(pinned)});

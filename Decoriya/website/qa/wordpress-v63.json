@@ -1,0 +1,59 @@
+[
+  {
+    "camera": "none",
+    "duration": "1250ms",
+    "expanded": "false",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/entrance-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/entrance-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/entrance-light.webp",
+        "width": 960
+      }
+    ]
+  },
+  {
+    "camera": "none",
+    "duration": "1250ms",
+    "expanded": "true",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/window-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/window-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/window-light.webp",
+        "width": 960
+      }
+    ]
+  },
+  {
+    "camera": "none",
+    "duration": "1250ms",
+    "expanded": "false",
+    "planes": [
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/interior-surfaces.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/interior-decor.webp",
+        "width": 960
+      },
+      {
+        "src": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/axonometric-v63/interior-light.webp",
+        "width": 960
+      }
+    ]
+  }
+]

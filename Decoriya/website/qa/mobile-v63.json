@@ -1,0 +1,21 @@
+{
+  "camera": "none",
+  "expanded": "true",
+  "overflow": false,
+  "planes": [
+    {
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "width": 960
+    },
+    {
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "width": 960
+    },
+    {
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "width": 960
+    }
+  ],
+  "width": 360,
+  "repeatTapClosed": true
+}
