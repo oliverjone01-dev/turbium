@@ -79,28 +79,45 @@
   function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(updateScroll)}
   function setupSpatial(){
     const S=C.spatial,controllers=[];
+    const network=navigator.connection||navigator.mozConnection||navigator.webkitConnection;let measuredBps=null;
+    const fast=()=>!network?.saveData&&measuredBps!==null&&measuredBps>400000;
     document.querySelectorAll('[data-spatial]').forEach(button=>{
-      const atlases=[...button.querySelectorAll('.sequence-strip')],canvas=button.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:true});
+      const canvas=button.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:true});
+      if(!ctx)return;
       const hint=button.querySelector('.teaser-hint-text'),closed=hint.textContent;
-      let bitmaps=null,frameWidth=0,frameHeight=0,lastPaint=0;
-      const urls=()=>atlases.map(i=>new URL(matchMedia('(max-width:767px)').matches?i.parentElement.querySelector('source').getAttribute('srcset'):i.getAttribute('src'),document.baseURI).href);
-      const allReady=()=>bitmaps?.length===S.frames||atlases.every(i=>i.complete&&i.naturalWidth),sourceKey=()=>urls().join('|');
-      let hovered=false,wanted=false,request=0,progress=0,target=0,raf=0,last=0,loading=null,loadedSrc='',draws=0,maxGap=0;
-      const paint=()=>{button.classList.toggle('is-open',wanted);button.setAttribute('aria-expanded',String(wanted));hint.textContent=wanted?'Собрать обратно':closed};
+      const poster=button.querySelector('.sequence-open'),posterSrc=poster.dataset.openSrc;let posterReady=false,posterRequested=false;
+      let compact=null,compactJob=null,highJob=null,hq=null,hqWidth=0,hqHeight=0,hqKey='';
+      let hovered=false,wanted=false,request=0,progress=0,target=0,raf=0,last=0,lastPaint=0,draws=0,maxGap=0,requestedAt=0;
+      const fullUrls=()=>Array.from({length:6},(_,i)=>new URL(button.dataset.fullBase+button.dataset.scene+'-'+(matchMedia('(max-width:767px)').matches?'mobile-':'')+'strip-'+i+'.webp?v=6.4.2-clean',document.baseURI).href);
+      const paint=()=>{button.classList.toggle('is-open',wanted&&(!!compact||reduced.matches||button.dataset.sequenceReady==='error')&&(posterReady||!!compact));button.classList.toggle('sequence-hold',wanted&&!!compact&&!posterReady);button.setAttribute('aria-expanded',String(wanted));hint.textContent=wanted?'Собрать обратно':closed};
+      poster.addEventListener('load',()=>{if(posterRequested&&poster.naturalWidth){posterReady=true;if(!button.classList.contains('is-playing')&&(compact||reduced.matches||button.dataset.sequenceReady==='error'))paint()}});
       const stop=()=>{if(raf)cancelAnimationFrame(raf);raf=0;last=0;button.classList.remove('is-playing')};
-      const staticView=()=>{progress=target;stop();paint();button.dataset.frame=String(Math.round(progress*(S.frames-1)))};
+      const settle=()=>{stop();if(!compact){paint();return}progress=target;draw();paint();button.dataset.frame=String(Math.round(progress*(S.frames-1)))};
       const draw=()=>{
-        const fw=bitmaps?frameWidth:atlases[0].naturalWidth/S.columns,fh=bitmaps?frameHeight:atlases[0].naturalHeight/S.rows;
-        if(!fw||!fh)return;
+        if(!compact)return;
+        const fw=hq?hqWidth:compact.naturalWidth/8,fh=hq?hqHeight:compact.naturalHeight/6;
         if(canvas.width!==fw||canvas.height!==fh){canvas.width=fw;canvas.height=fh}
         const p=progress*(S.frames-1),a=Math.floor(p),b=Math.min(S.frames-1,a+1),mix=p-a;
-        ctx.clearRect(0,0,fw,fh);
-        // Additive premultiplied blending of neighbouring REAL camera samples avoids
-        // 27fps stepping; neither frame is skewed or transformed in the browser.
-        ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1-mix;
-        if(bitmaps)ctx.drawImage(bitmaps[a],0,0,fw,fh);else{const ia=a%S.stripFrames;ctx.drawImage(atlases[Math.floor(a/S.stripFrames)],ia%S.columns*fw,Math.floor(ia/S.columns)*fh,fw,fh,0,0,fw,fh)}
-        if(mix>.001){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=mix;if(bitmaps)ctx.drawImage(bitmaps[b],0,0,fw,fh);else{const ib=b%S.stripFrames;ctx.drawImage(atlases[Math.floor(b/S.stripFrames)],ib%S.columns*fw,Math.floor(ib/S.columns)*fh,fw,fh,0,0,fw,fh)}}
+        const frame=(i)=>{if(hq)ctx.drawImage(hq[i],0,0,fw,fh);else ctx.drawImage(compact,i%8*fw,Math.floor(i/8)*fh,fw,fh,0,0,fw,fh)};
+        ctx.clearRect(0,0,fw,fh);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1-mix;frame(a);
+        if(mix>.001){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=mix;frame(b)}
         ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';button.dataset.frame=String(Math.round(p));draws++;
+      };
+      const upgrade=()=>{
+        if(!fast()||reduced.matches||hq||highJob||!window.Worker||!window.OffscreenCanvas||!window.createImageBitmap)return;
+        const urls=fullUrls(),key=urls.join('|');
+        highJob=new Promise(resolve=>{
+          const worker=new Worker(new URL('worker-v2.js',urls[0]));const timer=setTimeout(()=>{worker.terminate();resolve(false)},20000);
+          worker.onerror=()=>{clearTimeout(timer);worker.terminate();resolve(false)};
+          worker.onmessage=e=>{
+            if(e.data.type==='progress')return;
+            clearTimeout(timer);worker.terminate();
+            if(e.data.error){resolve(false);return}
+            if(key!==fullUrls().join('|')){for(const f of e.data.frames)f.close();resolve(false);return}
+            hq=e.data.frames;hqWidth=e.data.width;hqHeight=e.data.height;hqKey=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=hqWidth+'x'+hqHeight;resolve(true);
+          };
+          worker.postMessage({urls,columns:S.columns,rows:S.rows});
+        }).catch(()=>false).finally(()=>{highJob=null});
       };
       const tick=now=>{
         raf=0;if(document.hidden){last=0;return}
@@ -108,77 +125,59 @@
         const direction=Math.sign(target-progress);progress=clamp(progress+direction*dt/S.duration);
         if(direction>0)progress=Math.min(progress,target);else progress=Math.max(progress,target);
         if(now-lastPaint>=15.5||Math.abs(progress-target)<.00001){draw();lastPaint=now}
-        if(Math.abs(progress-target)<.00001){stop();button.dataset.draws=String(draws);button.dataset.maxFrameGap=Math.round(maxGap)+'ms';paint()}
+        if(Math.abs(progress-target)<.00001){stop();button.dataset.draws=String(draws);button.dataset.maxFrameGap=Math.round(maxGap)+'ms';paint();upgrade()}
         else raf=requestAnimationFrame(tick);
       };
-      const play=()=>{paint();if(reduced.matches){staticView();return}if(progress===target){stop();return}button.classList.add('is-playing');if(!raf){last=0;lastPaint=0;draws=0;maxGap=0;draw();raf=requestAnimationFrame(tick)}};
-      const directPrepare=()=>{
-        if(allReady()&&loadedSrc===sourceKey())return Promise.resolve(true);
-        if(loading)return loading;button.setAttribute('aria-busy','true');
-        loading=Promise.all(atlases.map(img=>{img.loading='eager';return new Promise((resolve,reject)=>{
-          if(img.complete&&img.naturalWidth){resolve();return}
-          const done=()=>{clearTimeout(timer);img.removeEventListener('load',ok);img.removeEventListener('error',bad)},ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Camera strip not loaded'))};const timer=setTimeout(bad,12000);img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});
-        }).then(()=>img.decode())})).then(async()=>{
-          loadedSrc=sourceKey();const fw=atlases[0].naturalWidth/S.columns,fh=atlases[0].naturalHeight/S.rows;canvas.width=fw;canvas.height=fh;
-          // Upload small textures across paint opportunities while the poster is visible.
-          for(const img of atlases){await new Promise(resolve=>requestAnimationFrame(resolve));ctx.clearRect(0,0,fw,fh);ctx.drawImage(img,0,0,fw,fh,0,0,1,1)}
-          await new Promise(resolve=>requestAnimationFrame(resolve));draw();button.dataset.sequenceReady='true';return true;
-        }).catch(()=>false).finally(()=>{loading=null;button.removeAttribute('aria-busy')});return loading;
+      const play=()=>{
+        paint();if(reduced.matches){settle();return}if(!compact||progress===target){stop();return}
+        button.classList.add('is-playing');if(!raf){last=0;lastPaint=0;draws=0;maxGap=0;draw();button.dataset.startDelayMs=String(Math.round(performance.now()-requestedAt));raf=requestAnimationFrame(tick)}
       };
       const prepare=()=>{
-        if(allReady()&&loadedSrc===sourceKey())return Promise.resolve(true);
-        if(loading)return loading;
-        if(!window.Worker||!window.OffscreenCanvas||!window.createImageBitmap)return directPrepare();
-        button.setAttribute('aria-busy','true');const key=sourceKey(),list=urls();
-        loading=new Promise((resolve,reject)=>{
-          const worker=new Worker(new URL('worker-v2.js',list[0]));const timer=setTimeout(()=>{worker.terminate();reject(new Error('Camera decode timeout'))},20000);
-          worker.onerror=()=>{clearTimeout(timer);worker.terminate();reject(new Error('Camera worker failed'))};
-          worker.onmessage=e=>{
-            if(e.data.type==='progress'){button.dataset.loadedStrips=String(e.data.loaded);if(wanted)hint.textContent='Загружаем ракурсы… '+e.data.loaded+'/'+e.data.total;return}
-            clearTimeout(timer);worker.terminate();if(e.data.error){reject(new Error(e.data.error));return}if(bitmaps)for(const f of bitmaps)f.close();bitmaps=e.data.frames;frameWidth=e.data.width;frameHeight=e.data.height;loadedSrc=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=frameWidth+'x'+frameHeight;button.dataset.sequenceReady='true';resolve(true)
-          };
-          worker.postMessage({urls:list,columns:S.columns,rows:S.rows});
-        }).catch(()=>{loading=null;button.removeAttribute('aria-busy');return directPrepare()}).finally(()=>{loading=null;button.removeAttribute('aria-busy')});return loading;
+        if(compact)return Promise.resolve(true);if(compactJob)return compactJob;
+        const started=performance.now(),controller=new AbortController();let timer;
+        const keepAlive=()=>{clearTimeout(timer);timer=setTimeout(()=>controller.abort(),60000)};keepAlive();
+        button.setAttribute('aria-busy','true');button.dataset.sequenceReady='loading';
+        compactJob=(async()=>{
+          const response=await fetch(new URL(button.dataset.compact,document.baseURI),{signal:controller.signal,cache:'force-cache'});
+          if(!response.ok)throw new Error('Camera HTTP '+response.status);
+          keepAlive();let blob,loaded=0;const total=Number(response.headers.get('Content-Length'))||Number(button.dataset.compactBytes);
+          if(response.body&&response.body.getReader){
+            const reader=response.body.getReader(),chunks=[];
+            while(true){const part=await reader.read();if(part.done)break;chunks.push(part.value);loaded+=part.value.length;keepAlive();button.dataset.loadedBytes=String(loaded);if(wanted)hint.textContent='Загружаем ракурсы… '+(total?Math.min(100,Math.round(loaded/total*100))+'%':Math.round(loaded/1024)+' КБ')}
+            blob=new Blob(chunks,{type:'image/webp'});
+          }else blob=await response.blob();
+          const image=new Image();image.decoding='async';const url=URL.createObjectURL(blob);
+          try{image.src=url;await image.decode()}finally{URL.revokeObjectURL(url)}
+          if(image.naturalWidth%8||image.naturalHeight%6)throw new Error('Invalid compact camera dimensions');
+          compact=image;measuredBps=blob.size/Math.max(.001,(performance.now()-started)/1000);button.dataset.measuredBps=String(Math.round(measuredBps));button.dataset.sequenceSource='compact-atlas';button.dataset.frameSize=image.naturalWidth/8+'x'+image.naturalHeight/6;button.dataset.sequenceReady='true';button.dataset.loadMs=String(Math.round(performance.now()-started));return true;
+        })().catch(error=>{button.dataset.sequenceReady='error';button.dataset.sequenceError=String(error);return false}).finally(()=>{clearTimeout(timer);compactJob=null;button.removeAttribute('aria-busy')});
+        return compactJob;
       };
       const set=open=>{
-        const current=++request;wanted=open;target=open?1:0;
-        if(reduced.matches){staticView();return}
+        const current=++request;wanted=open;target=open?1:0;requestedAt=performance.now();
+        if(open&&!posterRequested){posterRequested=true;poster.src=posterSrc}
+        if(reduced.matches){progress=target;stop();if(compact)draw();paint();return}
         if(!open&&progress===0){stop();paint();return}
-        if(allReady()&&loadedSrc===sourceKey()){play();return}
-        hint.textContent='Готовим анимацию…';
-        // A late download must still play the requested camera movement.
-        // A superseded hover/tap must never reopen the scene after loading.
-        prepare().then(ok=>{
-          if(current!==request)return;
-          target=wanted?1:0;
-          if(ok)play();
-          else{button.removeAttribute('aria-busy');button.dataset.sequenceReady='fallback';staticView()}
-        });
+        if(compact){play();return}
+        hint.textContent='Загружаем ракурсы…';
+        prepare().then(ok=>{if(current!==request)return;target=wanted?1:0;if(ok)play();else{progress=target;stop();paint()}});
       };
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;set(true)}});
       button.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;if(!button.matches(':focus-visible'))set(false)}});
-      button.addEventListener('click',e=>{
-        const mouse=e.pointerType==='mouse'||(!e.pointerType&&e.detail>0&&fine.matches);
-        if(mouse){if(!wanted)set(true);return}
-        set(!wanted);
-      });
+      button.addEventListener('click',e=>{const mouse=e.pointerType==='mouse'||(!e.pointerType&&e.detail>0&&fine.matches);if(mouse){if(!wanted)set(true);return}set(!wanted)});
       button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
       button.addEventListener('blur',()=>{if(!hovered)set(false)});
       button.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
-      reduced.addEventListener('change',()=>{target=wanted?1:0;staticView()});
-      controllers.push({button,preload:prepare,resume:()=>{if(progress!==target&&!reduced.matches&&allReady()&&loadedSrc===sourceKey())play()},settle:()=>{if(loading){stop();paint();return}target=wanted?1:0;staticView()}});
+      reduced.addEventListener('change',()=>{progress=target;stop();paint()});
+      controllers.push({button,preload:prepare,resume:()=>{if(compact&&progress!==target&&!reduced.matches)play()},settle,resize:()=>{if(hq&&hqKey!==fullUrls().join('|')){for(const f of hq)f.close();hq=null;button.dataset.sequenceSource='compact-atlas'}settle()}});
     });
-    // Warm one nearby scene at a time, before the first hover/tap.
-    // Intent on another scene still starts its own load immediately.
+    // No speculative frame downloads: a hover/tap loads one compact file.
+    // Higher detail is optional only after measured fast transfer.
     if('IntersectionObserver'in window){
-      const queue=[];let warming=false;
-      const warm=()=>{if(warming||!queue.length||reduced.matches)return;warming=true;queue.shift().preload().finally(()=>{warming=false;warm()})};
-      const prefetch=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting&&!reduced.matches){prefetch.unobserve(e.target);queue.push(controllers.find(c=>c.button===e.target));warm()}}),{rootMargin:'320px'});
-      controllers.forEach(c=>prefetch.observe(c.button));
+      const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)controllers.find(c=>c.button===e.target)?.settle()}));controllers.forEach(c=>observer.observe(c.button));
     }
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)controllers.forEach(c=>c.resume())});
-    if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)controllers.find(c=>c.button===e.target)?.settle()}));controllers.forEach(c=>observer.observe(c.button))}
-    addEventListener('resize',()=>controllers.forEach(c=>c.settle()),{passive:true});
+    addEventListener('resize',()=>controllers.forEach(c=>c.resize()),{passive:true});
   }
   function setupMagnetic(){document.querySelectorAll('[data-magnetic]').forEach(el=>{
     el.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches||e.pointerType!=='mouse')return;const r=el.getBoundingClientRect(),x=(e.clientX-r.left-r.width/2)/r.width*10,y=(e.clientY-r.top-r.height/2)/r.height*10;el.style.transform=`translate3d(${clamp(x,-5,5)}px,${clamp(y,-5,5)}px,0)`});el.addEventListener('pointerleave',()=>el.style.transform='');

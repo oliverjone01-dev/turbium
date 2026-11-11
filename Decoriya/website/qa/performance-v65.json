@@ -1,0 +1,132 @@
+{
+  "version": "6.5.0",
+  "heroBytes": {
+    "beforeAllDevices": 1015488,
+    "desktopAfter": 529706,
+    "mobileAfter": 177942
+  },
+  "fontBytes": {
+    "before": 192780,
+    "after": 73100
+  },
+  "galleryMediumBytes": {
+    "count": 20,
+    "before": 5188134,
+    "after": 2863742
+  },
+  "camera": [
+    {
+      "scene": "entrance",
+      "liteBytes": 182164,
+      "fullDesktopBytes": 651132
+    },
+    {
+      "scene": "window",
+      "liteBytes": 149938,
+      "fullDesktopBytes": 469268
+    },
+    {
+      "scene": "interior",
+      "liteBytes": 174736,
+      "fullDesktopBytes": 506092
+    }
+  ],
+  "scripts": {
+    "rawBytes": 46921,
+    "localGzipEstimateBytes": 15179
+  },
+  "slowTest": {
+    "limitBytesPerSecond": 32768,
+    "responseDelayMs": 150,
+    "cache": "no-store",
+    "desktop": {
+      "bytes": "149938",
+      "expanded": "true",
+      "frame": "47",
+      "hint": "Собрать обратно",
+      "loadMs": "10881",
+      "playing": false,
+      "ready": "true",
+      "source": "compact-atlas",
+      "startDelayMs": "10883"
+    },
+    "mobileViewport390": {
+      "bytes": "182164",
+      "expanded": "true",
+      "frame": "47",
+      "loadMs": "11845",
+      "playing": false,
+      "ready": "true",
+      "source": "compact-atlas",
+      "startDelayMs": "11850"
+    },
+    "repeat": {
+      "frame": "28",
+      "playing": true,
+      "source": "compact-atlas",
+      "startDelayMs": "1"
+    }
+  },
+  "wordpress": {
+    "mid": {
+      "compactUrl": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/camera-v65/window-lite.webp",
+      "frame": "24",
+      "playing": true,
+      "source": "compact-atlas"
+    },
+    "afterLeave": {
+      "expanded": "false",
+      "frame": "0",
+      "playing": false,
+      "source": "worker-bitmaps"
+    }
+  },
+  "normalCompactPlayback": [
+    {
+      "mid": {
+        "frame": "25",
+        "playing": true,
+        "scene": "entrance",
+        "size": "192x144",
+        "source": "compact-atlas"
+      },
+      "closed": {
+        "expanded": "false",
+        "frame": "0"
+      }
+    },
+    {
+      "mid": {
+        "frame": "25",
+        "playing": true,
+        "scene": "window",
+        "size": "192x144",
+        "source": "compact-atlas"
+      },
+      "closed": {
+        "expanded": "false",
+        "frame": "0"
+      }
+    },
+    {
+      "mid": {
+        "frame": "23",
+        "playing": true,
+        "scene": "interior",
+        "size": "192x144",
+        "source": "compact-atlas"
+      },
+      "closed": {
+        "expanded": "false",
+        "frame": "0"
+      }
+    }
+  ],
+  "highDetailObserved": {
+    "source": "worker-bitmaps",
+    "size": "512x384",
+    "frame": 47,
+    "measuredCompactBytesPerSecond": 2806841
+  },
+  "galleryViewerObserved": "assets/optimized/retouch-ribbons-1280.webp"
+}
