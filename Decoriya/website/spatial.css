@@ -69,7 +69,7 @@
 .sequence-open,.sequence-canvas{opacity:0}
 .is-open .sequence-closed{opacity:0}.is-open .sequence-open{opacity:1}
 .is-playing .sequence-poster{opacity:0}.is-playing .sequence-canvas{opacity:1}
-.sequence-atlas,.sequence-stage picture[hidden]{display:none!important}
+.sequence-strip,.sequence-stage picture[hidden]{display:none!important}
 .exploded-teaser .teaser-layers{bottom:50px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:left;align-items:start}
 .exploded-teaser .teaser-layers>span{padding:0;background:transparent;border:0;border-radius:0;font-size:10px;line-height:1.35;letter-spacing:0}
 .exploded-teaser .teaser-layers small{display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}

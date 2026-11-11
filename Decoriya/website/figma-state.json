@@ -127,5 +127,6 @@
     ],
     "review": "132:426",
     "renderScript": "tools/render-camera-v64.py"
-  }
+  },
+  "frontendVersion": "6.4.1"
 }

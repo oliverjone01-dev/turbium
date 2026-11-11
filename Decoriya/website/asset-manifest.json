@@ -111,8 +111,8 @@
   },
   {
     "path": "assets/camera-v64/camera-manifest.json",
-    "bytes": 132434,
-    "sha256": "21e1b010dba5e82e855392bb43e3882d59233d01440a5c7d386ca13a6cd2ab23"
+    "bytes": 132893,
+    "sha256": "491f0d5bf459a7d1df6d1762f9e2526cea8058c71b5dc037b9fb3aef7c3ac28f"
   },
   {
     "path": "assets/camera-v64/entrance-atlas.webp",
@@ -125,6 +125,36 @@
     "sha256": "26c67e18dfbd0e40c7e9e09145a96aa71e6552d8de666009a91d3839e641ae78"
   },
   {
+    "path": "assets/camera-v64/entrance-mobile-strip-0.webp",
+    "bytes": 78454,
+    "sha256": "00a66fb1e5fdd8655693ad7ccbe5d4b51e637009164d3f24055ffd0c82c28ea9"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile-strip-1.webp",
+    "bytes": 98212,
+    "sha256": "05f7906ed32f2313b5a5a108e200d73829b4996e10c2f573e6a57c408f90e070"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile-strip-2.webp",
+    "bytes": 95470,
+    "sha256": "8475ab10a587e5c18824127a6c776eaf050af6b3977ceb6e07256550b7ff5f5e"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile-strip-3.webp",
+    "bytes": 104528,
+    "sha256": "bdc580ea506693230f5aae7d5562d06ba3333fcabf52b0330701f225257ead09"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile-strip-4.webp",
+    "bytes": 110920,
+    "sha256": "27cd34644e4c782bbaba1f0b73d6a8031a81f4160637f8ff7c49f1745d7d15b2"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile-strip-5.webp",
+    "bytes": 106384,
+    "sha256": "43fa24f6e10d4650532fb4bba79898779524e819f130220a2007c410ca85f2c2"
+  },
+  {
     "path": "assets/camera-v64/entrance-mobile.webp",
     "bytes": 598090,
     "sha256": "69c7f1ae5546939452f89ad75ae027f1c40f87f177e8e7a64c07523eaf40a2a4"
@@ -133,6 +163,36 @@
     "path": "assets/camera-v64/entrance-open.webp",
     "bytes": 53202,
     "sha256": "7d85f7181cbf893aa5e4d8e1592963860ca1c7367c3d1738e0788cc26ef2bf84"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-0.webp",
+    "bytes": 100870,
+    "sha256": "f165a183803c04e67c2e1f2256fae2d18acf0799e082acc8a3dabed927de684f"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-1.webp",
+    "bytes": 120864,
+    "sha256": "fc20986930c9ac17a0588f10efaf54f4e36e7f2802f89cf86355c741c022f4fa"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-2.webp",
+    "bytes": 113638,
+    "sha256": "c0659274dd15a81740e222f6be3c037a1564408858bee3521f1a161e3f77476f"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-3.webp",
+    "bytes": 116200,
+    "sha256": "ae4edf545e7d4d872da9ea54976adc95d69f1595bb8f8b695a8871dd7ac4c2f9"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-4.webp",
+    "bytes": 119284,
+    "sha256": "ac4ed59bad6abe131e93b378512ae8b7aa9a4e9925d55ed75bac52f99c7f7bc5"
+  },
+  {
+    "path": "assets/camera-v64/entrance-strip-5.webp",
+    "bytes": 116032,
+    "sha256": "6ed9399aa8ee3e9aab7fc175345c310200f96bf2e808bf7089f9c2ec1c5fe00d"
   },
   {
     "path": "assets/camera-v64/interior-atlas.webp",
@@ -145,6 +205,36 @@
     "sha256": "8bfbe6636d9f7265a463ef541dc38e64b601aa1bfaa1c3dc25de24bd60f518d5"
   },
   {
+    "path": "assets/camera-v64/interior-mobile-strip-0.webp",
+    "bytes": 53206,
+    "sha256": "2298f549356b94319057351eeaee9e9495ecc7cc2b8eed4181daea7c923b79f7"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile-strip-1.webp",
+    "bytes": 64652,
+    "sha256": "b538cb2b5147317f5277d6f842c04fa026beadfec92799e537f398a7e5f0e164"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile-strip-2.webp",
+    "bytes": 87504,
+    "sha256": "5d9ee02f7efddaba01b2b185f75a6dc4bf75a1d45eb5fdb6359c3cf264ae78b0"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile-strip-3.webp",
+    "bytes": 102370,
+    "sha256": "d5c7aea39bbbfaaa5268c4e50dfb46f3ce8307b6922cb791a63d14bea23051c8"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile-strip-4.webp",
+    "bytes": 113358,
+    "sha256": "1f3ce7705af18e7ec1ce1d13362b9116d7356c4e97a244142c296206adfa1232"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile-strip-5.webp",
+    "bytes": 108790,
+    "sha256": "f375a84191e62e0934f77dadf9ce7a5ad96011b5f1bb13512b5347454d8f17fb"
+  },
+  {
     "path": "assets/camera-v64/interior-mobile.webp",
     "bytes": 536488,
     "sha256": "2a64c24a1da46cd054513b1ceac25a3e7e39fd82b7c801e87ee43dd55e35da7a"
@@ -153,6 +243,36 @@
     "path": "assets/camera-v64/interior-open.webp",
     "bytes": 49018,
     "sha256": "b199586b70665c10c2f8e92678a8e8725cfbda5dd385febd9f83b02821423e33"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-0.webp",
+    "bytes": 65046,
+    "sha256": "d1b3f47042b9f3d6d2856b6036d0d81a19e4bcc3c4f2e5606f499e43158f987a"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-1.webp",
+    "bytes": 70560,
+    "sha256": "9428236cbea74f7911150028b593ac95eda7009022b9022932ef27fe7571aaf0"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-2.webp",
+    "bytes": 87448,
+    "sha256": "8c079f3f5f5d77fff8261940a1eda26bd50c709e035bb0e2febdfd84891d57d8"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-3.webp",
+    "bytes": 106110,
+    "sha256": "c9be5412df64059292199237e645df0535acd2af369b0fa4983ae446e94c32f2"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-4.webp",
+    "bytes": 114074,
+    "sha256": "15d9a526eee152bb9360a7e53d881d3b5be0b293d5b77c6e9a4a78e7df506d5c"
+  },
+  {
+    "path": "assets/camera-v64/interior-strip-5.webp",
+    "bytes": 103826,
+    "sha256": "a454358316dfabb572bf988ae3d2bb869d88b50f651cdc1b178a61d83847d391"
   },
   {
     "path": "assets/camera-v64/materials/botanical.png",
@@ -180,6 +300,36 @@
     "sha256": "a22fd41fcbaf35126690591d45e6a7967cc87d99e88dbbb9086a85b53af8c6c5"
   },
   {
+    "path": "assets/camera-v64/window-mobile-strip-0.webp",
+    "bytes": 58504,
+    "sha256": "0eebf40c71f45d0ae00975125b4e2f3f0d4e6e7ab4346de7394949a72d017196"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile-strip-1.webp",
+    "bytes": 71496,
+    "sha256": "0d3cc96ad1a89b003f5657efd20a1de127f14de1e8634062e61786bc6049576f"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile-strip-2.webp",
+    "bytes": 79526,
+    "sha256": "c79d9831b50a163f8b1ee9a1e5097d28d1d046782edc8cad38236bcd0fc84980"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile-strip-3.webp",
+    "bytes": 90244,
+    "sha256": "de2d16f351894abb18b16dba1ebd0f5aa3eb3708321e6589e05404909918bb41"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile-strip-4.webp",
+    "bytes": 98082,
+    "sha256": "23ae51098090064c73bc7ec2237c14cde41eb224f7a74521d5e2c9b3dfe3389e"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile-strip-5.webp",
+    "bytes": 94158,
+    "sha256": "239edddd846b7785fbf0918384bd941e7fb6222b4a645919ce626fd8154d718f"
+  },
+  {
     "path": "assets/camera-v64/window-mobile.webp",
     "bytes": 496372,
     "sha256": "0c310831f357436ff187a90b0d2a90eb170118a86d85c09c984d83abf7e0b89e"
@@ -188,6 +338,41 @@
     "path": "assets/camera-v64/window-open.webp",
     "bytes": 43898,
     "sha256": "81f3ba877dfee7d122a2f2a0d29ef6d2fc6e23c355affb986f8dc2c699f770a0"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-0.webp",
+    "bytes": 69074,
+    "sha256": "aeeab823f4da08093a5c67e9a1b796e0dd9ca889737cdcac420a03022bc49c84"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-1.webp",
+    "bytes": 79382,
+    "sha256": "c1f16002a1426af212e6eacbfeedb7fde1aa4fa0e8de79208362b377fd149f73"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-2.webp",
+    "bytes": 79498,
+    "sha256": "020ba982b6a45707e6cca1b12a2a3552498225353bd16bc00f38b471b312a06b"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-3.webp",
+    "bytes": 89474,
+    "sha256": "b2123d79d5cd3884a08989eb8f754de5b88c75197b8fba59df0c3d0cceec4ef5"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-4.webp",
+    "bytes": 92138,
+    "sha256": "16492d918f98d8740cfd79746a39d3c26fa6dd619d4bd1b52b8bd7905bcf5185"
+  },
+  {
+    "path": "assets/camera-v64/window-strip-5.webp",
+    "bytes": 90682,
+    "sha256": "ccc13e8013b7f865091f0a2d8b7a45e02dbcfb39f19a6f6c5a77133e96b19415"
+  },
+  {
+    "path": "assets/camera-v64/worker.js",
+    "bytes": 993,
+    "sha256": "91c29c5891b12a4cee9d7bf6cb5bd9423f7fdd7f4e78cb9fe20a2735d9e55cf3"
   },
   {
     "path": "assets/exploded-v62/entrance-decor.png",

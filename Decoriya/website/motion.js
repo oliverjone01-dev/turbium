@@ -80,14 +80,17 @@
   function setupSpatial(){
     const S=C.spatial,controllers=[];
     document.querySelectorAll('[data-spatial]').forEach(button=>{
-      const atlas=button.querySelector('.sequence-atlas'),canvas=button.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:true});
+      const atlases=[...button.querySelectorAll('.sequence-strip')],canvas=button.querySelector('canvas'),ctx=canvas.getContext('2d',{alpha:true});
       const hint=button.querySelector('.teaser-hint-text'),closed=hint.textContent;
+      let bitmaps=null,frameWidth=0,frameHeight=0,lastPaint=0;
+      const urls=()=>atlases.map(i=>new URL(matchMedia('(max-width:767px)').matches?i.parentElement.querySelector('source').getAttribute('srcset'):i.getAttribute('src'),document.baseURI).href);
+      const allReady=()=>bitmaps?.length===S.frames||atlases.every(i=>i.complete&&i.naturalWidth),sourceKey=()=>urls().join('|');
       let pinned=false,wanted=false,progress=0,target=0,raf=0,last=0,loading=null,loadedSrc='',draws=0,maxGap=0;
       const paint=()=>{button.classList.toggle('is-open',wanted);button.setAttribute('aria-expanded',String(wanted));hint.textContent=wanted?'Собрать обратно':closed};
       const stop=()=>{if(raf)cancelAnimationFrame(raf);raf=0;last=0;button.classList.remove('is-playing')};
       const staticView=()=>{progress=target;stop();paint();button.dataset.frame=String(Math.round(progress*(S.frames-1)))};
       const draw=()=>{
-        const fw=atlas.naturalWidth/S.columns,fh=atlas.naturalHeight/S.rows;
+        const fw=bitmaps?frameWidth:atlases[0].naturalWidth/S.columns,fh=bitmaps?frameHeight:atlases[0].naturalHeight/S.rows;
         if(!fw||!fh)return;
         if(canvas.width!==fw||canvas.height!==fh){canvas.width=fw;canvas.height=fh}
         const p=progress*(S.frames-1),a=Math.floor(p),b=Math.min(S.frames-1,a+1),mix=p-a;
@@ -95,8 +98,8 @@
         // Additive premultiplied blending of neighbouring REAL camera samples avoids
         // 27fps stepping; neither frame is skewed or transformed in the browser.
         ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1-mix;
-        ctx.drawImage(atlas,a%S.columns*fw,Math.floor(a/S.columns)*fh,fw,fh,0,0,fw,fh);
-        if(mix>.001){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=mix;ctx.drawImage(atlas,b%S.columns*fw,Math.floor(b/S.columns)*fh,fw,fh,0,0,fw,fh)}
+        if(bitmaps)ctx.drawImage(bitmaps[a],0,0,fw,fh);else{const ia=a%S.stripFrames;ctx.drawImage(atlases[Math.floor(a/S.stripFrames)],ia%S.columns*fw,Math.floor(ia/S.columns)*fh,fw,fh,0,0,fw,fh)}
+        if(mix>.001){ctx.globalCompositeOperation='lighter';ctx.globalAlpha=mix;if(bitmaps)ctx.drawImage(bitmaps[b],0,0,fw,fh);else{const ib=b%S.stripFrames;ctx.drawImage(atlases[Math.floor(b/S.stripFrames)],ib%S.columns*fw,Math.floor(ib/S.columns)*fh,fw,fh,0,0,fw,fh)}}
         ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';button.dataset.frame=String(Math.round(p));draws++;
       };
       const tick=now=>{
@@ -104,27 +107,41 @@
         const dt=last?Math.min(100,now-last):0;if(last)maxGap=Math.max(maxGap,now-last);last=now;
         const direction=Math.sign(target-progress);progress=clamp(progress+direction*dt/S.duration);
         if(direction>0)progress=Math.min(progress,target);else progress=Math.max(progress,target);
-        draw();
+        if(now-lastPaint>=15.5||Math.abs(progress-target)<.00001){draw();lastPaint=now}
         if(Math.abs(progress-target)<.00001){stop();button.dataset.draws=String(draws);button.dataset.maxFrameGap=Math.round(maxGap)+'ms';paint()}
         else raf=requestAnimationFrame(tick);
       };
-      const play=()=>{paint();if(reduced.matches){staticView();return}if(progress===target){stop();return}button.classList.add('is-playing');if(!raf){last=0;draws=0;maxGap=0;draw();raf=requestAnimationFrame(tick)}};
+      const play=()=>{paint();if(reduced.matches){staticView();return}if(progress===target){stop();return}button.classList.add('is-playing');if(!raf){last=0;lastPaint=0;draws=0;maxGap=0;draw();raf=requestAnimationFrame(tick)}};
+      const directPrepare=()=>{
+        if(allReady()&&loadedSrc===sourceKey())return Promise.resolve(true);
+        if(loading)return loading;button.setAttribute('aria-busy','true');
+        loading=Promise.all(atlases.map(img=>{img.loading='eager';return new Promise((resolve,reject)=>{
+          if(img.complete&&img.naturalWidth){resolve();return}
+          const done=()=>{img.removeEventListener('load',ok);img.removeEventListener('error',bad)},ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Camera strip not loaded'))};img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});
+        }).then(()=>img.decode())})).then(async()=>{
+          loadedSrc=sourceKey();const fw=atlases[0].naturalWidth/S.columns,fh=atlases[0].naturalHeight/S.rows;canvas.width=fw;canvas.height=fh;
+          // Upload small textures across paint opportunities while the poster is visible.
+          for(const img of atlases){await new Promise(resolve=>requestAnimationFrame(resolve));ctx.clearRect(0,0,fw,fh);ctx.drawImage(img,0,0,fw,fh,0,0,1,1)}
+          await new Promise(resolve=>requestAnimationFrame(resolve));draw();button.dataset.sequenceReady='true';return true;
+        }).catch(()=>false).finally(()=>{loading=null;button.removeAttribute('aria-busy')});return loading;
+      };
       const prepare=()=>{
-        if(atlas.complete&&atlas.naturalWidth&&loadedSrc===atlas.currentSrc)return Promise.resolve(true);
+        if(allReady()&&loadedSrc===sourceKey())return Promise.resolve(true);
         if(loading)return loading;
-        button.setAttribute('aria-busy','true');atlas.loading='eager';
+        if(!window.Worker||!window.OffscreenCanvas||!window.createImageBitmap)return directPrepare();
+        button.setAttribute('aria-busy','true');const key=sourceKey(),list=urls();
         loading=new Promise((resolve,reject)=>{
-          const done=()=>{atlas.removeEventListener('load',ok);atlas.removeEventListener('error',bad)};
-          const ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Sequence not loaded'))};
-          if(atlas.complete&&atlas.naturalWidth)resolve();else{atlas.addEventListener('load',ok,{once:true});atlas.addEventListener('error',bad,{once:true})}
-        }).then(()=>atlas.decode()).then(()=>{loadedSrc=atlas.currentSrc;draw();return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>{button.dataset.sequenceReady='true';resolve(true)})))}).catch(()=>false).finally(()=>{loading=null;button.removeAttribute('aria-busy')});
-        return loading;
+          const worker=new Worker(new URL('worker.js',list[0]));const timer=setTimeout(()=>{worker.terminate();reject(new Error('Camera decode timeout'))},20000);
+          worker.onerror=()=>{clearTimeout(timer);worker.terminate();reject(new Error('Camera worker failed'))};
+          worker.onmessage=e=>{clearTimeout(timer);worker.terminate();if(e.data.error){reject(new Error(e.data.error));return}if(bitmaps)for(const f of bitmaps)f.close();bitmaps=e.data.frames;frameWidth=e.data.width;frameHeight=e.data.height;loadedSrc=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=frameWidth+'x'+frameHeight;button.dataset.sequenceReady='true';resolve(true)};
+          worker.postMessage({urls:list,columns:S.columns,rows:S.rows});
+        }).catch(()=>{loading=null;button.removeAttribute('aria-busy');return directPrepare()}).finally(()=>{loading=null;button.removeAttribute('aria-busy')});return loading;
       };
       const set=open=>{
         wanted=open;target=open?1:0;
         if(reduced.matches){staticView();return}
         if(!open&&progress===0){paint();return}
-        if(atlas.complete&&atlas.naturalWidth&&loadedSrc===atlas.currentSrc){play();return}
+        if(allReady()&&loadedSrc===sourceKey()){play();return}
         hint.textContent='Готовим анимацию…';prepare().then(ok=>{target=wanted?1:0;if(ok)play();else{button.dataset.sequenceReady='fallback';staticView()}});
       };
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
