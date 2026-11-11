@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.3.0",
+  "version": "6.4.0",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -92,13 +92,13 @@ window.DK_MOTION=Object.freeze({
     },
     {
       "id": "services",
-      "selector": "[data-spatial] .raster-stage; .raster-plane",
+      "selector": "[data-spatial] .sequence-canvas",
       "trigger": "Hover мышью; фокус клавиатуры; клик/тап; Escape",
-      "effect": "Девять чистых прозрачных аксонометрических растров: поверхности, декор, свет. Разобранный ракурс нарисован заранее; пунктирные направляющие сохраняют связь деталей.",
-      "desktop": "1250 мс. Поверхности расходятся вниз-влево, декор и свет вверх-вправо. Только translate/opacity; стены не наклоняются CSS-поворотом. Это переход между растровыми видами, не непрерывная 3D-камера.",
-      "mobile": "Тап раскрывает, повторный собирает. Процентные смещения, три WebP со своим прозрачным слоем на сцену; без покадрового JS.",
-      "reduced": "Мгновенное переключение собранного и разобранного видов без движения.",
-      "source": "motion-config.js: spatial; motion.js: setupSpatial; spatial.css: .raster-stage/.raster-plane; assets/axonometric-v63"
+      "effect": "48 настоящих ракурсов каждой из трёх 3D-сцен. Камера проходит 30° по горизонтали и поднимается на 12°. Раскрытие 1 — свет, 2 — декор, 3 — поверхности, в левую сторону.",
+      "desktop": "1800 мс. Canvas рисует соседние кадры WebP-атласа с плавным смешиванием; геометрия каждого кадра отрендерена в Blender. Обратное воспроизведение с текущей позиции.",
+      "mobile": "Тап открывает, повторный собирает. Мобильный атлас 384×288 на кадр; загружается по взаимодействию. Canvas работает только во время перехода.",
+      "reduced": "Мгновенное переключение двух статичных ракурсов; атлас не запрашивается.",
+      "source": "tools/render-camera-v64.py; assets/camera-v64; motion.js:setupSpatial; motion-config.js:spatial"
     },
     {
       "id": "directions",
@@ -180,27 +180,33 @@ window.DK_MOTION=Object.freeze({
     "duration": 900
   },
   "spatial": {
-    "renderer": "prerendered-axonometric-independent-raster-plates",
-    "duration": 1250,
-    "posterFade": 250,
-    "posterReturnDelay": 1000,
-    "camera": "A more elevated front-right view is baked into the open raster. No CSS X/Y camera rotation, no live 3D orbit.",
-    "planes": {
-      "surfaces": {
-        "fromX": "17%",
-        "fromY": "-12%",
-        "to": "0,0"
-      },
-      "decor": {
-        "fromX": "-20%",
-        "fromY": "16%",
-        "to": "0,0"
-      },
-      "light": {
-        "fromX": "-35%",
-        "fromY": "23%",
-        "to": "0,0"
-      }
-    }
+    "renderer": "Blender48-frame-camera-sequence",
+    "duration": 1800,
+    "frames": 48,
+    "columns": 8,
+    "rows": 6,
+    "cameraOrbitDegrees": 30,
+    "cameraElevationDegrees": 12,
+    "order": [
+      "light",
+      "decor",
+      "surfaces"
+    ],
+    "stages": {
+      "light": [
+        0.06,
+        0.46
+      ],
+      "decor": [
+        0.27,
+        0.76
+      ],
+      "surfaces": [
+        0.53,
+        0.96
+      ]
+    },
+    "direction": "Light and decor move to screen-left; architectural assembly moves right.",
+    "frameBlend": "Premultiplied additive blend of adjacent rendered samples. No CSS perspective warp."
   }
 });

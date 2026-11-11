@@ -1,0 +1,17 @@
+{
+  "atlas": "http://127.0.0.1:8780/assets/camera-v64/window-mobile.webp",
+  "atlasSize": [
+    3072,
+    1728
+  ],
+  "canvas": [
+    384,
+    288
+  ],
+  "draws": "213",
+  "expanded": "true",
+  "frame": "47",
+  "maxGap": "17ms",
+  "overflow": false,
+  "ready": "true"
+}

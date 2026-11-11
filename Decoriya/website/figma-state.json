@@ -1,5 +1,5 @@
 {
-  "version": "6.3.0",
+  "version": "6.4.0",
   "fileKey": "SsbOVLwLJnNFPwaeQ3bRqJ",
   "pageId": "109:1663",
   "desktop": "109:1664",
@@ -30,6 +30,18 @@
     {
       "id": "111:1199",
       "name": "Category=interior, State=Exploded"
+    },
+    {
+      "id": "137:534",
+      "name": "Category=entrance, State=Turning"
+    },
+    {
+      "id": "137:548",
+      "name": "Category=window, State=Turning"
+    },
+    {
+      "id": "137:562",
+      "name": "Category=interior, State=Turning"
     }
   ],
   "galleryControl": "116:1112",
@@ -38,8 +50,8 @@
     "desktop": "93:3",
     "mobile": "93:521"
   },
-  "motionImplementation": "Prerendered axonometric raster view, nine independent clean plates. Native Smart Animate 1.25s and browser translation/opacity. No CSS X/Y camera rotation and no continuous 3D orbit.",
-  "pageName": "07 STUDIO / v6.3",
+  "motionImplementation": "Nine actual key poses0/24/47. Full48-frame true camera orbit and reverse playback run in browser Canvas; native Figma key poses are a review reference.",
+  "pageName": "07 STUDIO / v6.4",
   "approvedFaceSourceUnchanged": true,
   "lowerPortraitRetouched": true,
   "priorV6Audit": {
@@ -97,5 +109,23 @@
     "runtimeWebpBytes": 280244,
     "geometry": "Baked elevated front-right axonometric view; vertical walls preserved",
     "animation": "Surfaces down-left; decor/light up-right. No X/Y skew or rotation."
+  },
+  "v64": {
+    "framesPerScene": 48,
+    "cameraOrbit": 30,
+    "cameraElevation": 12,
+    "durationMs": 1800,
+    "order": [
+      "light",
+      "decor",
+      "surfaces"
+    ],
+    "turningComponents": [
+      "137:534",
+      "137:548",
+      "137:562"
+    ],
+    "review": "132:426",
+    "renderScript": "tools/render-camera-v64.py"
   }
 }
