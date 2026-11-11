@@ -1,0 +1,116 @@
+{
+  "version": "6.4.2",
+  "render": {
+    "entrance": {
+      "frames": 48,
+      "distinctHashes": 48,
+      "edgeTouchFrames": []
+    },
+    "window": {
+      "frames": 48,
+      "distinctHashes": 48,
+      "edgeTouchFrames": []
+    },
+    "interior": {
+      "frames": 48,
+      "distinctHashes": 48,
+      "edgeTouchFrames": []
+    }
+  },
+  "chromeMobileViewport": [
+    {
+      "expanded": "true",
+      "frame": "47",
+      "gap": "17ms",
+      "scene": "entrance",
+      "size": "384x288",
+      "source": "worker-bitmaps"
+    },
+    {
+      "expanded": "true",
+      "frame": "47",
+      "gap": "26ms",
+      "scene": "window",
+      "size": "384x288",
+      "source": "worker-bitmaps"
+    },
+    {
+      "expanded": "true",
+      "frame": "47",
+      "gap": "25ms",
+      "scene": "interior",
+      "size": "384x288",
+      "source": "worker-bitmaps"
+    }
+  ],
+  "workerBlockedFallback": [
+    {
+      "frame": "47",
+      "playing": false,
+      "ready": "true",
+      "scene": "entrance",
+      "source": "direct-strips"
+    },
+    {
+      "frame": "47",
+      "playing": false,
+      "ready": "true",
+      "scene": "window",
+      "source": "direct-strips"
+    },
+    {
+      "frame": "47",
+      "playing": false,
+      "ready": "true",
+      "scene": "interior",
+      "source": "direct-strips"
+    }
+  ],
+  "safariMac": {
+    "threeScenesOpened": true,
+    "cleanAssetsObserved": true,
+    "screenshot": "safari-open.png"
+  },
+  "physicalDevices": {
+    "iPhone": "not tested — no device/cloud access",
+    "Android": "not tested — no device/cloud access"
+  },
+  "wordpress": {
+    "base": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/",
+    "scenes": [
+      {
+        "frame": "47",
+        "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/camera-v64/entrance-open.webp?v=6.4.2-clean",
+        "ready": "true",
+        "scene": "entrance",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "47",
+        "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/camera-v64/window-open.webp?v=6.4.2-clean",
+        "ready": "true",
+        "scene": "window",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "47",
+        "poster": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/camera-v64/interior-open.webp?v=6.4.2-clean",
+        "ready": "true",
+        "scene": "interior",
+        "source": "worker-bitmaps"
+      }
+    ]
+  },
+  "chromeDesktop": {
+    "threeScenesEndFrame": 47,
+    "maxFrameGapsMs": [
+      25,
+      25,
+      25
+    ]
+  },
+  "reverse": {
+    "chromeMobileInteriorEndFrame": 0,
+    "safariEntranceCollapsed": true
+  }
+}

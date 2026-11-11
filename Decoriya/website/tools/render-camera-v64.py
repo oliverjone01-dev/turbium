@@ -240,14 +240,8 @@ for name,loc,power,size,col in [('Key',(-4,-6,8),850,5,(1,.9,.75)),('Fill',(5,-2
  d=bpy.data.lights.new(name,'AREA');d.energy=power;d.shape='DISK';d.size=size;d.color=col;o=bpy.data.objects.new(name,d);SC.collection.objects.link(o);o.location=loc;o.rotation_euler=(Vector((0,0,1.5))-o.location).to_track_quat('-Z','Y').to_euler()
 camd=bpy.data.cameras.new('Delivery Camera');cam=bpy.data.objects.new('Delivery Camera',camd);SC.collection.objects.link(cam);SC.camera=cam;camd.type='ORTHO';camd.lens=50
 
-GUIDES={}
-for key in MODELS:
- arr=[]
- for j in range(3):
-  d=bpy.data.curves.new(key+' attachment guide '+str(j),'CURVE');d.dimensions='3D';d.bevel_depth=.003;d.bevel_resolution=2
-  for k in range(24):sp=d.splines.new('POLY');sp.points.add(1)
-  o=bpy.data.objects.new(key+' guide '+str(j),d);SC.collection.objects.link(o);o.data.materials.append(GUIDE);arr.append(o)
- GUIDES[key]=arr
+# Assembly guide lines are deliberately omitted from the delivery scene.
+# They crossed the photographic door and read as render/decoding artifacts.
 
 def ease(t):t=max(0,min(1,t));return t*t*t*(10+t*(-15+6*t))
 def phase(t,a,b):return ease((t-a)/(b-a))
@@ -263,13 +257,6 @@ def pose(key,t):
   for layer,root in roots.items():
    for o in root.children:o.hide_render=k!=key;o.hide_set(k!=key)
    dx,dy,p=offsets[layer];root.location=(right*dx+up*dy)*p
-
- for k,lines in GUIDES.items():
-  anchors=[Vector((-1.05,-.60,.3)),Vector((-1.25,-.45,3.15)),Vector((1.2,-.4,3.15))]
-  for j,o in enumerate(lines):
-   layer='light'if j==0 else'decor';a=anchors[j]+MODELS[k]['surfaces'].location;b=anchors[j]+MODELS[k][layer].location;o.hide_render=k!=key or (b-a).length<.12
-   for n,sp in enumerate(o.data.splines):
-    sp.points[0].co=(*(a+(b-a)*(n/24)),1);sp.points[1].co=(*(a+(b-a)*((n+.42)/24)),1)
 
  # Fit EVERY sampled pose, not just the endpoints: early flying lanterns must not clip.
  bpy.context.view_layer.update();q=cam.rotation_euler.to_quaternion();cr=q@Vector((1,0,0));cu=q@Vector((0,1,0));xs=[];ys=[]
