@@ -1,0 +1,12 @@
+{
+  "atlas": "http://127.0.0.1:8774/wp-content/themes/dekoriya-atelier/assets/camera-v64/interior-atlas.webp",
+  "canvas": [
+    512,
+    384
+  ],
+  "draws": "202",
+  "expanded": "true",
+  "frame": "47",
+  "maxGap": "33ms",
+  "ready": "true"
+}

@@ -110,6 +110,86 @@
     "sha256": "a7ad0def85bf61a0e57215204ef5435566d5e49910739640740e34e05787b419"
   },
   {
+    "path": "assets/camera-v64/camera-manifest.json",
+    "bytes": 132434,
+    "sha256": "21e1b010dba5e82e855392bb43e3882d59233d01440a5c7d386ca13a6cd2ab23"
+  },
+  {
+    "path": "assets/camera-v64/entrance-atlas.webp",
+    "bytes": 666182,
+    "sha256": "b932ff4bb1a2a1539d2687f730efe4aa55ebeb70bf7b80f071bc056df0754bc9"
+  },
+  {
+    "path": "assets/camera-v64/entrance-closed.webp",
+    "bytes": 54370,
+    "sha256": "26c67e18dfbd0e40c7e9e09145a96aa71e6552d8de666009a91d3839e641ae78"
+  },
+  {
+    "path": "assets/camera-v64/entrance-mobile.webp",
+    "bytes": 598090,
+    "sha256": "69c7f1ae5546939452f89ad75ae027f1c40f87f177e8e7a64c07523eaf40a2a4"
+  },
+  {
+    "path": "assets/camera-v64/entrance-open.webp",
+    "bytes": 53202,
+    "sha256": "7d85f7181cbf893aa5e4d8e1592963860ca1c7367c3d1738e0788cc26ef2bf84"
+  },
+  {
+    "path": "assets/camera-v64/interior-atlas.webp",
+    "bytes": 521424,
+    "sha256": "93eee0a5d1a100547a7d0ae7245278fea3a39ea13c82ad2ba2448d4d13fd7b67"
+  },
+  {
+    "path": "assets/camera-v64/interior-closed.webp",
+    "bytes": 39496,
+    "sha256": "8bfbe6636d9f7265a463ef541dc38e64b601aa1bfaa1c3dc25de24bd60f518d5"
+  },
+  {
+    "path": "assets/camera-v64/interior-mobile.webp",
+    "bytes": 536488,
+    "sha256": "2a64c24a1da46cd054513b1ceac25a3e7e39fd82b7c801e87ee43dd55e35da7a"
+  },
+  {
+    "path": "assets/camera-v64/interior-open.webp",
+    "bytes": 49018,
+    "sha256": "b199586b70665c10c2f8e92678a8e8725cfbda5dd385febd9f83b02821423e33"
+  },
+  {
+    "path": "assets/camera-v64/materials/botanical.png",
+    "bytes": 1568474,
+    "sha256": "0d4bc52fbae1e069fc01bec6d8ab361d643d2e178ccc07e983ca5b352b7ed2a8"
+  },
+  {
+    "path": "assets/camera-v64/materials/limestone.png",
+    "bytes": 2909389,
+    "sha256": "a51c758593599c00a5193f2109996ca3e6f2942d4e50762f04c778c2a8d8e55c"
+  },
+  {
+    "path": "assets/camera-v64/materials/velvet.png",
+    "bytes": 3102907,
+    "sha256": "45c542d59cf73842da8808bb68e319c1e4cfaf62d0a81c6bbe1e5f9cf661fc80"
+  },
+  {
+    "path": "assets/camera-v64/window-atlas.webp",
+    "bytes": 479906,
+    "sha256": "e1d15c6f430db77ae396249cc14389a6a2433bc19cedd472510580e79200aa24"
+  },
+  {
+    "path": "assets/camera-v64/window-closed.webp",
+    "bytes": 45364,
+    "sha256": "a22fd41fcbaf35126690591d45e6a7967cc87d99e88dbbb9086a85b53af8c6c5"
+  },
+  {
+    "path": "assets/camera-v64/window-mobile.webp",
+    "bytes": 496372,
+    "sha256": "0c310831f357436ff187a90b0d2a90eb170118a86d85c09c984d83abf7e0b89e"
+  },
+  {
+    "path": "assets/camera-v64/window-open.webp",
+    "bytes": 43898,
+    "sha256": "81f3ba877dfee7d122a2f2a0d29ef6d2fc6e23c355affb986f8dc2c699f770a0"
+  },
+  {
     "path": "assets/exploded-v62/entrance-decor.png",
     "bytes": 626439,
     "sha256": "e017b0827f54030620c92ade5f021d7d587527e6a9a3b23d9b131638b97e7173"
