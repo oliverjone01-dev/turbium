@@ -1,0 +1,63 @@
+{
+  "version": "6.4.3",
+  "renderCheck": "render-check-v642.json",
+  "previousBrowserCoverage": "verification-v642.json",
+  "slowNetwork": {
+    "serverDelayPerStripMs": 8000,
+    "observationAfterClickMs": 5600,
+    "result": {
+      "busy": null,
+      "expanded": "true",
+      "frame": "47",
+      "hint": "Собрать обратно",
+      "posterLoaded": true,
+      "ready": "fallback"
+    }
+  },
+  "normalPlayback": {
+    "mid": [
+      {
+        "frame": "29",
+        "playing": true,
+        "scene": "entrance",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "20",
+        "playing": true,
+        "scene": "window",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "16",
+        "playing": true,
+        "scene": "interior",
+        "source": "worker-bitmaps"
+      }
+    ],
+    "end": [
+      {
+        "frame": "47",
+        "playing": false,
+        "scene": "entrance",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "47",
+        "playing": false,
+        "scene": "window",
+        "source": "worker-bitmaps"
+      },
+      {
+        "frame": "47",
+        "playing": false,
+        "scene": "interior",
+        "source": "worker-bitmaps"
+      }
+    ]
+  },
+  "physicalDevices": {
+    "iPhone": "not tested — no access",
+    "Android": "not tested — no access"
+  }
+}
