@@ -1,0 +1,17 @@
+{
+  "entrance": {
+    "frames": 48,
+    "distinctHashes": 48,
+    "edgeTouchFrames": []
+  },
+  "window": {
+    "frames": 48,
+    "distinctHashes": 48,
+    "edgeTouchFrames": []
+  },
+  "interior": {
+    "frames": 48,
+    "distinctHashes": 48,
+    "edgeTouchFrames": []
+  }
+}
