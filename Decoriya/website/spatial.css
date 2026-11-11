@@ -76,3 +76,6 @@
 .exploded-teaser .teaser-layers small:before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:currentColor;vertical-align:middle;margin-right:4px}
 @media(max-width:1200px){.exploded-teaser{height:365px}}
 @media(prefers-reduced-motion:reduce){.sequence-poster,.sequence-canvas,.exploded-teaser .teaser-layers,.exploded-teaser .teaser-plus{transition:none!important}}
+
+/* Hold the real last frame until the high-resolution endpoint image arrives. */
+.sequence-hold .sequence-poster{opacity:0}.sequence-hold .sequence-canvas{opacity:1}
