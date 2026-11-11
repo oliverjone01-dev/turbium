@@ -1,0 +1,119 @@
+{
+  "version": "6.6.0",
+  "motion": "fixed raster passes; reversible CSS translate/scale",
+  "order": [
+    "light",
+    "decor",
+    "surfaces"
+  ],
+  "desktopEndTransforms": {
+    "light": [
+      -35,
+      18,
+      0.42
+    ],
+    "decor": [
+      0,
+      -1,
+      0.42
+    ],
+    "surfaces": [
+      35,
+      -20,
+      0.42
+    ]
+  },
+  "mobileEndTransforms": {
+    "light": [
+      -32,
+      18,
+      0.38
+    ],
+    "decor": [
+      0,
+      -1,
+      0.38
+    ],
+    "surfaces": [
+      32,
+      -20,
+      0.38
+    ]
+  },
+  "coldPreview": "720px WebP per scene; layer atlas on interaction only",
+  "checks": {
+    "htmlAssetsAndGallery": "pass",
+    "nodeSyntax": "pass",
+    "desktopVisual": "reviewed",
+    "narrowViewport375": "no horizontal overflow; open and Enter close checked",
+    "wordpress68php83": "native theme paths and opening of window/interior checked",
+    "portraitHandsDesk": "source files unchanged",
+    "physicalPhones": "not tested",
+    "reducedMotion": "CSS branch reviewed; system setting not changed",
+    "slow32KiB": "native decoding completes and leaving during load remains closed; final cold timing not claimed"
+  },
+  "assets": {
+    "entrance-atlas-1536.webp": {
+      "bytes": 113412,
+      "width": 1536,
+      "height": 512,
+      "passes": 3
+    },
+    "entrance-atlas-2172.webp": {
+      "bytes": 214100,
+      "width": 2172,
+      "height": 724,
+      "passes": 3
+    },
+    "entrance-closed.webp": {
+      "bytes": 35214,
+      "width": 720,
+      "height": 720,
+      "source": "browser export of the same CSS passes"
+    },
+    "window-atlas-1536.webp": {
+      "bytes": 114562,
+      "width": 1536,
+      "height": 512,
+      "passes": 3
+    },
+    "window-atlas-2172.webp": {
+      "bytes": 212360,
+      "width": 2172,
+      "height": 724,
+      "passes": 3
+    },
+    "window-closed.webp": {
+      "bytes": 23352,
+      "width": 720,
+      "height": 720,
+      "source": "browser export of the same CSS passes"
+    },
+    "interior-atlas-1536.webp": {
+      "bytes": 91762,
+      "width": 1536,
+      "height": 512,
+      "passes": 3
+    },
+    "interior-atlas-2172.webp": {
+      "bytes": 168060,
+      "width": 2172,
+      "height": 724,
+      "passes": 3
+    },
+    "interior-closed.webp": {
+      "bytes": 20212,
+      "width": 720,
+      "height": 720,
+      "source": "browser export of the same CSS passes"
+    },
+    "room-960.webp": {
+      "bytes": 13906,
+      "width": 960
+    },
+    "room-1672.webp": {
+      "bytes": 31368,
+      "width": 1672
+    }
+  }
+}

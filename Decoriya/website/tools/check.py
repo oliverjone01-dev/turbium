@@ -11,9 +11,9 @@ class Page(HTMLParser):
   if 'id'in a:self.ids.append(a['id'])
   if tag=='h1':self.h1+=1
   if 'data-media'in a:self.media.append(a['data-media'])
-  for k in ('src','href','poster','data-lazy-src','data-compact','data-open-src'):
+  for k in ('src','href','poster','data-lazy-src','data-compact','data-open-src','data-layer-src'):
    if a.get(k):self.refs.append(a[k])
-  for key in ('srcset','data-lazy-srcset'):
+  for key in ('srcset','data-lazy-srcset','data-layer-srcset'):
    if a.get(key):self.refs.extend(x.strip().split()[0]for x in a[key].split(','))
 main=None
 for file in documents:

@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.5.0",
+  "version": "6.6.0",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -44,7 +44,7 @@ window.DK_MOTION=Object.freeze({
       "id": "hero-background",
       "selector": ".hero-backdrop",
       "trigger": "Загрузка hero; прокрутка и движение мыши в hero",
-      "effect": "Спокойная светлая студия декора. Рабочая зона и люди только в глубине справа; чистая стена за текстом.",
+      "effect": "Светлая студия разработки новогоднего декора: хвоя, бархат и образцы на дальнем столе; чистая стена за текстом. Портрет Олеси сохранён.",
       "desktop": "Указатель до ±44 px по X и ±24 px по Y, наклон ±1,4°. Плавное догоняющее движение через rAF. Скролл до 45 px.",
       "mobile": "На ширине ≤1100 px комната статична.",
       "reduced": "Статичный фон.",
@@ -92,13 +92,13 @@ window.DK_MOTION=Object.freeze({
     },
     {
       "id": "services",
-      "selector": "[data-spatial] .sequence-canvas",
-      "trigger": "Hover мышью; фокус клавиатуры; клик/тап; Escape",
-      "effect": "48 настоящих ракурсов каждой из трёх 3D-сцен. Камера проходит 30° по горизонтали и поднимается на 12°. Раскрытие 1 — свет, 2 — декор, 3 — поверхности, в левую сторону.",
-      "desktop": "1800 мс. Worker декодирует небольшие части вне основного потока; Canvas смешивает соседние готовые кадры; геометрия каждого кадра отрендерена в Blender. Обратное воспроизведение с текущей позиции.",
-      "mobile": "Тап открывает, повторный собирает. Мобильные части по восемь кадров 384×288; загружается по взаимодействию. Canvas работает только во время перехода.",
-      "reduced": "Мгновенное переключение двух статичных ракурсов; атлас не запрашивается.",
-      "source": "tools/render-camera-v64.py; assets/camera-v64; motion.js:setupSpatial; motion-config.js:spatial"
+      "selector": "[data-spatial] .ny-plane",
+      "trigger": "Наведение мыши; фокус клавиатуры; тап/Enter; Escape",
+      "effect": "Новогодние фотоиллюстрации. Отдельные растровые проходы раздвигаются: 1 — свет влево/вниз, 2 — декор посередине, 3 — поверхности вправо/вверх. Проекция статична.",
+      "desktop": "850 мс, шаг 70 мс. Только CSS translate и scale, обратимость с текущей позиции. На каждую сцену один общий кэшируемый WebP.",
+      "mobile": "Нажатие открывает, повторное собирает. 650 мс. Лёгкое превью при приближении к экрану; один атлас по нажатию, без кадрового проигрывателя.",
+      "reduced": "Те же три плана переключаются мгновенно, без перемещения во времени.",
+      "source": "assets/newyear-v66; motion.js:setupSpatial; spatial.css:.newyear-teaser"
     },
     {
       "id": "directions",
@@ -173,41 +173,38 @@ window.DK_MOTION=Object.freeze({
   ],
   "editorial": {
     "duration": 820,
-    "stagger": 32,
+    "stagger": 35,
     "maxDelay": 420
   },
   "icons": {
     "duration": 900
   },
   "spatial": {
-    "renderer": "Blender48-frame-camera-sequence",
-    "duration": 1800,
-    "frames": 48,
-    "columns": 4,
-    "stripFrames": 8,
-    "rows": 2,
-    "cameraOrbitDegrees": 30,
-    "cameraElevationDegrees": 12,
+    "renderer": "fixed-raster-plates",
+    "duration": 850,
     "order": [
       "light",
       "decor",
       "surfaces"
     ],
-    "stages": {
+    "direction": "Light lower-left; decor middle; surfaces upper-right. Same fixed projection.",
+    "assets": "One three-pass WebP per scene; no Canvas, Worker or frame sequence.",
+    "transforms": {
       "light": [
-        0.06,
-        0.46
+        -35,
+        18,
+        0.42
       ],
       "decor": [
-        0.27,
-        0.76
+        0,
+        -1,
+        0.42
       ],
       "surfaces": [
-        0.53,
-        0.96
+        35,
+        -20,
+        0.42
       ]
-    },
-    "direction": "Light and decor move to screen-left; architectural assembly moves right.",
-    "frameBlend": "Premultiplied additive blend of adjacent rendered samples. No CSS perspective warp."
+    }
   }
 });
