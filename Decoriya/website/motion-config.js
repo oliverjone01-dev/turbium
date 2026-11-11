@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.1.0",
+  "version": "6.2.0",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -92,13 +92,13 @@ window.DK_MOTION=Object.freeze({
     },
     {
       "id": "services",
-      "selector": "[data-spatial] .raster-scene",
+      "selector": "[data-spatial] .raster-camera; .raster-plane",
       "trigger": "Hover мышью; фокус клавиатуры; клик/тап; Escape",
-      "effect": "Три фотореалистичные растровые мини-сцены: вход, витрина, интерьер. Цельная архитектура с индивидуальными подписями.",
-      "desktop": "Наклон от мыши до ±3° по X / ±4° по Y, подъём 7 px и масштаб 1.035 за 850 мс. Однократный мягкий блик 1400 мс.",
-      "mobile": "Тап включает приближение и подписи; повторный тап возвращает общий вид. Вертикальная прокрутка свободна.",
-      "reduced": "Сцены статичны. Подписи переключаются без движения и блика.",
-      "source": "spatial.css: .raster-scene, .raster-glint; motion.js: setupSpatial(); assets/studio/*-photo-v61.webp"
+      "effect": "Взрыв-схема из трёх независимых прозрачных растров: поверхности, декор и свет. У всех сцен общий правый ракурс; витрина перерисована. Камера поворачивается вправо и вверх вместе с разлётом.",
+      "desktop": "1100 мс, perspective 1100 px. Камера X 10° / Y −9°, масштаб .94→.81; плавная обратная сборка. Планы XYZ: поверхности (−38,30,−50), декор (25,−8,60), свет (85,−22,145) px.",
+      "mobile": "Тап раскрывает, повторный собирает. Вертикальная прокрутка свободна; движение не зависит от положения указателя.",
+      "reduced": "Статичная взрыв-схема включается без движения. Подписи доступны; никаких циклических эффектов.",
+      "source": "motion-config.js: spatial; motion.js: setupSpatial(), prepare(); spatial.css: .raster-camera, .raster-plane; assets/exploded-v62/*.webp"
     },
     {
       "id": "directions",
@@ -180,11 +180,34 @@ window.DK_MOTION=Object.freeze({
     "duration": 900
   },
   "spatial": {
-    "duration": 850,
-    "tiltX": 3,
-    "tiltY": 4,
-    "lift": 7,
-    "scale": 1.035,
-    "glint": 1400
+    "duration": 1100,
+    "perspective": 1100,
+    "posterFade": 150,
+    "posterReturnDelay": 950,
+    "camera": {
+      "pitch": 10,
+      "yaw": -9,
+      "x": -4,
+      "y": -8,
+      "closedScale": 0.94,
+      "openScale": 0.81
+    },
+    "planes": {
+      "surfaces": {
+        "x": -38,
+        "y": 30,
+        "z": -50
+      },
+      "decor": {
+        "x": 25,
+        "y": -8,
+        "z": 60
+      },
+      "light": {
+        "x": 85,
+        "y": -22,
+        "z": 145
+      }
+    }
   }
 });

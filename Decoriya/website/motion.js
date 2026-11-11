@@ -79,12 +79,24 @@
   function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(updateScroll)}
   function setupSpatial(){
     document.querySelectorAll('[data-spatial]').forEach(button=>{
-      let pinned=false;const closed=button.querySelector('.teaser-hint-text').textContent;
-      const set=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Вернуть общий вид':closed};
+      let pinned=false,requested=false,ready=!button.classList.contains('exploded-teaser'),loading=null;
+      const closed=button.querySelector('.teaser-hint-text').textContent;
+      if(button.classList.contains('exploded-teaser')){const S=C.spatial,M=S.camera;const values={'--explode-time':S.duration+'ms','--scene-perspective':S.perspective+'px','--poster-fade':S.posterFade+'ms','--poster-return-delay':S.posterReturnDelay+'ms','--scene-pitch':M.pitch+'deg','--scene-yaw':M.yaw+'deg','--scene-camera-x':M.x+'px','--scene-camera-y':M.y+'px','--scene-closed-scale':M.closedScale,'--scene-open-scale':M.openScale};for(const [layer,v]of Object.entries(S.planes))for(const axis of ['x','y','z'])values['--'+layer+'-'+axis]=v[axis]+'px';for(const [name,value]of Object.entries(values))button.style.setProperty(name,String(value))}
+      const paint=open=>{button.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));button.querySelector('.teaser-hint-text').textContent=open?'Собрать обратно':closed};
+      const prepare=()=>{if(ready)return Promise.resolve(true);if(loading)return loading;
+        button.setAttribute('aria-busy','true');
+        loading=Promise.all([...button.querySelectorAll('.raster-plane img')].map(img=>new Promise((resolve,reject)=>{
+          img.loading='eager';
+          if(img.complete&&img.naturalWidth){resolve();return}
+          const done=()=>{img.removeEventListener('load',ok);img.removeEventListener('error',bad)};
+          const ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Scene plate failed'))};
+          img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});
+          if(img.complete&&!img.naturalWidth){const base=img.src.split('?')[0];img.src=base+'?retry='+Date.now()}
+        }))).then(()=>{ready=true;button.dataset.platesReady='true';return true}).catch(()=>false).finally(()=>{button.removeAttribute('aria-busy');loading=null});return loading;
+      };
+      const set=open=>{requested=open;if(!open||ready){paint(open);return}button.querySelector('.teaser-hint-text').textContent='Готовим разбор…';prepare().then(ok=>{if(ok)paint(requested);else{paint(false);button.querySelector('.teaser-hint-text').textContent='Повторить загрузку слоёв'}})};
       button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
-      let pointerFrame=0,pointX=0,pointY=0;
-      button.addEventListener('pointermove',e=>{if(!fine.matches||reduced.matches||e.pointerType!=='mouse')return;const r=button.getBoundingClientRect();pointX=clamp((e.clientX-r.left)/r.width*2-1,-1,1);pointY=clamp((e.clientY-r.top)/r.height*2-1,-1,1);if(!pointerFrame)pointerFrame=requestAnimationFrame(()=>{pointerFrame=0;button.style.setProperty('--scene-rx',(-pointY*3)+'deg');button.style.setProperty('--scene-ry',(pointX*4)+'deg')})});
-      button.addEventListener('pointerleave',()=>{if(pointerFrame){cancelAnimationFrame(pointerFrame);pointerFrame=0}button.style.removeProperty('--scene-rx');button.style.removeProperty('--scene-ry');if(!pinned)set(false)});
+      button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
       button.addEventListener('click',()=>{pinned=!pinned;set(pinned)});
       button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
       button.addEventListener('blur',()=>{if(!pinned)set(false)});

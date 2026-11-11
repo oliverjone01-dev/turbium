@@ -1,5 +1,120 @@
 [
   {
+    "path": "assets/OFL.txt",
+    "bytes": 4394,
+    "sha256": "ff532f9e8789f09a9fdffc3c0954eedfb0a48be77b2e2eb90f5f82e4f347f50c"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-decor.png",
+    "bytes": 626439,
+    "sha256": "e017b0827f54030620c92ade5f021d7d587527e6a9a3b23d9b131638b97e7173"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-decor.webp",
+    "bytes": 88572,
+    "sha256": "fd7ee2709bf9aecb985328de8e8ebbe1da733a9f0961308166831795dcfbc04e"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-light.png",
+    "bytes": 201384,
+    "sha256": "eaa3557f7e218b17e13edb4ec3fdbba6f93dee76ab927fdf7c5bfbc3f8c92e91"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-light.webp",
+    "bytes": 37482,
+    "sha256": "9b45096264665c8da314a14bc204153551ae8d3fde0ee92ab4c1b469146e96ad"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-poster.webp",
+    "bytes": 144660,
+    "sha256": "fcb45773d803b02586a951a1ff3f62b34853f9bb0dd2c6346b6c590f312e0a62"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-surfaces.png",
+    "bytes": 1660389,
+    "sha256": "a891f6d43887c144f45f85194e8b09b296e79769469752889b6e04ed52d8babf"
+  },
+  {
+    "path": "assets/exploded-v62/entrance-surfaces.webp",
+    "bytes": 110062,
+    "sha256": "41b5065d0df1cb2156ae0cacaf0e39e670573984c77fdb32fbd8f72628a84b11"
+  },
+  {
+    "path": "assets/exploded-v62/interior-decor.png",
+    "bytes": 436058,
+    "sha256": "b575409af945fd81fb03ab769aad4b6d3e5eef9e8bbc20e7f6bb36e028505831"
+  },
+  {
+    "path": "assets/exploded-v62/interior-decor.webp",
+    "bytes": 47446,
+    "sha256": "880617ca56650a927819d948d53ffc20ebfdf7eefd195607dc16c472b9e3ee55"
+  },
+  {
+    "path": "assets/exploded-v62/interior-light.png",
+    "bytes": 94120,
+    "sha256": "e56c43d7fdb2dc56c9efc19fa2c9af15cfa98dbeeda4aa91e490022712295083"
+  },
+  {
+    "path": "assets/exploded-v62/interior-light.webp",
+    "bytes": 11982,
+    "sha256": "04ac3b040f78a6fa45a80f1c6d0f99258665c0671e44b62d2c65543cf2556fb3"
+  },
+  {
+    "path": "assets/exploded-v62/interior-poster.webp",
+    "bytes": 127996,
+    "sha256": "3e450748fd61aea23d3845f28c04fa00d5feedabd22e5b8f44e47a94ed417301"
+  },
+  {
+    "path": "assets/exploded-v62/interior-surfaces.png",
+    "bytes": 1724631,
+    "sha256": "e0506a91f9f58f27281ddbedcc0b9e9344f042e16b7766186113a1af460db5aa"
+  },
+  {
+    "path": "assets/exploded-v62/interior-surfaces.webp",
+    "bytes": 91582,
+    "sha256": "8ca979213b23850793db2bcf142e082762878ed01c7047ecab6ad56101b8deac"
+  },
+  {
+    "path": "assets/exploded-v62/window-decor.png",
+    "bytes": 988352,
+    "sha256": "d147f77a650a7c48bf73f8827cf35fb473a39fbd1ff41178f0dd0987c854829a"
+  },
+  {
+    "path": "assets/exploded-v62/window-decor.webp",
+    "bytes": 88352,
+    "sha256": "4132487b5fa6abb206ab56f0046661e7b054693cb8c1a32ba13c8fbad51030f6"
+  },
+  {
+    "path": "assets/exploded-v62/window-light.png",
+    "bytes": 65773,
+    "sha256": "ae411f48052e997f1fc89110e2fdda383506a6f7cf9829dae2535b557d318445"
+  },
+  {
+    "path": "assets/exploded-v62/window-light.webp",
+    "bytes": 4410,
+    "sha256": "d2aecd296b2f99880539ae635c40cf2bc520fd57f043269da70fc617bfffcb97"
+  },
+  {
+    "path": "assets/exploded-v62/window-poster.png",
+    "bytes": 1923725,
+    "sha256": "33fe9c9c3f0d102651c461ed285864d1379cddae23c4232c7db0537baf1dbe5d"
+  },
+  {
+    "path": "assets/exploded-v62/window-poster.webp",
+    "bytes": 130416,
+    "sha256": "c78fb70dc506be722c85b0df84a096271618b3d03355ad31b05ef0402e464e2f"
+  },
+  {
+    "path": "assets/exploded-v62/window-surfaces.png",
+    "bytes": 1752800,
+    "sha256": "157390d39717cf793a2b2924e57ac257893dcc7d3ebaa11b19397ec2253927f5"
+  },
+  {
+    "path": "assets/exploded-v62/window-surfaces.webp",
+    "bytes": 85388,
+    "sha256": "16d3dfef17d29878cc962310f66d725ed45d3e86460842333958b47195e29f0a"
+  },
+  {
     "path": "assets/generated/concept-01-1280.webp",
     "bytes": 258774,
     "sha256": "89f673268f1a2f352fcc7b9ae7e5b5f1b98974423e93de85294467aa9227dce0"
@@ -320,6 +435,21 @@
     "sha256": "0339f875ebd51ba47dcb8bcc5248a172c8744fc0dc177ed98e34cb890663a36e"
   },
   {
+    "path": "assets/golos-medium.ttf",
+    "bytes": 64232,
+    "sha256": "6dd89b893d2534ebb655520f2a1ac9258007af1a0daf4b8a32763f13b47fad4a"
+  },
+  {
+    "path": "assets/golos-regular.ttf",
+    "bytes": 64240,
+    "sha256": "7c255885e99e7df35f846074e6b780ee166a725e565e3a67f760dd12f4e5b77a"
+  },
+  {
+    "path": "assets/golos-semibold.ttf",
+    "bytes": 64308,
+    "sha256": "1d38fc3b3f03e9f22003bbf360e4cd58e8890f81e65f9a98b3773a0199ba4354"
+  },
+  {
     "path": "assets/icons/arrow.svg",
     "bytes": 216,
     "sha256": "6b5c6196287e55f1a98f3e36ea1aeb108754ab3284f6be409f5ff35a1fc21632"
@@ -510,6 +640,11 @@
     "sha256": "38daa249801a15e0a224190ae4d8ee5203e049389526776c1ae53d6192716be1"
   },
   {
+    "path": "assets/spatial/planes.json",
+    "bytes": 382,
+    "sha256": "4fb095295db791595c98693222bf4f66523b9490e0a83a277c4b879fb0093471"
+  },
+  {
     "path": "assets/spatial/window-assembled.svg",
     "bytes": 8000,
     "sha256": "25b9c7029539a6604c7212d7f722a4fd54e7d5c3b4a210ffec58cdfb9489a5af"
@@ -653,6 +788,11 @@
     "path": "assets/studio/olesya-hands-v61.webp",
     "bytes": 258406,
     "sha256": "0df85b9d5fd830e19997922950b703e520ab5722d7cac235076add8a44070a3f"
+  },
+  {
+    "path": "assets/studio/planes-v6.json",
+    "bytes": 234,
+    "sha256": "0e3ce449c6f51785b00842da4586ab148f23799191125b118ddade10873513a6"
   },
   {
     "path": "assets/studio/studio-penthouse-v6.png",

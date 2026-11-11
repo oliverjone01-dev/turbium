@@ -1,4 +1,4 @@
-/* DEKORIYA Studio v6.1: shared identity, continuous photographic foreground, architectural maquettes. */
+/* DEKORIYA Studio v6.2: shared identity, continuous photographic foreground, architectural maquettes. */
 :root{--spatial-ease:cubic-bezier(.16,1,.3,1);--room-x:0px;--room-y:0px;--room-rx:0deg;--room-ry:0deg}
 .header{top:0;left:0;right:0;width:100%;transform:none;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none;background:linear-gradient(180deg,#f6f0e5e0,#f6f0e57a 60%,#f6f0e500)}
 .header .nav-wrap{max-width:1360px;width:calc(100% - 80px);height:96px;margin:0 auto;padding:0 24px}.header:after{left:0;right:0;bottom:0;height:1px;opacity:.3}
@@ -16,7 +16,7 @@
 .hero-anchor .hero-hands{position:absolute;left:6%;bottom:55px;width:88%;height:calc(100% - 60px);max-width:none;margin:0;padding:0;z-index:4;transform:none;pointer-events:none;filter:drop-shadow(0 3px 2px #422c233b)}
 .hero-anchor .hero-hands img{width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:none;display:block;mask-image:linear-gradient(180deg,transparent 0 60%,#000 69%);mask-size:100% 100%;mask-position:center;mask-repeat:no-repeat}
 .hero-byline{position:absolute;right:auto;left:calc(50% - 64px);bottom:20px;z-index:5;text-align:left;color:var(--burgundy);font-size:11px;line-height:1.7}.hero-byline strong{display:block;font-size:16px;font-weight:500}.hero-byline span{display:block}
-/* Photographic service miniatures. The coherent scene tilts; architecture is never torn apart. */
+/* Photographic service cards; v6.2 below adds independent plates and the shared camera. */
 .service-grid{gap:32px}.service{gap:26px}.service-section{padding-bottom:96px}.service p{min-height:108px}
 .spatial-teaser{position:relative;isolation:isolate;display:block;width:100%;height:365px;padding:0;border:0;border-radius:0;overflow:hidden;background:transparent;color:var(--burgundy);perspective:1400px;touch-action:pan-y;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .spatial-teaser:focus-visible{outline:2px solid var(--burgundy);outline-offset:5px;border-radius:4px}
@@ -24,8 +24,6 @@
 .raster-scene img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 5px 6px #57212f0a);transition:filter 850ms var(--spatial-ease);user-select:none;-webkit-user-drag:none}
 .spatial-teaser.is-open .raster-scene{transform:translateY(-7px) rotateX(var(--scene-rx,2deg)) rotateY(var(--scene-ry,-4deg)) scale(1.035)}
 .spatial-teaser.is-open .raster-scene img{filter:drop-shadow(3px 12px 10px #57212f1a)}
-.raster-glint{position:absolute;inset:0;pointer-events:none;mask-image:var(--raster-art);mask-size:contain;mask-position:center;mask-repeat:no-repeat;background:linear-gradient(110deg,transparent 35%,#fff7e745 49%,transparent 62%);background-size:300% 100%;background-position:160% 0;opacity:0;mix-blend-mode:screen}
-.spatial-teaser.is-open .raster-glint{animation:raster-light 1400ms ease-out both}@keyframes raster-light{0%{opacity:0;background-position:160% 0}20%{opacity:.7}100%{opacity:0;background-position:-60% 0}}
 .teaser-layers{position:absolute;left:0;right:0;bottom:49px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px;z-index:6;font-size:10px;line-height:1.4;opacity:0;transform:translateY(8px);transition:opacity 350ms,transform 650ms var(--spatial-ease);pointer-events:none}
 .teaser-layers span{padding:4px 7px;background:#f6f0e5ed;border:1px solid var(--line);border-radius:20px}.spatial-teaser.is-open .teaser-layers{opacity:1;transform:none}
 .teaser-hint{position:absolute;bottom:4px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:12px;font-size:11px;z-index:7}.teaser-plus{font-size:24px;width:28px;height:28px;line-height:26px;display:grid;place-items:center;transition:transform 650ms var(--spatial-ease)}.spatial-teaser.is-open .teaser-plus{transform:rotate(45deg)}
@@ -61,3 +59,30 @@
 }
 @media(max-width:374px){.hero-content h1{font-size:40px}.spatial-teaser{height:320px}.hero-actions>.under-link{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.hero-backdrop,.hero-daylight,.hero-anchor{transform:none!important}.raster-scene,.raster-scene img,.raster-glint,.editorial-word,.step-icon *{transition:none!important;animation:none!important}.step-icon .icon-detail,.step-icon .icon-accent{transform:none!important}.material-photo picture{transform:none!important;will-change:auto}.contact-pattern{animation:none;mask-image:none;opacity:.035}.drag-cursor{display:none}.raster-scene,.spatial-teaser.is-open .raster-scene{transform:none!important}.raster-glint{display:none}}
+
+/* v6.2: actual independent photographic plates, projected by a shared GPU camera. */
+.exploded-teaser{height:400px;perspective:var(--scene-perspective,1100px);perspective-origin:50% 42%;--explode-time:1100ms;--explode-ease:cubic-bezier(.22,.61,.36,1)}
+.exploded-teaser .raster-camera{inset:0 0 94px;transform-style:preserve-3d;transform-origin:50% 52%;transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg) scale(var(--scene-closed-scale,.94));transition:transform var(--explode-time) var(--explode-ease)}
+.raster-poster,.raster-plane{position:absolute;inset:0;display:block;transform-style:preserve-3d;backface-visibility:hidden}
+.exploded-teaser .raster-camera img{position:absolute;inset:0;object-fit:contain;filter:none;width:100%;height:100%;user-select:none}
+.raster-poster{z-index:4;opacity:1;transition:opacity var(--poster-fade,150ms) linear var(--poster-return-delay,950ms);transform:translateZ(.1px)}
+.raster-plane{opacity:0;transition:transform var(--explode-time) var(--explode-ease),opacity var(--poster-fade,150ms) linear var(--poster-return-delay,950ms);transform:translate3d(0,0,0)}
+.raster-surfaces{z-index:1}.raster-decor{z-index:2}.raster-light{z-index:3}
+.exploded-teaser.is-open .raster-camera{transform:translate3d(var(--scene-camera-x,-4px),var(--scene-camera-y,-8px),0) rotateX(var(--scene-pitch,10deg)) rotateY(var(--scene-yaw,-9deg)) scale(var(--scene-open-scale,.81))}
+.exploded-teaser.is-open .raster-poster{opacity:0;transition-delay:0ms}
+.exploded-teaser.is-open .raster-plane{opacity:1;transition-delay:0ms}
+.exploded-teaser.is-open .raster-surfaces{transform:translate3d(var(--surfaces-x,-38px),var(--surfaces-y,30px),var(--surfaces-z,-50px))}
+.exploded-teaser.is-open .raster-decor{transform:translate3d(var(--decor-x,25px),var(--decor-y,-8px),var(--decor-z,60px))}
+.exploded-teaser.is-open .raster-light{transform:translate3d(var(--light-x,85px),var(--light-y,-22px),var(--light-z,145px))}
+.exploded-teaser.is-open .raster-decor img{filter:drop-shadow(-5px 12px 8px #57212f12)}
+.exploded-teaser .teaser-layers{bottom:50px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;text-align:left;align-items:start}
+.exploded-teaser .teaser-layers>span{padding:0;background:transparent;border:0;border-radius:0;font-size:10px;line-height:1.35;letter-spacing:0}
+.exploded-teaser .teaser-layers small{display:block;font-size:8.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
+.exploded-teaser .teaser-layers small:before{content:'';display:inline-block;width:3px;height:3px;border-radius:50%;background:currentColor;vertical-align:middle;margin-right:4px}
+@media(max-width:1200px){.exploded-teaser{height:365px}}
+@media(max-width:767px){.exploded-teaser{height:365px}.exploded-teaser .raster-camera{inset:0 0 94px}.exploded-teaser .teaser-layers>span{font-size:10px}.exploded-teaser .teaser-layers small{font-size:8.5px}}
+@media(prefers-reduced-motion:reduce){.exploded-teaser .raster-camera,.exploded-teaser.is-open .raster-camera{transform:scale(.82)!important}.exploded-teaser .raster-plane,.exploded-teaser .raster-poster{transition:none!important}.exploded-teaser .teaser-layers{transition:none!important}}
+
+.exploded-teaser.is-open .raster-light img{filter:drop-shadow(0 4px 6px #ddba7633)}
+
+@media(prefers-reduced-motion:reduce){.exploded-teaser .teaser-plus{transition:none!important}}
