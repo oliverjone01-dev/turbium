@@ -1,5 +1,5 @@
 {
-  "version": "6.2.0",
+  "version": "6.3.0",
   "fileKey": "SsbOVLwLJnNFPwaeQ3bRqJ",
   "pageId": "109:1663",
   "desktop": "109:1664",
@@ -38,8 +38,8 @@
     "desktop": "93:3",
     "mobile": "93:521"
   },
-  "motionImplementation": "Six Closed/Exploded states use independent raster planes; native 2D affine projection approximates browser perspective. Exact 1100ms camera and layer movement run in CSS in browser and WordPress.",
-  "pageName": "07 STUDIO / v6.2",
+  "motionImplementation": "Prerendered axonometric raster view, nine independent clean plates. Native Smart Animate 1.25s and browser translation/opacity. No CSS X/Y camera rotation and no continuous 3D orbit.",
+  "pageName": "07 STUDIO / v6.3",
   "approvedFaceSourceUnchanged": true,
   "lowerPortraitRetouched": true,
   "priorV6Audit": {
@@ -89,5 +89,13 @@
       "yaw": -9,
       "duration": 1100
     }
+  },
+  "v63": {
+    "reviewFrame": "132:426",
+    "duration": 1250,
+    "rasterPlates": 9,
+    "runtimeWebpBytes": 280244,
+    "geometry": "Baked elevated front-right axonometric view; vertical walls preserved",
+    "animation": "Surfaces down-left; decor/light up-right. No X/Y skew or rotation."
   }
 }
