@@ -25,6 +25,7 @@ jobs:
           node --check motion.js
           node --check motion-config.js
           node --check assets/camera-v64/worker.js
+          node --check assets/camera-v64/worker-v2.js
       - name: Build and lint WordPress theme
         run: |
           python3 tools/package-wordpress.py

@@ -85,7 +85,7 @@
       let bitmaps=null,frameWidth=0,frameHeight=0,lastPaint=0;
       const urls=()=>atlases.map(i=>new URL(matchMedia('(max-width:767px)').matches?i.parentElement.querySelector('source').getAttribute('srcset'):i.getAttribute('src'),document.baseURI).href);
       const allReady=()=>bitmaps?.length===S.frames||atlases.every(i=>i.complete&&i.naturalWidth),sourceKey=()=>urls().join('|');
-      let pinned=false,wanted=false,progress=0,target=0,raf=0,last=0,loading=null,loadedSrc='',draws=0,maxGap=0;
+      let hovered=false,wanted=false,request=0,progress=0,target=0,raf=0,last=0,loading=null,loadedSrc='',draws=0,maxGap=0;
       const paint=()=>{button.classList.toggle('is-open',wanted);button.setAttribute('aria-expanded',String(wanted));hint.textContent=wanted?'Собрать обратно':closed};
       const stop=()=>{if(raf)cancelAnimationFrame(raf);raf=0;last=0;button.classList.remove('is-playing')};
       const staticView=()=>{progress=target;stop();paint();button.dataset.frame=String(Math.round(progress*(S.frames-1)))};
@@ -117,7 +117,7 @@
         if(loading)return loading;button.setAttribute('aria-busy','true');
         loading=Promise.all(atlases.map(img=>{img.loading='eager';return new Promise((resolve,reject)=>{
           if(img.complete&&img.naturalWidth){resolve();return}
-          const done=()=>{img.removeEventListener('load',ok);img.removeEventListener('error',bad)},ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Camera strip not loaded'))};img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});
+          const done=()=>{clearTimeout(timer);img.removeEventListener('load',ok);img.removeEventListener('error',bad)},ok=()=>{done();resolve()},bad=()=>{done();reject(new Error('Camera strip not loaded'))};const timer=setTimeout(bad,12000);img.addEventListener('load',ok,{once:true});img.addEventListener('error',bad,{once:true});
         }).then(()=>img.decode())})).then(async()=>{
           loadedSrc=sourceKey();const fw=atlases[0].naturalWidth/S.columns,fh=atlases[0].naturalHeight/S.rows;canvas.width=fw;canvas.height=fh;
           // Upload small textures across paint opportunities while the poster is visible.
@@ -131,35 +131,51 @@
         if(!window.Worker||!window.OffscreenCanvas||!window.createImageBitmap)return directPrepare();
         button.setAttribute('aria-busy','true');const key=sourceKey(),list=urls();
         loading=new Promise((resolve,reject)=>{
-          const worker=new Worker(new URL('worker.js',list[0]));const timer=setTimeout(()=>{worker.terminate();reject(new Error('Camera decode timeout'))},20000);
+          const worker=new Worker(new URL('worker-v2.js',list[0]));const timer=setTimeout(()=>{worker.terminate();reject(new Error('Camera decode timeout'))},20000);
           worker.onerror=()=>{clearTimeout(timer);worker.terminate();reject(new Error('Camera worker failed'))};
-          worker.onmessage=e=>{clearTimeout(timer);worker.terminate();if(e.data.error){reject(new Error(e.data.error));return}if(bitmaps)for(const f of bitmaps)f.close();bitmaps=e.data.frames;frameWidth=e.data.width;frameHeight=e.data.height;loadedSrc=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=frameWidth+'x'+frameHeight;button.dataset.sequenceReady='true';resolve(true)};
+          worker.onmessage=e=>{
+            if(e.data.type==='progress'){button.dataset.loadedStrips=String(e.data.loaded);if(wanted)hint.textContent='Загружаем ракурсы… '+e.data.loaded+'/'+e.data.total;return}
+            clearTimeout(timer);worker.terminate();if(e.data.error){reject(new Error(e.data.error));return}if(bitmaps)for(const f of bitmaps)f.close();bitmaps=e.data.frames;frameWidth=e.data.width;frameHeight=e.data.height;loadedSrc=key;button.dataset.sequenceSource='worker-bitmaps';button.dataset.frameSize=frameWidth+'x'+frameHeight;button.dataset.sequenceReady='true';resolve(true)
+          };
           worker.postMessage({urls:list,columns:S.columns,rows:S.rows});
         }).catch(()=>{loading=null;button.removeAttribute('aria-busy');return directPrepare()}).finally(()=>{loading=null;button.removeAttribute('aria-busy')});return loading;
       };
       const set=open=>{
-        wanted=open;target=open?1:0;
+        const current=++request;wanted=open;target=open?1:0;
         if(reduced.matches){staticView();return}
-        if(!open&&progress===0){paint();return}
+        if(!open&&progress===0){stop();paint();return}
         if(allReady()&&loadedSrc===sourceKey()){play();return}
         hint.textContent='Готовим анимацию…';
-        // A slow first download must not leave the control indefinitely busy.
-        // Keep decoding in the background; the next interaction can use it.
-        Promise.race([prepare(),new Promise(resolve=>setTimeout(()=>resolve(false),5000))]).then(ok=>{
+        // A late download must still play the requested camera movement.
+        // A superseded hover/tap must never reopen the scene after loading.
+        prepare().then(ok=>{
+          if(current!==request)return;
           target=wanted?1:0;
           if(ok)play();
           else{button.removeAttribute('aria-busy');button.dataset.sequenceReady='fallback';staticView()}
         });
       };
-      button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')set(true)});
-      button.addEventListener('pointerleave',()=>{if(!pinned)set(false)});
-      button.addEventListener('click',()=>{pinned=!pinned;set(pinned)});
+      button.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hovered=true;set(true)}});
+      button.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){hovered=false;if(!button.matches(':focus-visible'))set(false)}});
+      button.addEventListener('click',e=>{
+        const mouse=e.pointerType==='mouse'||(!e.pointerType&&e.detail>0&&fine.matches);
+        if(mouse){if(!wanted)set(true);return}
+        set(!wanted);
+      });
       button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
-      button.addEventListener('blur',()=>{if(!pinned)set(false)});
-      button.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=false;set(false)}});
+      button.addEventListener('blur',()=>{if(!hovered)set(false)});
+      button.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
       reduced.addEventListener('change',()=>{target=wanted?1:0;staticView()});
-      controllers.push({button,resume:()=>{if(progress!==target&&!reduced.matches)play()},settle:()=>{target=wanted?1:0;staticView()}});
+      controllers.push({button,preload:prepare,resume:()=>{if(progress!==target&&!reduced.matches&&allReady()&&loadedSrc===sourceKey())play()},settle:()=>{if(loading){stop();paint();return}target=wanted?1:0;staticView()}});
     });
+    // Warm one nearby scene at a time, before the first hover/tap.
+    // Intent on another scene still starts its own load immediately.
+    if('IntersectionObserver'in window){
+      const queue=[];let warming=false;
+      const warm=()=>{if(warming||!queue.length||reduced.matches)return;warming=true;queue.shift().preload().finally(()=>{warming=false;warm()})};
+      const prefetch=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting&&!reduced.matches){prefetch.unobserve(e.target);queue.push(controllers.find(c=>c.button===e.target));warm()}}),{rootMargin:'320px'});
+      controllers.forEach(c=>prefetch.observe(c.button));
+    }
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)controllers.forEach(c=>c.resume())});
     if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)controllers.find(c=>c.button===e.target)?.settle()}));controllers.forEach(c=>observer.observe(c.button))}
     addEventListener('resize',()=>controllers.forEach(c=>c.settle()),{passive:true});
