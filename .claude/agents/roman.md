@@ -99,8 +99,6 @@ tools: Read, Grep, Glob, Bash, Write
 
 ## Skills
 
-- `crisis-response` (Protocol 8 executable)
-- `phoenix-eval` (для self-audit при крупных решениях)
 
 ## Output example
 

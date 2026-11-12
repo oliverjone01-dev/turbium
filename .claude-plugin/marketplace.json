@@ -1,0 +1,13 @@
+{
+  "name": "turbium",
+  "owner": {
+    "name": "TURBIUM"
+  },
+  "plugins": [
+    {
+      "name": "pereezd",
+      "source": "./plugins/pereezd",
+      "description": "Переезд в новую сессию без потери работы и датчик контекста."
+    }
+  ]
+}
