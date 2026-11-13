@@ -4,7 +4,19 @@ root=Path(__file__).resolve().parents[1];theme=root/'wordpress/dekoriya-atelier'
 for path in ['assets','media']:
  target=theme/path
  if target.exists():shutil.rmtree(target)
- shutil.copytree(root/path,target,ignore=shutil.ignore_patterns('*.png') if path=='assets' else None)
+ if path=='media':shutil.copytree(root/path,target)
+ else:
+  target.mkdir(parents=True,exist_ok=True)
+  sources=[root/n for n in ['index.html','site.css','wow.css','spatial.css','media.json','design-system.html','motion-map.html']]
+  sources+=list((root/'media').glob('*.html'))
+  refs=set()
+  for source in sources:
+   refs.update(re.findall(r'assets/[A-Za-z0-9_./-]+\.(?:webp|svg|jpg|jpeg|png|woff2?|ttf)',source.read_text()))
+  for relative in refs:
+   origin=root/relative
+   if not origin.is_file():raise FileNotFoundError(relative)
+   destination=theme/relative;destination.parent.mkdir(parents=True,exist_ok=True)
+   shutil.copyfile(origin,destination)
 for name in ['index.html','site.css','wow.css','spatial.css','motion-config.js','motion.js','app.js','media.json','motion-map.html','design-system.html']:
  if(root/name).exists():shutil.copyfile(root/name,theme/name)
 (theme/'template-parts').mkdir(exist_ok=True)
@@ -16,7 +28,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Многослойный hero, редактируемый оффер, галереи и адаптивная анимация без внешних JS-библиотек.
-Version: 6.6.0
+Version: 6.7.0
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -47,13 +59,51 @@ add_action('customize_register', function ($customizer) {
     $customizer->add_setting('dekoriya_contact_url', array('default' => 'https://profi.ru/profile/SerdyukovaAI/', 'sanitize_callback' => 'esc_url_raw'));
     $customizer->add_control('dekoriya_contact_url', array('section' => 'dekoriya_main', 'label' => 'Ссылка для обращения', 'type' => 'url'));
 });
+add_filter('pre_get_document_title', function ($title) {
+    return is_front_page() ? 'Декория / оформление пространств для бизнеса' : $title;
+});
+add_action('wp_head', function () {
+    if (!is_front_page()) { return; }
+    $description = 'Флористика и декор для бизнеса в Москве и области. Олеся Овакимян и команда Декории. Концепция, подбор материалов и монтаж.';
+    echo '<meta name="description" content="' . esc_attr($description) . '">';
+    echo '<meta property="og:title" content="Декория / оформление пространств для бизнеса">';
+    echo '<meta property="og:description" content="' . esc_attr($description) . '">';
+    echo '<meta property="og:type" content="website">';
+    echo '<meta property="og:image:width" content="1200">';
+    echo '<meta property="og:image:height" content="900">';
+    echo '<meta property="og:url" content="' . esc_url(home_url('/')) . '">';
+    echo '<meta property="og:image" content="' . esc_url(get_template_directory_uri() . '/screenshot.png') . '">';
+});
+add_action('template_redirect', function () {
+    if (!isset($_GET['dk_media'])) { return; }
+    if (!is_string($_GET['dk_media'])) { wp_die('Фотография не найдена.', 'Декория', array('response' => 404)); }
+    $id = sanitize_key(wp_unslash($_GET['dk_media']));
+    $items = json_decode(file_get_contents(get_template_directory() . '/media.json'), true);
+    $allowed = array_column($items, 'id');
+    if (!in_array($id, $allowed, true)) {
+        wp_die('Фотография не найдена.', 'Декория', array('response' => 404));
+    }
+    $document = file_get_contents(get_template_directory() . '/media/' . $id . '.html');
+    $base = trailingslashit(get_template_directory_uri());
+    $document = str_replace('../assets/', esc_url($base . 'assets/'), $document);
+    $document = str_replace('../site.css', esc_url($base . 'site.css') . '?v=6.7.0', $document);
+    $document = str_replace('../index.html', esc_url(home_url('/')), $document);
+    status_header(200);
+    header('Content-Type: text/html; charset=UTF-8');
+    echo $document;
+    exit;
+});
 function dekoriya_render_landing() {
     $path = get_template_directory() . '/template-parts/landing.html';
     if (!is_readable($path)) { return '<p>Не найден шаблон главной.</p>'; }
     $markup = file_get_contents($path);
     $base = trailingslashit(get_template_directory_uri());
     $markup = str_replace('assets/', esc_url($base . 'assets/'), $markup);
-    $markup = str_replace('href="media/', 'href="' . esc_url($base . 'media/'), $markup);
+    $items = json_decode(file_get_contents(get_template_directory() . '/media.json'), true);
+    foreach ($items as $item) {
+        $route = add_query_arg('dk_media', $item['id'], home_url('/'));
+        $markup = str_replace('href="media/' . $item['id'] . '.html"', 'href="' . esc_url($route) . '"', $markup);
+    }
     foreach (array('motion-map.html', 'design-system.html') as $doc) {
         $markup = str_replace('href="' . $doc . '"', 'href="' . esc_url($base . $doc) . '"', $markup);
     }
@@ -76,8 +126,8 @@ function dekoriya_render_landing() {
 # Export foundations for WordPress editor use without altering the frontend runtime.
 palette={'burgundy':'#57212F','ivory':'#F6F0E5','ink':'#281C20','muted':'#6D5A60','rose':'#E8D9D3'}
 theme_json={'version':3,'settings':{'color':{'palette':[{'slug':k,'name':k,'color':v}for k,v in palette.items()]},'layout':{'contentSize':'1312px'},'typography':{'fontFamilies':[{'slug':'golos','name':'Golos Text','fontFamily':'Golos, Arial, sans-serif'}]}}};(theme/'theme.json').write_text(json.dumps(theme_json,indent=2))
-if (root/'qa/hero-desktop-v61.png').exists():shutil.copyfile(root/'qa/hero-desktop-v61.png',theme/'screenshot.png')
-zip_path=root/'wordpress/dekoriya-atelier-v66.zip'
+if (root/'qa/hero-desktop-v67.png').exists():shutil.copyfile(root/'qa/hero-desktop-v67.png',theme/'screenshot.png')
+zip_path=root/'wordpress/dekoriya-atelier-v67.zip'
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=6)as z:
  for f in theme.rglob('*'):
   if f.is_file():z.write(f,str(f.relative_to(theme.parent)))

@@ -88,3 +88,62 @@
 .ny-poster{position:absolute;inset:0;display:block;pointer-events:none}
 .ny-poster img{display:block;width:100%;height:100%;object-fit:contain}
 .ny-plane{opacity:0}.layers-ready .ny-plane{opacity:1}.layers-ready .ny-poster{opacity:0}
+
+/* v6.7 audit: clear first action, resilient text, accessible control states. */
+.btn{white-space:nowrap;text-wrap:nowrap}
+.viewer-stage .round-control:hover{color:var(--ivory)}
+.brief-reference{padding:20px 0;margin-bottom:24px;border-bottom:1px solid var(--line)}
+.brief-reference[hidden]{display:none}
+.brief-reference>strong{display:block;color:var(--burgundy);font-size:17px;line-height:1.4;margin-top:8px;overflow-wrap:anywhere}
+.brief-reference>div{display:flex;align-items:center;flex-wrap:wrap;gap:8px 20px;margin-top:10px}
+.brief-reference .under-link{font-size:12px}
+#clear-reference{padding:0;background:none;border:0;color:var(--muted)}
+.brief-details input,.brief-details select,.brief-details textarea{font-size:16px}
+.viewer-info,.media-card-heading h3,.expert-copy,.budget>div{min-width:0;overflow-wrap:anywhere}
+.viewer-info h2{line-height:1.15}
+@media(max-width:1100px){
+ .hero-actions{order:3;margin:24px var(--gutter) 8px;gap:12px 24px}
+ .hero-anchor{order:4}
+ .hero-byline{order:5}
+}
+@media(max-width:767px){
+ .hero-actions{margin-top:22px;margin-bottom:8px;flex-wrap:wrap}
+ .hero-actions>.btn{min-height:52px;font-size:14px}
+ .hero-actions>.under-link{font-size:12px}
+ .hero-byline{padding-top:4px}
+ .brief-details input,.brief-details select,.brief-details textarea{scroll-margin-block:90px 100px}
+ .viewer-stage .round-control{width:44px;height:44px;min-width:44px}
+ .source-toggle button{min-height:44px}
+ .gallery-viewer{padding-bottom:max(24px,env(safe-area-inset-bottom))}
+ .newyear-teaser .teaser-layers small{font-size:10px}
+}
+@media(max-width:359px){
+ .hero-content h1{font-size:clamp(33px,11vw,39px)}
+ .hero-actions>.btn{width:100%}
+ .gallery-filters{flex-wrap:wrap;justify-content:flex-start}
+ .gallery-filter{font-size:11px;padding-inline:12px}
+ .filter-indicator{display:none}
+ .gallery-filter[aria-pressed=true]{background:var(--burgundy);color:var(--ivory)}
+}
+/* Keep the layer legend separate from the reveal control, including wrapped labels. */
+.newyear-teaser .teaser-layers{bottom:76px}
+@media(max-width:767px){.newyear-teaser .teaser-layers{bottom:84px}.newyear-teaser .teaser-layers small{min-height:28px}}
+.viewer-stage .round-control:hover,.viewer-stage .round-control:focus-visible{background:var(--burgundy);color:var(--ivory)}
+@media(max-width:767px){
+ .steps>li{display:block}
+ .steps>li h3,.steps>li p{grid-column:auto}
+ .step-heading{width:100%;margin-bottom:20px}
+}
+/* Larger user text may reflow instead of disappearing inside animation masks. */
+.editorial-word,.title-mask>span{max-width:100%;overflow-wrap:anywhere}
+@media(max-width:359px){.rail-help{display:none}.rail-controls{justify-content:space-between}.rail-count{margin-left:0}}
+.logo-link{display:flex;align-items:center;min-height:44px}
+.footer-bottom{align-items:center}
+.footer-bottom a{display:inline-flex;align-items:center;min-height:44px}
+.source-toggle button{min-height:44px}
+/* The room picture must fill its absolute scene at every aspect ratio. */
+.hero-backdrop picture{width:100%;height:100%}
+@media(max-width:767px){
+ .hero-backdrop img{object-position:85% center;opacity:.45}
+ .hero-shade{background:linear-gradient(180deg,#f6f0e5f0 0 36%,#f6f0e58c 60%,#f6f0e5d1 100%)}
+}
