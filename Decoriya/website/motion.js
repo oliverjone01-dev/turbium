@@ -72,7 +72,7 @@
       hero.style.setProperty('--hero-bg-y',Math.min(C.hero.backgroundScroll,Math.max(0,-r.top*.1))+'px');
       if(Math.abs(room.targetX-room.x)+Math.abs(room.targetY-room.y)>.002)schedule();
     }}
-    if(reduced.matches)return;
+    if(reduced.matches){material?.style.setProperty('--parallax-y','0px');return;}
     if(material){const r=material.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0){const p=clamp((innerHeight-r.top)/(innerHeight+r.height));material.style.setProperty('--parallax-y',((p-.5)*2*(fine.matches?C.parallax.material:C.parallax.mobile))+'px')}}
     if(steps){const r=steps.getBoundingClientRect(),p=clamp((innerHeight*.75-r.top)/(r.height+innerHeight*.25));steps.style.setProperty('--process-progress',p);steps.querySelectorAll('li').forEach((li,i)=>li.classList.toggle('active',p>i/3));}
   }
@@ -82,12 +82,14 @@
     document.querySelectorAll('[data-spatial]').forEach(button=>{
       const images=[...button.querySelectorAll('img[data-layer-src]')];
       const hint=button.querySelector('.teaser-hint-text'),closed=hint.textContent;
+      button.dataset.closedLabel=button.getAttribute('aria-label');
       let wanted=false,hovered=false,ready=false,loading=null,failed=false;
       const paint=()=>{
         const open=wanted&&ready;
         button.classList.toggle('layers-ready',ready);
         button.classList.toggle('is-open',open);
         button.setAttribute('aria-expanded',String(open));
+        button.setAttribute('aria-label',failed&&wanted?'Не удалось загрузить оформление. Повторить загрузку':open?'Собрать новогоднее оформление обратно':button.dataset.closedLabel);
         button.dataset.layersReady=ready?'true':failed?'error':loading?'loading':'idle';
         hint.textContent=failed&&wanted?'Не удалось загрузить. Повторить':wanted&&!ready?'Загружаем оформление…':open?'Собрать обратно':closed;
       };
@@ -123,9 +125,9 @@
       button.addEventListener('pointerleave',event=>{if(event.pointerType==='mouse'){hovered=false;if(!button.matches(':focus-visible'))set(false)}});
       button.addEventListener('click',event=>{
         const mouse=event.pointerType==='mouse'||(!event.pointerType&&event.detail>0&&matchMedia('(hover:hover) and (pointer:fine)').matches);
-        if(mouse){if(!wanted||failed)set(true);return}set(!wanted);
+        if(mouse){if(!wanted||failed)set(true);return}set(failed?true:!wanted);
       });
-      button.addEventListener('focus',()=>{if(button.matches(':focus-visible'))set(true)});
+      button.disabled=false;
       button.addEventListener('blur',()=>{if(!hovered)set(false)});
       button.addEventListener('keydown',event=>{if(event.key==='Escape')set(false)});
       paint();

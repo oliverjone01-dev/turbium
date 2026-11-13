@@ -1,6 +1,6 @@
 /* Shared runtime timings and implementation map. */
 window.DK_MOTION=Object.freeze({
-  "version": "6.6.0",
+  "version": "6.7.0",
   "easing": "cubic-bezier(.16,1,.3,1)",
   "control": 250,
   "reveal": 720,
@@ -56,7 +56,7 @@ window.DK_MOTION=Object.freeze({
       "trigger": "DOMContentLoaded",
       "effect": "Три строки выходят из масок снизу, без искажения букв",
       "desktop": "900 мс, старт 200 мс, шаг 90 мс.",
-      "mobile": "Та же последовательность, крупный адаптивный текст.",
+      "mobile": "Крупный адаптивный текст; действия перед портретом на ширине ≤1100 px.",
       "reduced": "Текст сразу виден.",
       "source": "motion.js: entrance()"
     },
