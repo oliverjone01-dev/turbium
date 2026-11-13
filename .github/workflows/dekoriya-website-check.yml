@@ -33,5 +33,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: dekoriya-atelier-wordpress
-          path: Decoriya/website/wordpress/dekoriya-atelier-v67.zip
+          path: Decoriya/website/wordpress/dekoriya-atelier-v671.zip
           if-no-files-found: error

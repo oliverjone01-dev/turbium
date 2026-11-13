@@ -28,7 +28,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Многослойный hero, редактируемый оффер, галереи и адаптивная анимация без внешних JS-библиотек.
-Version: 6.7.0
+Version: 6.7.1
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -86,7 +86,7 @@ add_action('template_redirect', function () {
     $document = file_get_contents(get_template_directory() . '/media/' . $id . '.html');
     $base = trailingslashit(get_template_directory_uri());
     $document = str_replace('../assets/', esc_url($base . 'assets/'), $document);
-    $document = str_replace('../site.css', esc_url($base . 'site.css') . '?v=6.7.0', $document);
+    $document = str_replace('../site.css', esc_url($base . 'site.css') . '?v=6.7.1', $document);
     $document = str_replace('../index.html', esc_url(home_url('/')), $document);
     status_header(200);
     header('Content-Type: text/html; charset=UTF-8');
@@ -127,7 +127,7 @@ function dekoriya_render_landing() {
 palette={'burgundy':'#57212F','ivory':'#F6F0E5','ink':'#281C20','muted':'#6D5A60','rose':'#E8D9D3'}
 theme_json={'version':3,'settings':{'color':{'palette':[{'slug':k,'name':k,'color':v}for k,v in palette.items()]},'layout':{'contentSize':'1312px'},'typography':{'fontFamilies':[{'slug':'golos','name':'Golos Text','fontFamily':'Golos, Arial, sans-serif'}]}}};(theme/'theme.json').write_text(json.dumps(theme_json,indent=2))
 if (root/'qa/hero-desktop-v67.png').exists():shutil.copyfile(root/'qa/hero-desktop-v67.png',theme/'screenshot.png')
-zip_path=root/'wordpress/dekoriya-atelier-v67.zip'
+zip_path=root/'wordpress/dekoriya-atelier-v671.zip'
 with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED,compresslevel=6)as z:
  for f in theme.rglob('*'):
   if f.is_file():z.write(f,str(f.relative_to(theme.parent)))
