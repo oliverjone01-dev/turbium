@@ -49,7 +49,7 @@ add_action('template_redirect', function () {
     $document = file_get_contents(get_template_directory() . '/media/' . $id . '.html');
     $base = trailingslashit(get_template_directory_uri());
     $document = str_replace('../assets/', esc_url($base . 'assets/'), $document);
-    $document = str_replace('../site.css', esc_url($base . 'site.css') . '?v=6.7.0', $document);
+    $document = str_replace('../site.css', esc_url($base . 'site.css') . '?v=6.7.1', $document);
     $document = str_replace('../index.html', esc_url(home_url('/')), $document);
     status_header(200);
     header('Content-Type: text/html; charset=UTF-8');

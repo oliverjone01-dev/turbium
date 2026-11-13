@@ -1,4 +1,4 @@
-# DEKORIYA / главная v6.7.0
+# DEKORIYA / главная v6.7.1
 
 [Сайт](https://oliverjone01-dev.github.io/turbium/Decoriya/website/) · [Карта анимации](https://oliverjone01-dev.github.io/turbium/Decoriya/website/motion-map.html) · [Figma desktop](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=109-1664) · [Figma mobile](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=109-2510)
 
@@ -20,7 +20,7 @@ PNG-мастера и промпты генерации находятся в р
 - `node --check motion.js` и `node --check motion-config.js`
 - `python3 tools/package-wordpress.py`
 
-WordPress: архив `wordpress/dekoriya-atelier-v67.zip`, тема `DEKORIYA Atelier Motion` 6.7.0, PHP от 8.0, WordPress от 6.6. Ресурсы и ссылки переводятся в путь темы при рендеринге. Загрузка галереи и CTA используют прежнюю логику.
+WordPress: архив `wordpress/dekoriya-atelier-v671.zip`, тема `DEKORIYA Atelier Motion` 6.7.1, PHP от 8.0, WordPress от 6.6. Ресурсы и ссылки переводятся в путь темы при рендеринге. Загрузка галереи и CTA используют прежнюю логику.
 
 Описание переходов берётся из `motion-config.js` и показывается в `motion-map.html`. История прежнего поворота камеры и его оптимизации сохранена в `docs/camera-history-through-v65.md`; она не описывает текущую механику трёх схем. Старые файлы рендера сохранены для ранее открытых страниц.
 
@@ -44,3 +44,5 @@ Enter/Space переключают, Escape собирает. Повтор пос
 GitHub Pages остаётся демонстрационной публикацией с `noindex,nofollow`.
 Для WordPress индексируемость управляется настройками WordPress; поиск, домен,
 аналитика и реальная доставка обращений требуют отдельной настройки запуска.
+
+6.7.1: после выбора изображения мобильный просмотр переходит к блоку выбранного примера. Фокус не вызывает экранную клавиатуру. В результате помощника есть следующий шаг «Перейти к Олесе»; автоматической отправки нет.

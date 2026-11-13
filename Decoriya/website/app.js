@@ -51,7 +51,9 @@ document.querySelectorAll('[data-media]').forEach(a=>a.addEventListener('click',
  event.preventDefault();const selected=group[index];if(!selected)return;
  const link=document.querySelector(`[data-media="${selected.id}"]`);
  prepareBrief(serviceFor(selected),{...selected,url:link.href});
- lastTrigger=null;viewer.close();location.hash='contact';kind.focus({preventScroll:true});
+ lastTrigger=null;viewer.close();location.hash='brief-details';
+ referenceBox.scrollIntoView({block:'start',behavior:reduced()?'instant':'smooth'});
+ referenceBox.focus({preventScroll:true});
 });
 const form=document.querySelector('#brief-form'),kind=document.querySelector('#brief-kind'),object=document.querySelector('#brief-object'),date=document.querySelector('#brief-date'),result=document.querySelector('#brief-result'),message=document.querySelector('#brief-message'),status=document.querySelector('#copy-status');document.querySelector('#brief-details').hidden=false;let selectedReference=null;
 const referenceBox=document.querySelector('#brief-reference'),referenceName=document.querySelector('#brief-reference-name'),referenceLink=document.querySelector('#brief-reference-link');
