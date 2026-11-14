@@ -50,6 +50,9 @@ jobs:
           mkdir -p _site/Decoriya/website
           cp Decoriya/website/index.html Decoriya/website/site.css Decoriya/website/wow.css Decoriya/website/spatial.css Decoriya/website/app.js Decoriya/website/motion.js Decoriya/website/motion-config.js Decoriya/website/motion-map.html Decoriya/website/design-system.html Decoriya/website/qa.html _site/Decoriya/website/
           cp -r Decoriya/website/assets Decoriya/website/media _site/Decoriya/website/
+          cp Decoriya/website/v81.css Decoriya/website/v81-site.css Decoriya/website/v81.js Decoriya/website/cases.json Decoriya/website/sitemap.xml _site/Decoriya/website/
+          cp -r Decoriya/website/projects _site/Decoriya/website/
+          cp Decoriya/website/robots.txt _site/robots.txt
           touch _site/.nojekyll
       - name: Push to gh-pages
         run: |

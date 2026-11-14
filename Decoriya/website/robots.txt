@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://oliverjone01-dev.github.io/turbium/Decoriya/website/sitemap.xml
