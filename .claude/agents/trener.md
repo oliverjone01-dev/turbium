@@ -104,8 +104,6 @@ tools: Read, Grep, Glob, Write
 
 ## Skills
 
-- `content-factory` (для материалов)
-- `encyclopedia` (соответствие терминам)
 - `humanizer-ru` (для тренинговых сценариев)
 
 **Версия:** v2.0

@@ -81,8 +81,6 @@ tools: Read, Grep, Glob, Write
 ## Skills
 
 - `humanizer-ru` - обязательно на финале
-- `content-factory` - шаблоны и якорные структуры
-- `brand` - voice & tone карта
 - `geo-aeo` - AI Citation optimization (передать СЕМЁНУ)
 
 **Версия:** v2.0
