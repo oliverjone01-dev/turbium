@@ -1,3 +1,7 @@
+# ДЕКОРИЯ v8.3
+
+Два необязательных поля и прямой переход к Олесе. Обязательный квиз, загрузка файлов и экран проверки убраны. [Карта приёмов из UI/UX MD и проверка](docs/ux-v8.3.md).
+
 # ДЕКОРИЯ / TRUST v8.2.1
 
 [Основной GitHub Pages](https://oliverjone01-dev.github.io/turbium/Decoriya/website/) · [Figma desktop](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=174-410) · [Figma mobile](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=174-694)
