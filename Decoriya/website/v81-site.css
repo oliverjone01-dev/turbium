@@ -139,6 +139,6 @@ button{text-align:inherit}
  .mobile .scene-toggle-label{font-size:max(14px,calc(14px / var(--mobile-scale)));line-height:max(20px,calc(20px / var(--mobile-scale)));bottom:12px;translate:none;transform:none;right:40px}
  .mobile .scene-toggle-icon{bottom:10px;right:0;translate:none;transform:none;text-align:right}
  .mobile .scene-legend{font-size:max(12px,calc(12px / var(--mobile-scale)));line-height:max(16px,calc(16px / var(--mobile-scale)));bottom:64px}
- .mobile .scene-legend-kicker{font-size:max(11px,calc(11px / var(--mobile-scale)));line-height:max(14px,calc(14px / var(--mobile-scale)))}
+ .mobile .scene-legend-kicker{font-size:max(11px,calc(11px / var(--mobile-scale)));line-height:max(14px,calc(14px / var(--mobile-scale)));min-height:max(28px,calc(28px / var(--mobile-scale)))}
 }
 @media(max-width:389px){.mobile .scene-legend-kicker{min-height:calc(28px / var(--mobile-scale))}}
