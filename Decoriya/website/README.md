@@ -1,3 +1,17 @@
+# ДЕКОРИЯ / TRUST v8.2
+
+[Основной GitHub Pages](https://oliverjone01-dev.github.io/turbium/Decoriya/website/) · [Figma desktop](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=174-410) · [Figma mobile](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=174-694)
+
+Текущая главная: `index.html`, `v81.css`, `v81-site.css`, `v81.js`, локальные WebP/WOFF2. Перенесены девять исправлений v8.2 и новогодний декор на столе в hero. Выбранные бизнес, зона, стиль, формат, дата и пример попадают в копируемый бриф. Реальный приём заявок не подключён.
+
+Описание выпуска, движения и проверки: [release-v8.2.md](docs/release-v8.2.md). Проверки: `python3 tools/check-v81.py`, `node --check v81.js`.
+
+Архив WordPress ниже относится к исторической версии 6.7.1 и не является экспортом текущей v8.2. Текущий фронтенд использует стандартные HTML/CSS/JS без WebGL; перенос в актуальную WordPress-тему — отдельная сборка.
+
+---
+
+## Историческая документация v6.7.1
+
 # DEKORIYA / главная v6.7.1
 
 [Сайт](https://oliverjone01-dev.github.io/turbium/Decoriya/website/) · [Карта анимации](https://oliverjone01-dev.github.io/turbium/Decoriya/website/motion-map.html) · [Figma desktop](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=109-1664) · [Figma mobile](https://www.figma.com/design/SsbOVLwLJnNFPwaeQ3bRqJ?node-id=109-2510)
