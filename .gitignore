@@ -5,3 +5,22 @@
 !.env.example
 .DS_Store
 __pycache__/
+
+# DEKORIYA v9 generated theme payload; rebuilt from canonical frontend in CI.
+Decoriya/website/wordpress/*.zip
+Decoriya/website/wordpress/dekoriya-atelier/assets/
+Decoriya/website/wordpress/dekoriya-atelier/projects/
+Decoriya/website/wordpress/dekoriya-atelier/index.html
+Decoriya/website/wordpress/dekoriya-atelier/template-parts/
+Decoriya/website/wordpress/dekoriya-atelier/asset-manifest.json
+Decoriya/website/wordpress/dekoriya-atelier/cases.json
+Decoriya/website/wordpress/dekoriya-atelier/site-core.js
+Decoriya/website/wordpress/dekoriya-atelier/v9-motion.js
+Decoriya/website/wordpress/dekoriya-atelier/motion.css
+Decoriya/website/wordpress/dekoriya-atelier/v9.css
+Decoriya/website/wordpress/dekoriya-atelier/v81.css
+Decoriya/website/wordpress/dekoriya-atelier/v81-site.css
+Decoriya/website/wordpress/dekoriya-atelier/v81.js
+Decoriya/website/wordpress/dekoriya-atelier/screenshot.png
+Decoriya/website/qa/v9-render.html
+Decoriya/website/qa/v9-responsive.html

@@ -33,6 +33,7 @@ jobs:
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/.env)" = "404"
       - name: Build site
         run: |
+          python3 Decoriya/website/tools/package-wordpress.py
           mkdir -p _site
           # public marketing site at root
           cp -r www/* _site/
@@ -50,11 +51,14 @@ jobs:
           mkdir -p _site/Decoriya/website
           cp Decoriya/website/index.html Decoriya/website/site.css Decoriya/website/wow.css Decoriya/website/spatial.css Decoriya/website/app.js Decoriya/website/motion.js Decoriya/website/motion-config.js Decoriya/website/motion-map.html Decoriya/website/design-system.html Decoriya/website/qa.html _site/Decoriya/website/
           cp -r Decoriya/website/assets Decoriya/website/media _site/Decoriya/website/
+          cp Decoriya/website/site-core.js Decoriya/website/v9-motion.js Decoriya/website/v9.css Decoriya/website/motion.css _site/Decoriya/website/
           cp Decoriya/website/v81.css Decoriya/website/v81-site.css Decoriya/website/v81.js Decoriya/website/cases.json Decoriya/website/sitemap.xml _site/Decoriya/website/
           cp -r Decoriya/website/projects _site/Decoriya/website/
-          # Isolated v9 motion prototype; keep the published homepage unchanged.
+          # Preserve old prototype links as redirects to the canonical homepage.
           mkdir -p _site/Decoriya/website/v9
           cp Decoriya/website/v9/index.html Decoriya/website/v9/motion.css Decoriya/website/v9/motion.js Decoriya/website/v9/site-core.js Decoriya/website/v9/qa.json _site/Decoriya/website/v9/
+          mkdir -p _site/Decoriya/website/downloads
+          cp Decoriya/website/wordpress/dekoriya-atelier-v9.zip _site/Decoriya/website/downloads/
           cp Decoriya/website/robots.txt _site/robots.txt
           touch _site/.nojekyll
       - name: Push to gh-pages

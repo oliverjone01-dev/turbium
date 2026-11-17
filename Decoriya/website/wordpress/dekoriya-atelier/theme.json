@@ -6,27 +6,17 @@
         {
           "slug": "burgundy",
           "name": "burgundy",
-          "color": "#57212F"
+          "color": "#57212f"
         },
         {
           "slug": "ivory",
           "name": "ivory",
-          "color": "#F6F0E5"
-        },
-        {
-          "slug": "ink",
-          "name": "ink",
-          "color": "#281C20"
-        },
-        {
-          "slug": "muted",
-          "name": "muted",
-          "color": "#6D5A60"
+          "color": "#f6f0e5"
         },
         {
           "slug": "rose",
           "name": "rose",
-          "color": "#E8D9D3"
+          "color": "#e8d9d3"
         }
       ]
     },
@@ -38,7 +28,7 @@
         {
           "slug": "golos",
           "name": "Golos Text",
-          "fontFamily": "Golos, Arial, sans-serif"
+          "fontFamily": "\"Golos Text\", sans-serif"
         }
       ]
     }
