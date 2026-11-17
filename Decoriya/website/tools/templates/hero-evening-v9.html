@@ -1,11 +1,11 @@
-<div class="evening-hero" id="hero-evening" hidden>
+<div class="evening-hero" id="hero-evening">
   <div class="evening-stage" aria-hidden="true">
     <picture class="evening-background">
-      <source media="(max-width: 700px)" data-srcset="./assets/v10/hero/salon-evening-960.webp">
-      <img data-src="./assets/v10/hero/salon-evening-1680.webp" width="1680" height="1120" alt="" decoding="async">
+      <source media="(max-width: 700px)" srcset="./assets/v10/hero/salon-evening-960.webp">
+      <img src="./assets/v10/hero/salon-evening-1680.webp" fetchpriority="high" width="1680" height="1120" alt="" decoding="async">
     </picture>
     <div class="evening-shade"></div>
-    <img class="evening-portrait" data-src="./assets/v10/hero/olesya-evening-960.webp" data-srcset="./assets/v10/hero/olesya-evening-640.webp 640w, ./assets/v10/hero/olesya-evening-960.webp 960w" sizes="(max-width: 700px) 88vw, 530px" width="960" height="1440" alt="" decoding="async">
+    <img class="evening-portrait" src="./assets/v92/hero/olesya-original-1024.webp" srcset="./assets/v92/hero/olesya-original-640.webp 640w, ./assets/v92/hero/olesya-original-1024.webp 1024w" sizes="(max-width: 700px) 90vw, 610px" width="1024" height="1536" fetchpriority="high" alt="" decoding="async">
   </div>
   <nav class="evening-nav" aria-label="Навигация">
     <a href="#hero" aria-label="Декория — к началу"><img src="./assets/logo.svg" width="153" height="48" alt="Декория"></a>
@@ -25,7 +25,7 @@
   <p class="evening-credit"><strong>Олеся Овакимян</strong><span>Руководитель студии «Декория»</span></p>
 </div>
 <div class="hero-views" role="group" aria-label="Заставка" hidden>
-  <button type="button" aria-pressed="true" data-hero-view="studio">Студия</button>
-  <button type="button" aria-pressed="false" data-hero-view="evening">Вечерний монтаж</button>
+  <button type="button" aria-pressed="false" data-hero-view="studio">Студия</button>
+  <button type="button" aria-pressed="true" data-hero-view="evening">Вечерний монтаж</button>
   <span class="hero-view-status" role="status" aria-live="polite"></span>
 </div>

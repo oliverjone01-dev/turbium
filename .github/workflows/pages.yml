@@ -45,7 +45,9 @@ jobs:
           cp strategy/strategy-locked.html _site/strategy/index.html
           # partner demonstration of DEKORIYA at /Decoriya/
           mkdir -p _site/Decoriya
-          cp Decoriya/index.html Decoriya/styles.css Decoriya/app.js Decoriya/data.js _site/Decoriya/
+          cp Decoriya/index.html _site/Decoriya/partner.html
+          cp Decoriya/website-entry.html _site/Decoriya/index.html
+          cp Decoriya/styles.css Decoriya/app.js Decoriya/data.js _site/Decoriya/
           cp -r Decoriya/assets _site/Decoriya/
           # DEKORIYA business website lives beside the partner demonstration
           mkdir -p _site/Decoriya/website

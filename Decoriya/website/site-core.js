@@ -2,7 +2,7 @@
 const $=(s,p=document)=>p.querySelector(s),$$=(s,p=document)=>[...p.querySelectorAll(s)];
 const base=new URL(document.documentElement.dataset.assetBase||'./',document.currentScript.src),home=new URL(document.documentElement.dataset.homeUrl||'./',location.href),reduce=matchMedia('(prefers-reduced-motion:reduce)');
 const config=JSON.parse($('#site-data')?.textContent||'{"cases":{},"gallery":[]}'),form=$('#brief-form'),dialog=$('#content-dialog'),content=$('#dialog-content');
-let selected=null,returnFocus=null,currentPhotos=[],photoIndex=0,filter='all',copyToken=0;
+let selected=null,returnFocus=null,currentPhotos=[],photoIndex=0,filter='all';
 const fields=['business','zone','style','format','occasion','date'],key='dekoriya-brief-context-v1';
 function save(){if(!form)return;try{sessionStorage.setItem(key,JSON.stringify({...Object.fromEntries(fields.map(k=>[k,form.elements[k].value])),selected:selected?.id||''}))}catch{}}
 function summary(){if(!form)return;const labels={business:'Тип бизнеса',zone:'Зона',style:'Стиль',format:'Формат',occasion:'Повод',date:'Желаемая дата',case:'Выбранный пример'};let any=false;for(const [k,label]of Object.entries(labels)){const value=k==='case'?selected?.short||'':form.elements[k].value,n=$('#chosen-'+k);if(n){n.hidden=!value;n.textContent=label+': '+value}any=any||!!value}$('.brief-summary').hidden=!any;$('#clear-context').hidden=!any;if($('#chosen-case'))$('#chosen-case').dataset.caseId=selected?.id||'';save()}
@@ -15,9 +15,44 @@ const params=new URL(location.href).searchParams,id=params.get('case')||params.g
 const chosen=Object.values(config.cases).find(x=>x.id===id)||config.gallery.find(x=>x.id===id);if(chosen)selected=reference(chosen);summary();
 $('#clear-context')?.addEventListener('click',()=>{fields.forEach(k=>setField(k,''));selected=null;const u=new URL(location.href);u.searchParams.delete('case');u.searchParams.delete('reference');history.replaceState(null,'',u);summary();form.elements.object.focus({preventScroll:true})});
 form?.addEventListener('change',summary);
-form?.addEventListener('input',()=>{$('#brief-status').textContent='';$('#brief-message').hidden=true});
-form?.addEventListener('submit',async e=>{e.preventDefault();const token=++copyToken,lines=['Олеся, здравствуйте! Хочу обсудить оформление.'];if(selected)lines.push('Пример: '+selected.short,selected.url);for(const[k,label]of [['business','Бизнес'],['zone','Зона'],['format','Формат'],['occasion','Повод'],['style','Стиль'],['date','Желаемая дата'],['object','Задача'],['contact','Контакт']]){const v=form.elements[k].value.trim();if(v)lines.push(label+': '+v)}const text=$('#brief-message'),submit=$('[type=submit]',form),status=$('#brief-status');text.value=lines.join('\n');submit.disabled=true;status.textContent='Копируем сообщение…';try{await navigator.clipboard.writeText(text.value);if(token!==copyToken)return;text.hidden=true;status.textContent='Сообщение скопировано. Вставьте его в чат с Олесей.'}catch{if(token!==copyToken)return;text.hidden=false;text.focus();text.select();status.textContent='Скопируйте текст ниже и вставьте его в чат с Олесей.'}finally{submit.disabled=false}});
-if(form)$('[type=submit]',form).disabled=false;
+if(form){
+const endpoint=form.dataset.leadEndpoint;
+const status=$('#brief-status');
+const submit=$('[type=submit]',form);
+const fallback=$('.lead-telegram');
+let pending=false;
+if(endpoint){form.hidden=false;fallback.hidden=true;}
+form.addEventListener('input',()=>{if(!pending)status.textContent='';});
+form.addEventListener('submit',async event=>{
+ event.preventDefault();
+ if(!endpoint||pending||!form.reportValidity())return;
+ const fd=new FormData(form), shortContact=String(fd.get('contact')).trim();
+ if(!/[0-9]{10,}/.test(shortContact.replace(/[^0-9]/g,''))&&!/^@[a-z0-9_]{5,32}$/i.test(shortContact)){
+  status.textContent='Укажите номер телефона с кодом или имя в Telegram, например @username.';
+  form.elements.contact.focus();return;
+ }
+ const input=Object.fromEntries(fd);
+ if(selected)input.example=selected.short;
+ pending=true;submit.disabled=true;form.setAttribute('aria-busy','true');status.textContent='Отправляем заявку…';
+ try{
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input),credentials:'omit',signal:AbortSignal.timeout(12000)});
+  const json=await response.json();
+  if(!response.ok||json.ok!==true)throw new Error('Not acknowledged');
+  status.textContent='';form.reset();selected=null;summary();
+  open('Спасибо за доверие!','Скоро наш мастер свяжется с вами, чтобы обсудить ваш объект и первые идеи оформления.');
+  const image=document.createElement('img');image.className='lead-success-photo';
+  image.src=new URL('assets/v92/thanks.webp',base).href;image.alt='';image.width=960;image.height=540;
+  content.prepend(image);
+  const done=button('Вернуться на сайт','lead-close','btn');
+  content.append(done);
+ }catch{
+  status.textContent='Заявку не удалось подтвердить. Проверьте соединение или напишите нам в Telegram.';
+  fallback.hidden=false;
+ }finally{
+  pending=false;submit.disabled=false;form.removeAttribute('aria-busy');
+ }
+});
+}
 function button(text,action,cls='btn outline'){const b=document.createElement('button');b.type='button';b.className=cls;b.dataset.action=action;b.textContent=text;return b}
 function open(title,copy=''){if(!dialog)return;returnFocus=document.activeElement;content.replaceChildren();const h=document.createElement('h2');h.className='dialog-title';h.id='dialog-heading';h.textContent=title;h.tabIndex=-1;content.append(h);if(copy){const p=document.createElement('p');p.className='dialog-copy';p.textContent=copy;content.append(p)}dialog.showModal();h.focus({preventScroll:true});dialog.scrollTop=0}
 dialog?.querySelector('.close').addEventListener('click',()=>dialog.close());
@@ -33,6 +68,7 @@ function filterPhotos(value){filter=value;let count=0;$$('[data-gallery-id]').fo
 document.addEventListener('click',e=>{const el=e.target.closest('button,a,[role=button]');if(!el)return;const action=el.dataset.action,text=el.textContent.trim();
 if(el.dataset.case){e.preventDefault();choose(Object.values(config.cases).find(x=>x.id===el.dataset.case));return}
 if(fields.some(k=>el.dataset[k])){e.preventDefault();for(const k of fields)if(el.dataset[k])setField(k,el.dataset[k]);summary();contact();return}
+if(action==='lead-close'){dialog?.close();return}
 if(action==='contact'){e.preventDefault();contact();return}
 if(action==='gallery-open'){gallery(el.dataset.photo);return}
 if(action==='choose-reference'){choose(config.gallery.find(x=>x.id===el.dataset.photo));return}

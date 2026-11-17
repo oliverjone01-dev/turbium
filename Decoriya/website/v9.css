@@ -129,3 +129,55 @@ section{scroll-margin-top:100px}
   .evening-background img { transform: scale(1.024); }
   .evening-portrait { transform: translateX(-50%); }
 }
+
+/* Compact selector; the hit area remains large enough for touch. */
+#hero .hero-views { padding: 3px; gap: 2px; border-radius: 19px; }
+#hero .hero-views button { padding-inline: 10px; min-height: 36px; border-radius: 14px; font-size: 11px; }
+#hero .evening-portrait { filter: none; }
+@media (min-width: 701px) {
+  #hero .evening-portrait { height: min(98%, 838px); bottom: -2%; }
+}
+@media (pointer: coarse) { #hero .hero-views button { min-height: 44px; } }
+
+/* Contact: native fields and one action. */
+.lead-contact { padding: clamp(72px,9vw,148px) max(24px,8vw); }
+.lead-shell { max-width: 1190px; margin-inline: auto; display: grid; grid-template-columns: .9fr minmax(0,1fr); gap: clamp(28px,8vw,120px); align-items: start; }
+.lead-introduction h2 { color: inherit; font-size: clamp(38px,5.9vw,84px); line-height: .98; letter-spacing: -.052em; margin: 18px 0 26px; max-width: 570px; }
+.lead-introduction>p:not(.eyebrow) { max-width: 340px; line-height: 1.6; }
+.lead-telegram { color: inherit; text-underline-offset: 4px; display: inline-flex; gap: 8px; padding-block: 14px; }
+.lead-form[hidden],.lead-telegram[hidden] { display: none !important; }
+.lead-form { position: relative; border-radius: 9px; background: #f6f0e5; color: #57212f; padding: clamp(23px,4vw,49px); display: grid; gap: 15px; }
+.lead-form label { display: grid; gap: 7px; font-weight: 500; color: inherit; }
+.lead-form :is(input:not([type=checkbox]),textarea) { display: block; min-width: 0; width:100%; border: 1px solid #bda8aa; border-radius: 4px; padding: 10px 12px; font: inherit; color: inherit; background: #fffcf5; }
+.lead-form label.lead-consent { display:flex; gap:10px; align-items: start; font-size: 13px; font-weight: 400; }
+.lead-consent input { accent-color: #57212f; margin-top: 4px; }
+.lead-form .lead-trap { position: absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+.lead-form :is(input,textarea):focus-visible { outline: 2px solid #865064; outline-offset: 1px; }
+.lead-form .btn { margin: 3px 0 0; width:100%; }
+.lead-form #brief-status:empty { display:none; }
+.lead-success-photo { display:block; width:100%; height:auto; max-height:min(44vh,360px); object-fit:cover; border-radius:4px; margin-bottom: 22px; }
+#dialog-content:has(.lead-success-photo) .dialog-title { margin-block: 0 10px; }
+#dialog-content:has(.lead-success-photo) .dialog-copy { max-width: 520px; margin-bottom: 18px; }
+@media(max-width: 700px) { .lead-shell { grid-template-columns: 1fr; } }
+
+/* Tactile interaction. Meaningful feedback stays visible without motion. */
+@media (hover:hover) and (pointer:fine) {
+  #hero .evening-actions a:hover, .evening-nav-links a:hover, .lead-telegram:hover { color:#eed0ba; text-decoration-thickness:2px; text-decoration-line:underline; }
+  .v9-section :is(.btn,.v9-filters button,.v9-tabs button,.rail-controls button):hover { box-shadow: 0 8px 18px #33121c26,inset 0 0 0 1px currentColor; }
+  .v9-gallery-card:hover .v9-gallery-image img,.v9-photo-link:hover img { transform: scale(1.085); }
+  .v9-gallery-card:hover .v9-photo-arrow,.v9-photo-link:hover .v9-photo-arrow { color:#f6f0e5; background:#57212f; transform:rotate(-12deg) scale(1.12); }
+  .v9-service:hover h3,.v9-business-tabs button:hover,.v9-process-tabs button:hover { text-decoration: underline; text-decoration-color:#a87984; text-underline-offset:6px; }
+  .v9-faq summary:hover { color:#824259; background:#57212f09; }
+  #hero .evening-actions .btn:hover,.lead-form .btn:hover { outline:2px solid #bc8793; outline-offset:3px; }
+}
+@media (prefers-reduced-motion:no-preference) {
+  .v9-photo-arrow { transition: transform .36s cubic-bezier(.18,.8,.28,1.2),color .26s,background-color .26s; }
+  .v9-section :is(.btn,.v9-filters button,.v9-tabs button,.rail-controls button),.lead-form .btn { transition:transform .25s cubic-bezier(.22,.72,.3,1),color .24s,background-color .24s,box-shadow .25s; }
+  .v9-section :is(.btn,.v9-filters button,.v9-tabs button,.rail-controls button):active,.hero-views button:active,.lead-form .btn:active { transform:scale(.975); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .v9-gallery-card:hover .v9-gallery-image img,.v9-photo-link:hover img,.v9-gallery-card:hover .v9-photo-arrow,.v9-photo-link:hover .v9-photo-arrow { transform:none; }
+}
+.lead-illustration { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:8px; }
+.lead-shell:has(.lead-form:not([hidden])) .lead-illustration { display:none; }
+#dialog-content:has(.lead-success-photo) .dialog-title:focus { outline:none; }

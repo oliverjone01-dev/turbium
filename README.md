@@ -2,7 +2,7 @@
 
 ## Decoriya
 
-[Открыть демонстрацию ДЕКОРИИ](https://oliverjone01-dev.github.io/turbium/Decoriya/) · [Исходники и инструкция](Decoriya/README.md)
+[Открыть демонстрацию ДЕКОРИИ](https://oliverjone01-dev.github.io/turbium/Decoriya/partner.html) · [Исходники и инструкция](Decoriya/README.md)
 
 Новогодний лендинг, витрина в стилистике Авито и семь страниц предложений с 35 слайдами. Партнёрский прототип, без публикации объявлений и отправки реальных заявок.
 
