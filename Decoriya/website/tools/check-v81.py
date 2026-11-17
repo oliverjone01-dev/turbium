@@ -13,7 +13,7 @@ class Page(HTMLParser):
    if v:=a.get('src',a.get('href')):self.links.append(v)
 for rel in ['index.html','projects/myata-lounge/index.html','projects/britva/index.html']:
  p=root/rel;x=Page();x.feed(p.read_text())
- assert x.h1==(2 if rel=='index.html' else 1),(rel,'responsive h1; one visible per viewport')
+ assert x.h1==(3 if rel=='index.html' else 1),(rel,'two responsive studio versions and one alternative; one visible per viewport')
  assert 'noindex' not in x.meta.get('robots','')
  for v in x.links:
   u=urlsplit(v)
