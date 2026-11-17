@@ -157,3 +157,5 @@ html{scrollbar-gutter:stable;scroll-padding-top:24px}html.dialog-open{overflow:h
 @media(prefers-reduced-motion:reduce){.btn:active{transform:none}.reading-progress{display:none}[data-gallery-id]::before,.service-brief-cta::before{display:none}}
 #brief-form.simple-form{display:flex;flex-direction:column;gap:20px}
 #brief-form.simple-form{align-items:stretch}
+
+.case-page>img.case-documentary{aspect-ratio:auto;object-fit:contain;width:auto;max-width:100%;max-height:720px;max-height:min(76svh,720px);margin-inline:auto}

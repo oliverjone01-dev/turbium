@@ -97,19 +97,19 @@
     {
       "id": "concept-v9-0",
       "title": "Концепт / новогодний вход",
-      "image": "./assets/v9/01-restaurant-front-1536.webp",
+      "image": "./assets/v9/01-restaurant-front-editorial-1536.webp",
       "category": "concept"
     },
     {
       "id": "concept-v9-1",
       "title": "Концепт / другой ракурс входа",
-      "image": "./assets/v9/02-restaurant-angle-1536.webp",
+      "image": "./assets/v9/02-restaurant-angle-editorial-1536.webp",
       "category": "concept"
     },
     {
       "id": "concept-v9-2",
       "title": "Концепт / бархат и хвоя вблизи",
-      "image": "./assets/v9/03-velvet-detail-1536.webp",
+      "image": "./assets/v9/03-velvet-detail-editorial-1536.webp",
       "category": "concept"
     }
   ]
