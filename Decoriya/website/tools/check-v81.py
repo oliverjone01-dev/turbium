@@ -26,6 +26,6 @@ cases=json.loads((root/'cases.json').read_text())
 assert len({v['id'] for v in cases.values()})==2
 for c in cases.values():assert (root/c['image'].removeprefix('./')).exists()
 ET.parse(root/'sitemap.xml')
-assert 'id="direct-contact"' in (root/'index.html').read_text()
-assert 'Скопировать сообщение' in (root/'index.html').read_text()
+assert 'id="brief-form"' in (root/'index.html').read_text()
+assert 'Отправить заявку' in (root/'index.html').read_text() and 'profi.ru' not in (root/'index.html').read_text()
 print('v8.1: pages, canonical, local assets, independent cases, sitemap and pending submission checked')

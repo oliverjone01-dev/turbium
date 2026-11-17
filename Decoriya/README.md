@@ -12,7 +12,7 @@ python3 -m http.server 8080
 
 Открыть `http://localhost:8080/Decoriya/`.
 
-Опубликованная версия: https://oliverjone01-dev.github.io/turbium/Decoriya/
+Партнёрская презентация: https://oliverjone01-dev.github.io/turbium/Decoriya/partner.html
 
 ## Состав
 

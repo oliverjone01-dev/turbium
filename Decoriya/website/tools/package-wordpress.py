@@ -27,7 +27,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Новогодняя главная v9: адаптивная галерея, растровые схемы, лёгкие анимации и простой контакт.
-Version: 9.1.0
+Version: 9.2.0
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -56,8 +56,6 @@ add_action('customize_register', function ($c) {
     $c->add_section('dekoriya_main', array('title'=>'Декория: главная','priority'=>30));
     $c->add_setting('dekoriya_headline', array('default'=>"Новогоднее\\nоформление\\nдля бизнеса.",'sanitize_callback'=>'sanitize_textarea_field'));
     $c->add_control('dekoriya_headline', array('section'=>'dekoriya_main','label'=>'Заголовок hero (три строки)','type'=>'textarea'));
-    $c->add_setting('dekoriya_contact_url', array('default'=>'https://profi.ru/profile/SerdyukovaAI/','sanitize_callback'=>'esc_url_raw'));
-    $c->add_control('dekoriya_contact_url', array('section'=>'dekoriya_main','label'=>'Ссылка обращения','type'=>'url'));
 });
 add_filter('pre_get_document_title', function ($title) { return is_front_page() ? 'Новогоднее оформление для бизнеса в Москве и области | Декория' : $title; });
 add_action('wp',function(){if(is_front_page())remove_action('wp_head','rel_canonical');});
@@ -83,7 +81,6 @@ function dekoriya_render_landing() {
     foreach ($cases as $case) {
         $markup=str_replace('href="./projects/'.$case['id'].'/"','href="'.esc_url(add_query_arg('dk_project',$case['id'],home_url('/'))).'"',$markup);
     }
-    $markup=str_replace('https://profi.ru/profile/SerdyukovaAI/',esc_url(get_theme_mod('dekoriya_contact_url','https://profi.ru/profile/SerdyukovaAI/')),$markup);
     $lines=explode("\\n",get_theme_mod('dekoriya_headline',"Новогоднее\\nоформление\\nдля бизнеса."));
     for($i=1;$i<=3;$i++){$markup=str_replace('{{HERO_LINE_'.$i.'}}',esc_html($lines[$i-1]??''),$markup);}
     return $markup;
@@ -101,12 +98,11 @@ add_action('template_redirect',function(){
     $markup=str_replace(array('../../?','../../#','href="../../"'),array(home_url('/').'?',home_url('/').'#','href="'.esc_url(home_url('/')).'"'),$markup);
     $markup=str_replace('? case=','?case=',$markup);
     $markup=str_replace('https://oliverjone01-dev.github.io/turbium/Decoriya/website/projects/'.$id.'/',esc_url(add_query_arg('dk_project',$id,home_url('/'))),$markup);
-    $markup=str_replace('https://profi.ru/profile/SerdyukovaAI/',esc_url(get_theme_mod('dekoriya_contact_url','https://profi.ru/profile/SerdyukovaAI/')),$markup);
     status_header(200);header('Content-Type: text/html; charset=UTF-8');echo $markup;exit;
 });
 ''')
 (theme/'header.php').write_text('''<?php if (!defined('ABSPATH')) { exit; } ?>
-<!doctype html><html <?php language_attributes(); ?> data-version="9.0" data-build="9.1.0" data-motion="v9" data-asset-base="<?php echo esc_url(trailingslashit(get_template_directory_uri())); ?>" data-home-url="<?php echo esc_url(home_url('/')); ?>"><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="<?php echo esc_url(get_template_directory_uri().'/assets/logo.svg'); ?>"><?php wp_head(); ?></head><body <?php body_class(); ?>><?php wp_body_open(); ?>
+<!doctype html><html <?php language_attributes(); ?> data-version="9.0" data-build="9.2.0" data-motion="v9" data-asset-base="<?php echo esc_url(trailingslashit(get_template_directory_uri())); ?>" data-home-url="<?php echo esc_url(home_url('/')); ?>"><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="<?php echo esc_url(get_template_directory_uri().'/assets/logo.svg'); ?>"><?php wp_head(); ?></head><body <?php body_class(); ?>><?php wp_body_open(); ?>
 ''')
 (theme/'footer.php').write_text("<?php if (!defined('ABSPATH')) { exit; } wp_footer(); ?></body></html>")
 (theme/'front-page.php').write_text("<?php if (!defined('ABSPATH')) { exit; } get_header(); echo dekoriya_render_landing(); get_footer();")

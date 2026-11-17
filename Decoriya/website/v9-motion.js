@@ -25,9 +25,9 @@ const asset=name=>{const u=new URL('assets/v9/'+name+'-768.webp',scriptURL);if(q
 const concept=$('#palette');if(concept?.classList.contains('v9-section')){const load=imageController(concept),tabs=$$('[data-v9-view]',concept),variants=[['01-restaurant-front-editorial','Хвоя задаёт форму. Бархат держит акцент.','Оформление следует архитектуре входа: хвойный портал, глубокий бордовый текстиль и два латунных фонаря.','Хвоя · бархат · латунь'],['02-restaurant-angle-editorial','Вход виден в объёме.','Другой ракурс показывает, как оформление связано с проёмом и боковыми окнами.','Масштаб · глубина · пропорции'],['03-velvet-detail-editorial','Материалы вблизи.','Направленный ворс бархата, мелкая хвоя и спокойный металлический блик. Детали работают в одной палитре.','Фактура · складки · отражения']];let chosen=0;function select(i){chosen=i;$('#v9-concept-panel',concept).setAttribute('aria-labelledby','v9-concept-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=variants[i];$('[data-v9-title]',concept).textContent=v[1];$('[data-v9-copy]',concept).textContent=v[2];$('[data-v9-materials]',concept).textContent=v[3];$('[data-action="choose-reference"]',concept).dataset.photo='concept-v9-'+i;load(asset(v[0]),'Пример оформления: '+v[1])}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%tabs.length:['ArrowLeft','ArrowUp'].includes(e.key)?(i-1+tabs.length)%tabs.length:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})});}
 const process=$('#process');if(process?.classList.contains('v9-section')){const load=imageController(process),tabs=$$('[data-v9-step]',process),steps=[['01-restaurant-front-editorial','Смотрим на пространство.','Обсуждаем вход, витрину или интерьер. Уточняем размеры, окружение и желаемую дату.','Показываете зону и рассказываете о задаче.','Уточняем масштаб, доступ и условия.'],['03-velvet-detail-editorial','Собираем характер оформления.','Сопоставляем цвет, фактуру и свет с архитектурой и стилем вашего бизнеса.','Показываете примеры или готовое ТЗ.','Готовим направление и обсуждаем материалы.'],['05-workshop','Готовим композиции.','Согласованный образ превращается в элементы, которые можно собрать и установить на объекте.','Подтверждаете состав и условия работ.','Комплектуем материалы и подготавливаем декор.'],['04-installation','Собираем оформление на месте.','Монтаж связывает отдельные элементы с реальным пространством. Проходы и условия крепления обсуждаем заранее.','Обеспечиваете согласованный доступ.','Устанавливаем композицию и проверяем детали.']];function select(i){$('#v9-process-panel',process).setAttribute('aria-labelledby','v9-process-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=steps[i];$('[data-v9-title]',process).textContent=v[1];$('[data-v9-copy]',process).textContent=v[2];$('[data-v9-client]',process).textContent=v[3];$('[data-v9-studio]',process).textContent=v[4];load(asset(v[0]),'Иллюстрация этапа: '+v[1])}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%tabs.length:['ArrowLeft','ArrowUp'].includes(e.key)?(i-1+tabs.length)%tabs.length:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})});}
 // Reveal only once and only after intersection; no content is hidden in CSS.
-const seen=new WeakSet();const observer=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting||seen.has(e.target))continue;seen.add(e.target);observer.unobserve(e.target);move(e.target,[{opacity:.65,transform:'translateY(22px)'},{opacity:1,transform:'none'}],small.matches?300:560)}},{threshold:.13});$$('#projects .v9-case,.v9-heading,.v9-three article,.v9-guide').forEach(n=>observer.observe(n));
+const seen=new WeakSet();const observer=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting||seen.has(e.target))continue;seen.add(e.target);observer.unobserve(e.target);move(e.target,[{opacity:.55,transform:'translateY(38px)'},{opacity:1,transform:'none'}],small.matches?390:670)}},{threshold:.13});$$('#projects .v9-case,.v9-heading,.v9-three article,.v9-guide').forEach(n=>observer.observe(n));
 // Business selection: stable image area, keyboard tabs, context follows the CTA.
-const business=$('#business');if(business){const tabs=$$('[data-business-view]',business),values=[['Кафе или ресторан','i-37','Хвойный портал у двери, свет в витрине или композиция в зале. Сначала определим, что гость увидит с улицы.'],['Магазин','i-112','Оформление входа и витрины связывает сезон с продуктом. Оставляем вывеску, товар и проходы в центре внимания.'],['Салон или студия','i-18','Входная группа и зона встречи поддерживают характер салона. Сопоставляем цвет декора с фасадом и интерьером.'],['Офис / другое','i-95','Начать можно с рецепции, входа или одной композиции в общей зоне. Обсудим масштаб, доступ и режим работы.']];let request=0;function select(i){const token=++request;$('#v9-business-panel',business).setAttribute('aria-labelledby','v9-business-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=values[i];$('[data-business-copy]',business).textContent=v[2];$('button[data-business]',business).dataset.business=v[0];imageReady(new URL('assets/v10/portfolio/'+v[1]+'-720.webp',scriptURL).href).then(source=>{if(token!==request)return;const img=$('.v9-business-photo img',business);img.src=source.src;img.alt='Реальное оформление из портфолио: '+tabs[i].textContent.replace(/0[1-4]|↗/g,'').trim();move(img,[{opacity:.55,transform:'scale(1.025)'},{opacity:1,transform:'scale(1)'}],320)}).catch(()=>{})}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?3:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%4:['ArrowLeft','ArrowUp'].includes(e.key)?(i+3)%4:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})})}
+const business=$('#business');if(business){const tabs=$$('[data-business-view]',business),values=[['Кафе или ресторан','i-37','Хвойный портал у двери, свет в витрине или композиция в зале. Сначала определим, что гость увидит с улицы.'],['Магазин','i-112','Оформление входа и витрины связывает сезон с продуктом. Оставляем вывеску, товар и проходы в центре внимания.'],['Салон или студия','i-18','Входная группа и зона встречи поддерживают характер салона. Сопоставляем цвет декора с фасадом и интерьером.'],['Офис / другое','i-95','Начать можно с рецепции, входа или одной композиции в общей зоне. Обсудим масштаб, доступ и режим работы.']];let request=0;function select(i){const token=++request;$('#v9-business-panel',business).setAttribute('aria-labelledby','v9-business-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=values[i];$('[data-business-copy]',business).textContent=v[2];$('button[data-business]',business).dataset.business=v[0];imageReady(new URL('assets/v92/portfolio/'+v[1]+'-720.webp',scriptURL).href).then(source=>{if(token!==request)return;const img=$('.v9-business-photo img',business);img.src=source.src;img.alt='Реальное оформление из портфолио: '+tabs[i].textContent.replace(/0[1-4]|↗/g,'').trim();move(img,[{opacity:.55,transform:'scale(1.025)'},{opacity:1,transform:'scale(1)'}],320)}).catch(()=>{})}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?3:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%4:['ArrowLeft','ArrowUp'].includes(e.key)?(i+3)%4:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})})}
 // A filter reintroduces only the visible photographs, with a short stagger.
 const photoGallery=$('#gallery');
 photoGallery?.addEventListener('click', event=>{
@@ -45,86 +45,36 @@ const expert=$('.v9-expert-image'),pattern=$('#contact');let depthRAF=0;function
 
 })();
 
-/* Editorial cover switch. Keep focus and the visible scene until both layers decode. */
+/* Switching keeps both layouts native. Evening is available without a script. */
 (()=>{
-  'use strict';
-  const root=document.querySelector('#hero');
-  const stage=root?.querySelector('#hero-evening');
-  const control=root?.querySelector('.hero-views');
-  if(!root||!stage||!control)return;
-  const buttons=[...control.querySelectorAll('[data-hero-view]')];
-  const status=control.querySelector('[role=status]');
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
-  const fine=matchMedia('(hover:hover) and (pointer:fine)');
-  let version=0, ready=false, cover='studio', layerLoads, active=[];
-  const stop=()=>{active.forEach(animation=>animation.cancel());active=[];};
-  const reset=()=>{for(const key of ['stage-x','stage-y','portrait-x','portrait-y'])stage.style.removeProperty('--'+key);};
-  const prepare=async()=>{
-    if(ready)return;
-    if(!layerLoads){
-      stage.querySelectorAll('[data-srcset]').forEach(node=>node.srcset=node.dataset.srcset);
-      const images=[...stage.querySelectorAll('img[data-src]')];
-      images.forEach(node=>{node.src=node.dataset.src;});
-      layerLoads=Promise.all(images.map(node=>node.decode())).then(()=>{ready=true;}).catch(error=>{
-        layerLoads=null;
-        images.forEach(node=>{node.removeAttribute('src');node.removeAttribute('srcset');});
-        stage.querySelectorAll('source').forEach(node=>node.removeAttribute('srcset'));
-        throw error;
-      });
-    }
-    return layerLoads;
-  };
-  async function show(choice,writeURL=true){
-    const token=++version;
-    const trigger=buttons.find(button=>button.dataset.heroView===choice);
-    buttons.forEach(button=>button.removeAttribute('aria-busy'));
-    if(choice==='evening'&&!ready){
-      trigger.setAttribute('aria-busy','true');status.textContent='Загружаем вечернюю заставку.';
-      try{await prepare();}
-      catch{if(token===version){trigger.removeAttribute('aria-busy');status.textContent='Заставка не загрузилась. Попробуйте ещё раз.';}return;}
-    }
-    if(token!==version)return;
-    stop();reset();
-    cover=choice;
-    const evening=choice==='evening';
-    stage.hidden=!evening;root.classList.toggle('evening-active',evening);
-    buttons.forEach(button=>{button.removeAttribute('aria-busy');button.setAttribute('aria-pressed',String(button.dataset.heroView===choice));});
-    status.textContent=evening?'Вечерний монтаж.':'Студия.';
-    if(writeURL){
-      const u=new URL(location.href);
-      if(evening)u.searchParams.set('hero','evening');else u.searchParams.delete('hero');
-      history.replaceState(history.state,'',u);
-    }
-    if(reduce.matches)return;
-    const tween=(node,frames,duration,delay=0)=>{
-      if(node)active.push(node.animate(frames,{duration,delay,easing:'cubic-bezier(.2,.75,.25,1)'}));
-    };
-    if(evening){
-      tween(stage.querySelector('.evening-background'),[{opacity:.28},{opacity:1}],620);
-      tween(stage.querySelector('.evening-portrait'),[{opacity:0,translate:'0 18px'},{opacity:1,translate:'0 0'}],580,30);
-      tween(stage.querySelector('.evening-copy'),[{opacity:0,translate:'0 12px'},{opacity:1,translate:'0 0'}],490,110);
-    }else{
-      const scene=[...root.querySelectorAll(':scope>.desktop,:scope>.mobile')].find(node=>node.getClientRects().length);
-      tween(scene,[{opacity:.52},{opacity:1}],400);
-    }
+ const root=document.querySelector('#hero'),stage=root?.querySelector('#hero-evening'),control=root?.querySelector('.hero-views');
+ if(!root||!stage||!control)return;
+ const buttons=[...control.querySelectorAll('[data-hero-view]')];
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const fine=matchMedia('(hover:hover) and (pointer:fine)');
+ let cover='evening',frame=0,animations=[];
+ const reset=()=>{if(frame)cancelAnimationFrame(frame);frame=0;['stage-x','stage-y','portrait-x','portrait-y'].forEach(k=>stage.style.removeProperty('--'+k));};
+ const cancel=()=>{animations.forEach(a=>a.cancel());animations=[];reset();};
+ function show(choice,url=true){
+  cancel();cover=choice;const evening=choice==='evening';
+  stage.hidden=!evening;root.classList.toggle('evening-active',evening);
+  buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.heroView===choice)));
+  control.querySelector('[role=status]').textContent=evening?'Вечерний монтаж.':'Студия.';
+  if(url){const next=new URL(location.href);if(evening)next.searchParams.delete('hero');else next.searchParams.set('hero','studio');history.replaceState(history.state,'',next);}
+  if(!reduced.matches&&url){
+   const scene=evening?stage:[...root.children].find(n=>(n.classList.contains('mobile')||n.classList.contains('desktop'))&&n.getClientRects().length);
+   if(scene)animations.push(scene.animate([{opacity:.35,translate:'0 8px'},{opacity:1,translate:'0 0'}],{duration:460,easing:'cubic-bezier(.2,.74,.26,1)'}));
   }
-  control.hidden=false;
-  buttons.forEach(button=>button.addEventListener('click',()=>show(button.dataset.heroView)));
-  if(new URLSearchParams(location.search).get('hero')==='evening')show('evening',false);
-  let frame=0,x=0,y=0;
-  stage.addEventListener('pointermove',event=>{
-    if(cover!=='evening'||reduce.matches||!fine.matches||event.pointerType!=='mouse')return;
-    const box=stage.getBoundingClientRect();
-    x=(event.clientX-box.left)/box.width-.5;y=(event.clientY-box.top)/box.height-.5;
-    if(frame)return;
-    frame=requestAnimationFrame(()=>{
-      frame=0;
-      stage.style.setProperty('--stage-x',(-x*14).toFixed(1)+'px');
-      stage.style.setProperty('--stage-y',(-y*10).toFixed(1)+'px');
-      stage.style.setProperty('--portrait-x',(x*10).toFixed(1)+'px');
-      stage.style.setProperty('--portrait-y',(y*8).toFixed(1)+'px');
-    });
-  },{passive:true});
-  stage.addEventListener('pointerleave',()=>{if(frame)cancelAnimationFrame(frame);frame=0;reset();});
-  reduce.addEventListener('change',()=>{if(reduce.matches){if(frame)cancelAnimationFrame(frame);frame=0;stop();reset();}});
+ }
+ control.hidden=false;buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.heroView)));
+ if(new URLSearchParams(location.search).get('hero')==='studio')show('studio',false);
+ let x=0,y=0;
+ stage.addEventListener('pointermove',e=>{
+  if(cover!=='evening'||reduced.matches||!fine.matches||e.pointerType!=='mouse')return;
+  const r=stage.getBoundingClientRect();x=(e.clientX-r.left)/r.width-.5;y=(e.clientY-r.top)/r.height-.5;
+  if(frame)return;
+  frame=requestAnimationFrame(()=>{frame=0;stage.style.setProperty('--stage-x',(-x*32).toFixed(1)+'px');stage.style.setProperty('--stage-y',(-y*19).toFixed(1)+'px');stage.style.setProperty('--portrait-x',(x*22).toFixed(1)+'px');stage.style.setProperty('--portrait-y',(y*14).toFixed(1)+'px');});
+ },{passive:true});
+ stage.addEventListener('pointerleave',reset);
+ reduced.addEventListener('change',()=>{if(reduced.matches)cancel();});
 })();
