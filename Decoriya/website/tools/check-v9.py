@@ -29,6 +29,7 @@ assert len(re.findall(r'<section\b',html))==14
 assert 'data-action="contact"' in re.search(r'<section[^>]+id="hero".*?</section>',html,re.S)[0]
 assert p.scripts[0].startswith('./site-core.js') and p.scripts[1].startswith('./v9-motion.js')
 assert len(p.scripts)==2
+assert any(x.get('type')=='submit' and 'disabled' in x for x in p.buttons),'Copy must be disabled until its client handler is installed'
 assert not re.search(r'<template\b',html)
 data=json.loads(re.search(r'<script type="application/json" id="site-data">(.*?)</script>',html,re.S)[1])
 assert sum(x.get('category')=='concept' for x in data['gallery'])==3
