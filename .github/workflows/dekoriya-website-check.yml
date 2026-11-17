@@ -22,3 +22,6 @@ jobs:
         run: |
           python3 tools/check-v81.py
           node --check v81.js
+          python3 tools/check-v9.py
+          node --check v9/site-core.js
+          node --check v9/motion.js

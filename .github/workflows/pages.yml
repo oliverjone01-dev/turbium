@@ -52,6 +52,9 @@ jobs:
           cp -r Decoriya/website/assets Decoriya/website/media _site/Decoriya/website/
           cp Decoriya/website/v81.css Decoriya/website/v81-site.css Decoriya/website/v81.js Decoriya/website/cases.json Decoriya/website/sitemap.xml _site/Decoriya/website/
           cp -r Decoriya/website/projects _site/Decoriya/website/
+          # Isolated v9 motion prototype; keep the published homepage unchanged.
+          mkdir -p _site/Decoriya/website/v9
+          cp Decoriya/website/v9/index.html Decoriya/website/v9/motion.css Decoriya/website/v9/motion.js Decoriya/website/v9/site-core.js Decoriya/website/v9/qa.json _site/Decoriya/website/v9/
           cp Decoriya/website/robots.txt _site/robots.txt
           touch _site/.nojekyll
       - name: Push to gh-pages
