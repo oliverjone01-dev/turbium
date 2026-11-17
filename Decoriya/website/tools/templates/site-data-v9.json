@@ -4,8 +4,8 @@
       "id": "myata-lounge",
       "title": "Новогодний вход MYATA Lounge Hodynka",
       "short": "MYATA Lounge / новогодний вход",
-      "image": "./assets/v81/182-1911-0d2f6.webp",
-      "detail": "./assets/v81/198-4058-c65c4.webp",
+      "image": "./assets/v10/portfolio/i-55-editorial.webp",
+      "detail": "./assets/v10/portfolio/i-160-editorial.webp",
       "body": "Для входа MYATA Lounge Hodynka выбрали хвою, зелёные шары и стеклянные подвески.",
       "materials": "Хвоя, украшения и стеклянные подвески",
       "explain": "Зелёные украшения разного блеска поддерживают объём хвои. Прозрачные подвески добавляют вертикальный ритм."
@@ -14,102 +14,114 @@
       "id": "britva",
       "title": "Новогоднее оформление входа BRITVA",
       "short": "BRITVA / хвоя и свет",
-      "image": "./assets/v81/182-1911-3303e.webp",
+      "image": "./assets/v10/portfolio/i-77-editorial.webp",
       "body": "Вечерний вход BRITVA оформили хвоей и световым занавесом. На фотографии видно, как декор обрамляет дверь и витрину.",
       "materials": "Хвоя и световой занавес",
       "explain": "Хвойное обрамление выделяет дверь. Вертикальные нити света продолжают композицию на стекле витрины.",
-      "detail": "./assets/v81/182-1911-3303e.webp"
+      "detail": "./assets/v10/portfolio/i-77-editorial.webp"
     }
   },
   "gallery": [
     {
       "id": "i-55",
       "title": "MYATA Lounge / новогодний портал",
-      "image": "./assets/v81/182-1911-0d2f6.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-55-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-55-720.webp"
     },
     {
       "id": "i-160",
       "title": "MYATA Lounge / детали",
-      "image": "./assets/v81/198-4058-c65c4.webp",
-      "category": "detail"
+      "image": "./assets/v10/portfolio/i-160-editorial.webp",
+      "category": "detail",
+      "thumbnail": "./assets/v10/portfolio/i-160-720.webp"
     },
     {
       "id": "i-77",
       "title": "BRITVA / вечерний фасад",
-      "image": "./assets/v81/182-1911-3303e.webp",
-      "category": "facade"
+      "image": "./assets/v10/portfolio/i-77-editorial.webp",
+      "category": "facade",
+      "thumbnail": "./assets/v10/portfolio/i-77-720.webp"
     },
     {
       "id": "i-37",
       "title": "Surf Coffee / хвоя и свет",
-      "image": "./assets/v81/176-945-03a48.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-37-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-37-720.webp"
     },
     {
       "id": "i-18",
       "title": "Soda / новогодний вход",
-      "image": "./assets/v81/198-3760-03c73.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-18-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-18-720.webp"
     },
     {
       "id": "i-112",
       "title": "Зимнее оформление у окна",
-      "image": "./assets/v81/198-4093-0c426.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-112-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-112-720.webp"
     },
     {
       "id": "i-152",
       "title": "BRITVA Soda / входная группа",
-      "image": "./assets/v81/182-1911-ac21f.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-152-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-152-720.webp"
     },
     {
       "id": "i-121",
       "title": "Фасад в вечернем свете",
-      "image": "./assets/v81/182-2859-08160.webp",
-      "category": "facade"
+      "image": "./assets/v10/portfolio/i-121-editorial.webp",
+      "category": "facade",
+      "thumbnail": "./assets/v10/portfolio/i-121-720.webp"
     },
     {
       "id": "i-95",
       "title": "Новогодняя композиция с самоваром",
-      "image": "./assets/v81/182-1911-68c3d.webp",
-      "category": "detail"
+      "image": "./assets/v10/portfolio/i-95-editorial.webp",
+      "category": "detail",
+      "thumbnail": "./assets/v10/portfolio/i-95-720.webp"
     },
     {
       "id": "i-86",
       "title": "BRITVA / хвойный вход",
-      "image": "./assets/v81/182-2859-a2deb.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-86-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-86-720.webp"
     },
     {
       "id": "i-64",
       "title": "Вход и световая сетка",
-      "image": "./assets/v81/182-1911-121ca.webp",
-      "category": "facade"
+      "image": "./assets/v10/portfolio/i-64-editorial.webp",
+      "category": "facade",
+      "thumbnail": "./assets/v10/portfolio/i-64-720.webp"
     },
     {
       "id": "i-27",
       "title": "Surf Coffee / зимний портал",
-      "image": "./assets/v81/182-2859-273b3.webp",
-      "category": "entrance"
+      "image": "./assets/v10/portfolio/i-27-editorial.webp",
+      "category": "entrance",
+      "thumbnail": "./assets/v10/portfolio/i-27-720.webp"
     },
     {
       "id": "concept-v9-0",
       "title": "Концепт / новогодний вход",
-      "image": "./assets/v9/01-restaurant-front-1536.webp",
+      "image": "./assets/v9/01-restaurant-front-editorial-1536.webp",
       "category": "concept"
     },
     {
       "id": "concept-v9-1",
       "title": "Концепт / другой ракурс входа",
-      "image": "./assets/v9/02-restaurant-angle-1536.webp",
+      "image": "./assets/v9/02-restaurant-angle-editorial-1536.webp",
       "category": "concept"
     },
     {
       "id": "concept-v9-2",
       "title": "Концепт / бархат и хвоя вблизи",
-      "image": "./assets/v9/03-velvet-detail-1536.webp",
+      "image": "./assets/v9/03-velvet-detail-editorial-1536.webp",
       "category": "concept"
     }
   ]
