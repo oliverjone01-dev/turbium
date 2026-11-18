@@ -1,0 +1,19 @@
+<section id="lead-quick" class="v9-section lead-quick" aria-labelledby="quick-heading">
+  <div class="lead-quick-layout">
+    <div>
+      <h2 id="quick-heading" tabindex="-1">Обсудим оформление</h2>
+      <p>Оставьте номер. Мастер перезвонит, чтобы уточнить задачу и предложить первые идеи.</p>
+      <p class="lead-unavailable">Приём заявок временно недоступен.</p>
+    </div>
+    <form id="callback-form" class="lead-form" method="post" data-lead-kind="callback" hidden>
+      <div class="lead-quick-fields">
+        <label>Ваше имя<input name="name" required maxlength="80" autocomplete="name"></label>
+        <label>Телефон<input name="contact" type="tel" required maxlength="32" autocomplete="tel" placeholder="+7"></label>
+      </div>
+      <div class="lead-trap" aria-hidden="true"><label>Оставьте поле пустым<input name="website" tabindex="-1" autocomplete="off"></label></div>
+      <label class="lead-consent"><input type="checkbox" name="consent" required><span>Согласен на обработку данных для ответа на заявку.</span></label>
+      <button class="btn" type="submit">Попросить перезвонить <span aria-hidden="true">↗</span></button>
+      <p data-lead-status role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>

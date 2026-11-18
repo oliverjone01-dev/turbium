@@ -24,13 +24,15 @@ for url in p.urls:
  if not u.path:
   if u.fragment:assert u.fragment in p.ids,url
  else:assert (R/u.path).exists(),url
-assert 'data-build="9.4.0"' in html and 'data-motion="v9"' in html
+assert 'data-build="9.4.1"' in html and 'data-motion="v9"' in html
 assert 'noindex' not in html and 'rel="canonical"' in html
-assert len(re.findall(r'<section\b',html))==14
+assert len(re.findall(r'<section\b',html))==15
 assert 'data-action="contact"' in re.search(r'<section[^>]+id="hero".*?</section>',html,re.S)[0]
 assert p.scripts[0].startswith('./site-core.js') and p.scripts[1].startswith('./v9-motion.js')
 assert len(p.scripts)==2
 assert any(x.get('type')=='submit' for x in p.buttons) and 'data-lead-endpoint=' in html
+assert 'id="callback-form"' in html and 'id="brief-form"' in html
+assert 'class="lead-telegram"' not in html
 assert not re.search(r'<template\b',html)
 data=json.loads(re.search(r'<script type="application/json" id="site-data">(.*?)</script>',html,re.S)[1])
 assert sum(x.get('category')=='concept' for x in data['gallery'])==3
@@ -50,5 +52,5 @@ manifest=json.loads((R/'wordpress/dekoriya-atelier/asset-manifest.json').read_te
 for f,h in manifest.items():assert hashlib.sha256((R/'wordpress/dekoriya-atelier'/f).read_bytes()).hexdigest()==h,f
 with zipfile.ZipFile(R/'wordpress/dekoriya-atelier-v9.zip') as z:
  assert z.read('dekoriya-atelier/site-core.js')==(R/'site-core.js').read_bytes()
- assert 'Version: 9.4.0' in z.read('dekoriya-atelier/style.css').decode()
-print(f'PASS canonical v9: 14 sections, {len(p.urls)} URLs, {len(p.buttons)} buttons, 15 photos, two scripts, theme and ZIP parity')
+ assert 'Version: 9.4.1' in z.read('dekoriya-atelier/style.css').decode()
+print(f'PASS canonical v9: 15 sections, {len(p.urls)} URLs, {len(p.buttons)} buttons, 15 photos, two scripts, theme and ZIP parity')

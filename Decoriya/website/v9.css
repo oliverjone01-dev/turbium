@@ -144,17 +144,15 @@ section{scroll-margin-top:100px}
 .lead-shell { max-width: 1190px; margin-inline: auto; display: grid; grid-template-columns: .9fr minmax(0,1fr); gap: clamp(28px,8vw,120px); align-items: start; }
 .lead-introduction h2 { color: inherit; font-size: clamp(38px,5.9vw,84px); line-height: .98; letter-spacing: -.052em; margin: 18px 0 26px; max-width: 570px; }
 .lead-introduction>p:not(.eyebrow) { max-width: 340px; line-height: 1.6; }
-.lead-telegram { color: inherit; text-underline-offset: 4px; display: inline-flex; gap: 8px; padding-block: 14px; }
-.lead-form[hidden],.lead-telegram[hidden] { display: none !important; }
+.lead-form[hidden] { display: none !important; }
 .lead-form { position: relative; border-radius: 9px; background: #f6f0e5; color: #57212f; padding: clamp(23px,4vw,49px); display: grid; gap: 15px; }
 .lead-form label { display: grid; gap: 7px; font-weight: 500; color: inherit; }
 .lead-form :is(input:not([type=checkbox]),textarea) { display: block; min-width: 0; width:100%; border: 1px solid #bda8aa; border-radius: 4px; padding: 10px 12px; font: inherit; color: inherit; background: #fffcf5; }
-.lead-form label.lead-consent { display:flex; gap:10px; align-items: start; font-size: 13px; font-weight: 400; }
+.lead-form label.lead-consent { display:flex; flex-direction:row; min-height:44px; gap:10px; align-items: start; font-size: 13px; font-weight: 400; }
 .lead-consent input { accent-color: #57212f; margin-top: 4px; }
 .lead-form .lead-trap { position: absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 .lead-form :is(input,textarea):focus-visible { outline: 2px solid #865064; outline-offset: 1px; }
 .lead-form .btn { margin: 3px 0 0; width:100%; }
-.lead-form #brief-status:empty { display:none; }
 .lead-success-photo { display:block; width:100%; height:auto; max-height:min(44vh,360px); object-fit:cover; border-radius:4px; margin-bottom: 22px; }
 #dialog-content:has(.lead-success-photo) .dialog-title { margin-block: 0 10px; }
 #dialog-content:has(.lead-success-photo) .dialog-copy { max-width: 520px; margin-bottom: 18px; }
@@ -162,7 +160,7 @@ section{scroll-margin-top:100px}
 
 /* Tactile interaction. Meaningful feedback stays visible without motion. */
 @media (hover:hover) and (pointer:fine) {
-  #hero .evening-actions a:hover, .evening-nav-links a:hover, .lead-telegram:hover { color:#eed0ba; text-decoration-thickness:2px; text-decoration-line:underline; }
+  #hero .evening-actions a:hover, .evening-nav-links a:hover { color:#eed0ba; text-decoration-thickness:2px; text-decoration-line:underline; }
   .v9-section :is(.btn,.v9-filters button,.v9-tabs button,.rail-controls button):hover { box-shadow: 0 8px 18px #33121c26,inset 0 0 0 1px currentColor; }
   .v9-gallery-card:hover .v9-gallery-image img,.v9-photo-link:hover img { transform: scale(1.085); }
   .v9-gallery-card:hover .v9-photo-arrow,.v9-photo-link:hover .v9-photo-arrow { color:#f6f0e5; background:#57212f; transform:rotate(-12deg) scale(1.12); }
@@ -185,6 +183,24 @@ section{scroll-margin-top:100px}
 /* Keep the entire wide Surf Coffee sign readable in the portrait rail. */
 .v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image { background: #241820; }
 .v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image img { object-fit: contain; transform: none; }
+
+.lead-quick { background:#57212f; color:#f6f0e5; }
+.lead-quick-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:clamp(28px,5vw,72px); align-items:center; max-width:1320px; margin:auto; }
+.lead-quick h2 { font-size:clamp(37px,5.1vw,75px); font-weight:400; line-height:1; letter-spacing:-.04em; margin:0 0 20px; }
+.lead-quick p { line-height:1.5; max-width:33ch; }
+.lead-quick-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+.lead-form input[type="tel"] { min-height:44px; }
+.lead-form [data-lead-status] { font-size:14px; margin:0; min-height:1.45em; }
+.lead-form [data-lead-status]:empty { min-height:0; }
+.lead-form label > span { font-size:.88em; font-weight:400; }
+.lead-unavailable { margin-top:20px; }
+@media(max-width:760px) {
+  .lead-quick-layout { grid-template-columns:1fr; }
+  .lead-quick-fields { grid-template-columns:1fr; }
+}
+.lead-form label > .lead-object-label { font-size:inherit; font-weight:500; }
+.lead-object-label small { font-weight:400; }
+.lead-consent input { flex:0 0 auto; }
 /* Wider compositions and edge signage stay intact as the cards respond. */
 .v9-gallery-card:is([data-gallery-id="i-18"],[data-gallery-id="i-86"]) .v9-gallery-image { background:#241820; }
 .v9-gallery-card:is([data-gallery-id="i-18"],[data-gallery-id="i-86"]) .v9-gallery-image img { object-fit:contain; transform:none; }

@@ -15,43 +15,72 @@ const params=new URL(location.href).searchParams,id=params.get('case')||params.g
 const chosen=Object.values(config.cases).find(x=>x.id===id)||config.gallery.find(x=>x.id===id);if(chosen)selected=reference(chosen);summary();
 $('#clear-context')?.addEventListener('click',()=>{fields.forEach(k=>setField(k,''));selected=null;const u=new URL(location.href);u.searchParams.delete('case');u.searchParams.delete('reference');history.replaceState(null,'',u);summary();form.elements.object.focus({preventScroll:true})});
 form?.addEventListener('change',summary);
-if(form){
-const endpoint=form.dataset.leadEndpoint;
-const status=$('#brief-status');
-const submit=$('[type=submit]',form);
-const fallback=$('.lead-telegram');
-let pending=false;
-if(endpoint){form.hidden=false;fallback.hidden=true;}
-form.addEventListener('input',()=>{if(!pending)status.textContent='';});
-form.addEventListener('submit',async event=>{
- event.preventDefault();
- if(!endpoint||pending||!form.reportValidity())return;
- const fd=new FormData(form), shortContact=String(fd.get('contact')).trim();
- if(!/[0-9]{10,}/.test(shortContact.replace(/[^0-9]/g,''))&&!/^@[a-z0-9_]{5,32}$/i.test(shortContact)){
-  status.textContent='Укажите номер телефона с кодом или имя в Telegram, например @username.';
-  form.elements.contact.focus();return;
- }
- const input=Object.fromEntries(fd);
- if(selected)input.example=selected.short;
- pending=true;submit.disabled=true;form.setAttribute('aria-busy','true');status.textContent='Отправляем заявку…';
- try{
-  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input),credentials:'omit',signal:AbortSignal.timeout(12000)});
-  const json=await response.json();
-  if(!response.ok||json.ok!==true)throw new Error('Not acknowledged');
-  status.textContent='';form.reset();selected=null;summary();
-  open('Спасибо за доверие!','Скоро наш мастер свяжется с вами, чтобы обсудить ваш объект и первые идеи оформления.');
-  const image=document.createElement('img');image.className='lead-success-photo';
-  image.src=new URL('assets/v92/thanks.webp',base).href;image.alt='';image.width=960;image.height=540;
-  content.prepend(image);
-  const done=button('Вернуться на сайт','lead-close','btn');
-  content.append(done);
- }catch{
-  status.textContent='Заявку не удалось подтвердить. Проверьте соединение или напишите нам в Telegram.';
-  fallback.hidden=false;
- }finally{
-  pending=false;submit.disabled=false;form.removeAttribute('aria-busy');
- }
-});
+const endpoint = form?.dataset.leadEndpoint;
+for (const lead of $$('form[data-lead-kind]')) {
+  const status = $('[data-lead-status]', lead);
+  const submit = $('[type=submit]', lead);
+  let pending = false;
+  if (endpoint) {
+    lead.hidden = false;
+    $('.lead-unavailable', lead.closest('section')).hidden = true;
+  }
+  lead.addEventListener('input', () => {
+    if (!pending) status.textContent = '';
+  });
+  lead.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!endpoint || pending || !lead.reportValidity()) return;
+    const input = Object.fromEntries(new FormData(lead));
+    input.name = input.name.trim();
+    input.contact = input.contact.trim();
+    const digits = input.contact.replace(/\D/g, '');
+    if (!input.name) {
+      status.textContent = 'Укажите, как к вам обращаться.';
+      lead.elements.name.focus();
+      return;
+    }
+    if (!/^\+?[\d ()-]+$/.test(input.contact) || digits.length < 10 || digits.length > 15) {
+      status.textContent = 'Укажите номер телефона с кодом, например +7 900 000-00-00.';
+      lead.elements.contact.focus();
+      return;
+    }
+    input.kind = lead.dataset.leadKind;
+    if (lead === form && selected) input.example = selected.short;
+    pending = true;
+    submit.disabled = true;
+    lead.setAttribute('aria-busy', 'true');
+    status.textContent = 'Отправляем заявку…';
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(input),
+        credentials: 'omit',
+        signal: AbortSignal.timeout(12000),
+      });
+      if (!response.ok || (await response.json()).ok !== true) throw new Error('Not acknowledged');
+      status.textContent = '';
+      lead.reset();
+      if (lead === form) { selected = null; summary(); }
+
+      open('Спасибо за доверие!', 'Скоро наш мастер свяжется с вами. Вместе обсудим, с чего начать оформление.');
+      returnFocus = submit;
+      const image = document.createElement('img');
+      image.className = 'lead-success-photo';
+      image.src = new URL('assets/v92/thanks.webp', base).href;
+      image.alt = '';
+      image.width = 960;
+      image.height = 540;
+      content.prepend(image);
+      content.append(button('Вернуться на сайт', 'lead-close', 'btn'));
+    } catch {
+      status.textContent = 'Пока не получили подтверждение. Поля сохранены. Проверьте соединение и повторите отправку.';
+    } finally {
+      pending = false;
+      submit.disabled = false;
+      lead.removeAttribute('aria-busy');
+    }
+  });
 }
 function button(text,action,cls='btn outline'){const b=document.createElement('button');b.type='button';b.className=cls;b.dataset.action=action;b.textContent=text;return b}
 function open(title,copy=''){if(!dialog)return;returnFocus=document.activeElement;content.replaceChildren();const h=document.createElement('h2');h.className='dialog-title';h.id='dialog-heading';h.textContent=title;h.tabIndex=-1;content.append(h);if(copy){const p=document.createElement('p');p.className='dialog-copy';p.textContent=copy;content.append(p)}dialog.showModal();h.focus({preventScroll:true});dialog.scrollTop=0}
@@ -70,6 +99,13 @@ if(el.dataset.case){e.preventDefault();choose(Object.values(config.cases).find(x
 if(fields.some(k=>el.dataset[k])){e.preventDefault();for(const k of fields)if(el.dataset[k])setField(k,el.dataset[k]);summary();contact();return}
 if(action==='lead-close'){dialog?.close();return}
 if(action==='contact'){e.preventDefault();contact();return}
+if (action === 'lead-quick') {
+ e.preventDefault();
+ const target = $('#lead-quick');
+ target?.querySelector('h2').focus({preventScroll:true});
+ target?.scrollIntoView({block:'start',behavior:reduce.matches?'instant':'smooth'});
+ return;
+}
 if(action==='gallery-open'){gallery(el.dataset.photo);return}
 if(action==='choose-reference'){choose(config.gallery.find(x=>x.id===el.dataset.photo));return}
 if(action==='photo-prev'||action==='photo-next'){photoIndex=(photoIndex+(action==='photo-next'?1:-1)+currentPhotos.length)%currentPhotos.length;renderPhoto();return}
