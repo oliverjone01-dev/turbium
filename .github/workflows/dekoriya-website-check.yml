@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Validate canonical v9, case pages and WordPress package
+      - name: Validate canonical v10, case pages and WordPress package
         run: |
           python3 tools/check-v81.py
           node --check v81.js
@@ -27,3 +27,5 @@ jobs:
           find wordpress/dekoriya-atelier -name "*.php" -print0 | xargs -0 -n1 php -l
           node --check site-core.js
           node --check v9-motion.js
+          node --check v10-lead.js
+          node --check v10.js
