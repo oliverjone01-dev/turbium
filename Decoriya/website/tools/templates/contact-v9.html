@@ -4,19 +4,19 @@
       <p class="eyebrow">ДЕКОРИЯ</p>
       <h2 id="lead-heading" tabindex="-1">Обсудим ваш объект</h2>
       <p>Расскажите, что хотите оформить. Мастер уточнит задачу и предложит, с чего начать.</p>
-      <a class="lead-telegram" href="https://t.me/decoria_leads_bot" target="_blank" rel="noopener">Открыть Telegram <span aria-hidden="true">↗</span></a>
+      <p class="lead-unavailable">Приём заявок временно недоступен.</p>
     </div>
     <img class="lead-illustration" src="./assets/v92/thanks.webp" alt="" width="960" height="540" loading="lazy" decoding="async">
-    <form id="brief-form" class="lead-form" method="post" data-lead-endpoint="" hidden>
+    <form id="brief-form" class="lead-form" method="post" data-lead-endpoint="" data-lead-kind="project" hidden>
       <div class="brief-summary" aria-live="polite" hidden><p id="chosen-zone" hidden></p><p id="chosen-date" hidden></p><p id="chosen-case" hidden></p><p id="chosen-business" hidden></p><p id="chosen-style" hidden></p><p id="chosen-format" hidden></p><p id="chosen-occasion" hidden></p><button id="clear-context" type="button" class="context-reset" hidden>Убрать выбранное</button></div>
       <input type="hidden" name="business"><input type="hidden" name="zone"><input type="hidden" name="occasion"><input type="hidden" name="style"><input type="hidden" name="format"><input type="hidden" name="date">
       <label>Ваше имя<input name="name" required maxlength="80" autocomplete="name"></label>
-      <label>Телефон или Telegram<input name="contact" required minlength="5" maxlength="150" autocomplete="tel" placeholder="+7 … или @username"></label>
-      <label>Что хотите оформить?<textarea name="object" rows="3" maxlength="1000" placeholder="Например, вход в кафе к Новому году"></textarea></label>
+      <label>Телефон<input name="contact" type="tel" required maxlength="32" autocomplete="tel" placeholder="+7"></label>
+      <label><span class="lead-object-label">Что хотите оформить? <small>(по желанию)</small></span><textarea name="object" rows="3" maxlength="1000" placeholder="Например, вход в кафе к Новому году"></textarea></label>
       <div class="lead-trap" aria-hidden="true"><label>Оставьте поле пустым<input name="website" tabindex="-1" autocomplete="off"></label></div>
       <label class="lead-consent"><input type="checkbox" name="consent" required><span>Согласен на обработку данных для ответа на заявку.</span></label>
       <button class="btn" type="submit">Отправить заявку <span aria-hidden="true">↗</span></button>
-      <p id="brief-status" role="status" aria-live="polite"></p>
+      <p data-lead-status role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>

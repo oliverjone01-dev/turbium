@@ -18,7 +18,9 @@ export default {
     const clean=(key,length)=> typeof lead[key]==='string'?lead[key].trim().slice(0,length):'';
     const name=clean('name',80), contact=clean('contact',150);
     if(!name||(!/^@[a-z0-9_]{5,32}$/i.test(contact)&&!/[0-9]{10,}/.test(contact.replace(/[^0-9]/g,''))))return reply(422,false);
-    const pairs=[['Имя',name],['Телефон / Telegram',contact],['Что оформить',clean('object',1000)],['Выбранный пример',clean('example',170)],['Тип объекта',clean('business',170)],['Зона',clean('zone',170)]];
+    const kinds = new Map([['callback', 'Перезвонить'], ['project', 'Обсудить объект']]);
+    const kind = kinds.get(clean('kind',20)) || '';
+    const pairs=[['Форма',kind],['Имя',name],['Телефон / Telegram',contact],['Что оформить',clean('object',1000)],['Выбранный пример',clean('example',170)],['Тип объекта',clean('business',170)],['Зона',clean('zone',170)]];
     const text=['ДЕКОРИЯ · новая заявка',...pairs.filter(([,value])=>value).map(([label,value])=>label+': '+value)].join('\n');
     try {
       const telegram=await fetch('https://api.telegram.org/bot'+env.TELEGRAM_BOT_TOKEN+'/sendMessage',{

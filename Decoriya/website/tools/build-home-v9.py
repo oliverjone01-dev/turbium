@@ -3,7 +3,7 @@ from pathlib import Path
 from html import escape as e
 import json,re,hashlib,os
 from urllib.parse import urlsplit
-R=Path(__file__).resolve().parents[1];T=R/'tools/templates';V='9.4.2'
+R=Path(__file__).resolve().parents[1];T=R/'tools/templates';V='9.4.3'
 data=json.loads((T/'site-data-v9.json').read_text())
 def read(name):return (T/(name+'-v9.html')).read_text()
 def btn(text,attrs='data-action="contact"',outline=False):return f'<button type="button" class="btn'+(' outline' if outline else '')+f'" {attrs}>{text}<span aria-hidden="true">↗</span></button>'
@@ -48,6 +48,7 @@ partners=sec('partners','<div class="v9-editorial"><div class="v9-material-photo
 guide=sec('guide','<div class="v9-guide"><div><p class="v9-kicker">ПЕРЕД ПЕРВЫМ РАЗГОВОРОМ</p><h2>Покажите пространство.<br>Остальное обсудим.</h2><p>Пара фотографий, примерные размеры и желаемая дата помогут начать. Если чего-то пока нет, это можно уточнить позже.</p></div><div class="v9-guide-actions">'+btn('Открыть памятку','data-action="guide"',True)+btn('Обсудить объект')+'</div></div>','v9-paper')
 faq_items=[('Можно заказать декор по своему проекту?','Да. Пришлите эскиз или техническое задание. Команда обсудит с вами материалы, крепления и условия монтажа.'),('Как рассчитывают стоимость оформления?','Расчёт зависит от размеров зоны, материалов, доставки и монтажа. Пришлите фото и примерные размеры. Если бюджет уже определён, укажите его.'),('Когда обсуждать дату монтажа?','Укажите желаемую дату уже в первом сообщении. Возможность монтажа зависит от объёма работ, наличия материалов и доступа на объект. Сам выбор даты её не бронирует.'),('Можно заказать оформление не к Новому году?','Да. Студия также оформляет коммерческие пространства живой и декоративной флористикой. Покажите объект и расскажите, к какому событию готовитесь.')]
 faq=sec('questions','<div class="v9-heading"><div><h2>Вопросы<br>о декоре</h2></div><div class="v9-faq">'+''.join(f'<details><summary>{q}<span aria-hidden="true">+</span></summary><div><p>{a}</p></div></details>' for q,a in faq_items)+'</div></div>')
+quick=read('lead-quick')
 contact=read('contact')
 endpoint=os.environ.get('DEKORIYA_LEAD_ENDPOINT','').strip()
 if endpoint:
@@ -61,12 +62,12 @@ head=re.sub(r'<script[^>]+src=[^>]+></script>','',head)
 head=re.sub(r'<link rel="stylesheet"[^>]+>','',head)
 head=re.sub(r'\sdata-motion="[^"]+"','',head)
 head=re.sub(r'data-version="[^"]+"','data-version="9.0"',head)
-head=re.sub(r'data-build="[^"]+"','data-build="9.4.2" data-motion="v9"',head)
+head=re.sub(r'data-build="[^"]+"','data-build="9.4.3" data-motion="v9"',head)
 styles=['v81.css','v81-site.css','motion.css','v9.css'];scripts=['site-core.js','v9-motion.js']
 def stamp(name):return hashlib.sha256((R/name).read_bytes()).hexdigest()[:10]
 head+=''.join(f'<link rel="stylesheet" href="./{n}?v={V}-{stamp(n)}">' for n in styles)
 head+=''.join(f'<script src="./{n}?v={V}-{stamp(n)}" defer></script>' for n in scripts)
-html=head+'</head><body><a class="skip-link" href="#business">Перейти к содержанию</a><main>'+''.join([hero,business,projects,services,gallery,palette,olesya,process,conditions,budget,partners,guide,faq,contact])+'</main>'+footer+'<dialog id="content-dialog" aria-labelledby="dialog-heading"><button type="button" class="close" aria-label="Закрыть окно">Закрыть ×</button><div id="dialog-content"></div></dialog><script type="application/json" id="site-data">'+json.dumps(data,ensure_ascii=False)+'</script><div class="reading-progress" aria-hidden="true"></div></body></html>'
+html=head+'</head><body><a class="skip-link" href="#business">Перейти к содержанию</a><main>'+''.join([hero,business,projects,quick,services,gallery,palette,olesya,process,conditions,budget,partners,guide,faq,contact])+'</main>'+footer+'<dialog id="content-dialog" aria-labelledby="dialog-heading"><button type="button" class="close" aria-label="Закрыть окно">Закрыть ×</button><div id="dialog-content"></div></dialog><script type="application/json" id="site-data">'+json.dumps(data,ensure_ascii=False)+'</script><div class="reading-progress" aria-hidden="true"></div></body></html>'
 for group,panel,attribute in [('business','v9-business-panel','data-business-view'),('concept','v9-concept-panel','data-v9-view'),('process','v9-process-panel','data-v9-step')]:
  for i in range(4 if group!='concept' else 3):
   html=html.replace(f'{attribute}="{i}"',f'id="v9-{group}-tab-{i}" {attribute}="{i}"')
@@ -74,4 +75,4 @@ for group,panel,attribute in [('business','v9-business-panel','data-business-vie
 (R/'index.html').write_text(html)
 # Preserve deep links from the retired prototype; only one public homepage remains.
 (R/'v9/index.html').write_text('''<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Декория</title><link rel="canonical" href="https://oliverjone01-dev.github.io/turbium/Decoriya/website/"><script>location.replace('../'+location.search+location.hash)</script></head><body><a href="../">Перейти на главную Декории</a></body></html>''')
-print('Built canonical v9:',len(html.encode()),'bytes; 14 sections; preview redirects')
+print('Built canonical v9:',len(html.encode()),'bytes; 15 sections; preview redirects')
