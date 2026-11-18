@@ -24,7 +24,7 @@ for url in p.urls:
  if not u.path:
   if u.fragment:assert u.fragment in p.ids,url
  else:assert (R/u.path).exists(),url
-assert 'data-build="9.4.0"' in html and 'data-motion="v9"' in html
+assert 'data-build="9.4.2"' in html and 'data-motion="v9"' in html
 assert 'noindex' not in html and 'rel="canonical"' in html
 assert len(re.findall(r'<section\b',html))==14
 assert 'data-action="contact"' in re.search(r'<section[^>]+id="hero".*?</section>',html,re.S)[0]
@@ -50,5 +50,5 @@ manifest=json.loads((R/'wordpress/dekoriya-atelier/asset-manifest.json').read_te
 for f,h in manifest.items():assert hashlib.sha256((R/'wordpress/dekoriya-atelier'/f).read_bytes()).hexdigest()==h,f
 with zipfile.ZipFile(R/'wordpress/dekoriya-atelier-v9.zip') as z:
  assert z.read('dekoriya-atelier/site-core.js')==(R/'site-core.js').read_bytes()
- assert 'Version: 9.4.0' in z.read('dekoriya-atelier/style.css').decode()
+ assert 'Version: 9.4.2' in z.read('dekoriya-atelier/style.css').decode()
 print(f'PASS canonical v9: 14 sections, {len(p.urls)} URLs, {len(p.buttons)} buttons, 15 photos, two scripts, theme and ZIP parity')
