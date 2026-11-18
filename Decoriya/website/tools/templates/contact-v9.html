@@ -1,22 +1,19 @@
-<section id="contact" class="fig-section contact lead-contact" aria-labelledby="lead-heading">
+<section id="contact" class="lead-contact v10-contact" aria-labelledby="lead-heading">
   <div class="lead-shell">
     <div class="lead-introduction">
-      <p class="eyebrow">ДЕКОРИЯ</p>
       <h2 id="lead-heading" tabindex="-1">Обсудим ваш объект</h2>
-      <p>Расскажите, что хотите оформить. Мастер уточнит задачу и предложит, с чего начать.</p>
-      <a class="lead-telegram" href="https://t.me/decoria_leads_bot" target="_blank" rel="noopener">Открыть Telegram <span aria-hidden="true">↗</span></a>
+      <p>Расскажите, что хотите оформить. Уточним задачу и предложим, с чего начать.</p>
     </div>
-    <img class="lead-illustration" src="./assets/v92/thanks.webp" alt="" width="960" height="540" loading="lazy" decoding="async">
-    <form id="brief-form" class="lead-form" method="post" data-lead-endpoint="" hidden>
-      <div class="brief-summary" aria-live="polite" hidden><p id="chosen-zone" hidden></p><p id="chosen-date" hidden></p><p id="chosen-case" hidden></p><p id="chosen-business" hidden></p><p id="chosen-style" hidden></p><p id="chosen-format" hidden></p><p id="chosen-occasion" hidden></p><button id="clear-context" type="button" class="context-reset" hidden>Убрать выбранное</button></div>
+    <form id="brief-form" class="lead-form" method="post" novalidate data-lead-form="project">
+      <div class="brief-summary" aria-live="polite"><p>Ориентир для проекта</p><p id="chosen-zone" hidden></p><p id="chosen-date" hidden></p><p id="chosen-case" hidden></p><p id="chosen-business" hidden></p><p id="chosen-style" hidden></p><p id="chosen-format" hidden></p><p id="chosen-occasion" hidden></p><button id="clear-context" type="button" class="context-reset" hidden>Убрать выбранное</button></div>
       <input type="hidden" name="business"><input type="hidden" name="zone"><input type="hidden" name="occasion"><input type="hidden" name="style"><input type="hidden" name="format"><input type="hidden" name="date">
-      <label>Ваше имя<input name="name" required maxlength="80" autocomplete="name"></label>
-      <label>Телефон или Telegram<input name="contact" required minlength="5" maxlength="150" autocomplete="tel" placeholder="+7 … или @username"></label>
-      <label>Что хотите оформить?<textarea name="object" rows="3" maxlength="1000" placeholder="Например, вход в кафе к Новому году"></textarea></label>
-      <div class="lead-trap" aria-hidden="true"><label>Оставьте поле пустым<input name="website" tabindex="-1" autocomplete="off"></label></div>
-      <label class="lead-consent"><input type="checkbox" name="consent" required><span>Согласен на обработку данных для ответа на заявку.</span></label>
-      <button class="btn" type="submit">Отправить заявку <span aria-hidden="true">↗</span></button>
-      <p id="brief-status" role="status" aria-live="polite"></p>
+      <label>Ваше имя <input name="name" maxlength="80" autocomplete="name" placeholder="Как к вам обращаться"></label>
+      <label>Телефон * <input name="phone" required type="tel" maxlength="26" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="brief-phone-error"><small id="brief-phone-error" data-error="phone" hidden></small></label>
+      <label>Что хотите оформить? (по желанию)<textarea name="object" rows="3" maxlength="1000" placeholder="Например, вход в кафе к Новому году"></textarea></label>
+      {{CONSENT_PROJECT}}
+      <button class="btn lead-send" type="submit" disabled>Отправить заявку <span aria-hidden="true">↗</span></button>
+      {{LEAD_AVAILABILITY}}
+      <p id="brief-status" data-lead-status role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>

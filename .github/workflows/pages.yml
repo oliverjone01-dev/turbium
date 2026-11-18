@@ -32,8 +32,14 @@ jobs:
           curl --fail -o /dev/null http://127.0.0.1:8080/assets/country-team-900.webp
           test "$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:8080/.env)" = "404"
       - name: Build site
+        env:
+          DEKORIYA_LEAD_ENDPOINT: ${{ vars.DEKORIYA_LEAD_ENDPOINT }}
+          DEKORIYA_POLICY_URL: ${{ vars.DEKORIYA_POLICY_URL }}
+          DEKORIYA_CONSENT_URL: ${{ vars.DEKORIYA_CONSENT_URL }}
+          DEKORIYA_CONSENT_VERSION: ${{ vars.DEKORIYA_CONSENT_VERSION }}
         run: |
           python3 Decoriya/website/tools/package-wordpress.py
+          python3 Decoriya/website/tools/build-home-v9.py
           mkdir -p _site
           # public marketing site at root
           cp -r www/* _site/

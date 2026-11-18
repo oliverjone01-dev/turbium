@@ -15,3 +15,7 @@ wordpress/dekoriya-atelier/screenshot.png
 __pycache__/
 .DS_Store
 wordpress/dekoriya-atelier/spatial.css
+wordpress/dekoriya-atelier/v10*.js
+wordpress/dekoriya-atelier/v10.css
+wordpress/dekoriya-atelier/privacy/
+wordpress/dekoriya-atelier/consent/

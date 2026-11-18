@@ -5,7 +5,7 @@ const config=JSON.parse($('#site-data')?.textContent||'{"cases":{},"gallery":[]}
 let selected=null,returnFocus=null,currentPhotos=[],photoIndex=0,filter='all';
 const fields=['business','zone','style','format','occasion','date'],key='dekoriya-brief-context-v1';
 function save(){if(!form)return;try{sessionStorage.setItem(key,JSON.stringify({...Object.fromEntries(fields.map(k=>[k,form.elements[k].value])),selected:selected?.id||''}))}catch{}}
-function summary(){if(!form)return;const labels={business:'Тип бизнеса',zone:'Зона',style:'Стиль',format:'Формат',occasion:'Повод',date:'Желаемая дата',case:'Выбранный пример'};let any=false;for(const [k,label]of Object.entries(labels)){const value=k==='case'?selected?.short||'':form.elements[k].value,n=$('#chosen-'+k);if(n){n.hidden=!value;n.textContent=label+': '+value}any=any||!!value}$('.brief-summary').hidden=!any;$('#clear-context').hidden=!any;if($('#chosen-case'))$('#chosen-case').dataset.caseId=selected?.id||'';save()}
+function summary(){if(!form)return;const labels={business:'Тип бизнеса',zone:'Зона',style:'Стиль',format:'Формат',occasion:'Повод',date:'Желаемая дата',case:'Выбранный пример'};let any=false;for(const [k,label]of Object.entries(labels)){const value=k==='case'?selected?.short||'':form.elements[k].value,n=$('#chosen-'+k);if(n){n.hidden=!value;n.textContent=label+': '+value}any=any||!!value}if($('.brief-summary'))$('.brief-summary').hidden=!any;$('#clear-context').hidden=!any;if($('#chosen-case'))$('#chosen-case').dataset.caseId=selected?.id||'';save()}
 function setField(k,v){if(!form)return;if(k==='zone'&&form.elements.zone.value!==v)form.elements.format.value='';form.elements[k].value=v}
 function reference(item){return{id:item.id,short:item.short||item.title,url:item.category?new URL('?reference='+item.id+'#'+(item.category==='concept'?'palette':'gallery'),home).href:(document.documentElement.dataset.homeUrl?new URL('?dk_project='+item.id,home):new URL('projects/'+item.id+'/',home)).href}}
 function contact(){const target=$('#contact');if(!target)return;if(form)summary();returnFocus=null;target.querySelector('h2')?.focus({preventScroll:true});target.scrollIntoView({block:'start',behavior:reduce.matches?'instant':'smooth'})}
@@ -15,44 +15,15 @@ const params=new URL(location.href).searchParams,id=params.get('case')||params.g
 const chosen=Object.values(config.cases).find(x=>x.id===id)||config.gallery.find(x=>x.id===id);if(chosen)selected=reference(chosen);summary();
 $('#clear-context')?.addEventListener('click',()=>{fields.forEach(k=>setField(k,''));selected=null;const u=new URL(location.href);u.searchParams.delete('case');u.searchParams.delete('reference');history.replaceState(null,'',u);summary();form.elements.object.focus({preventScroll:true})});
 form?.addEventListener('change',summary);
-if(form){
-const endpoint=form.dataset.leadEndpoint;
-const status=$('#brief-status');
-const submit=$('[type=submit]',form);
-const fallback=$('.lead-telegram');
-let pending=false;
-if(endpoint){form.hidden=false;fallback.hidden=true;}
-form.addEventListener('input',()=>{if(!pending)status.textContent='';});
-form.addEventListener('submit',async event=>{
- event.preventDefault();
- if(!endpoint||pending||!form.reportValidity())return;
- const fd=new FormData(form), shortContact=String(fd.get('contact')).trim();
- if(!/[0-9]{10,}/.test(shortContact.replace(/[^0-9]/g,''))&&!/^@[a-z0-9_]{5,32}$/i.test(shortContact)){
-  status.textContent='Укажите номер телефона с кодом или имя в Telegram, например @username.';
-  form.elements.contact.focus();return;
- }
- const input=Object.fromEntries(fd);
- if(selected)input.example=selected.short;
- pending=true;submit.disabled=true;form.setAttribute('aria-busy','true');status.textContent='Отправляем заявку…';
- try{
-  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input),credentials:'omit',signal:AbortSignal.timeout(12000)});
-  const json=await response.json();
-  if(!response.ok||json.ok!==true)throw new Error('Not acknowledged');
-  status.textContent='';form.reset();selected=null;summary();
-  open('Спасибо за доверие!','Скоро наш мастер свяжется с вами, чтобы обсудить ваш объект и первые идеи оформления.');
-  const image=document.createElement('img');image.className='lead-success-photo';
-  image.src=new URL('assets/v92/thanks.webp',base).href;image.alt='';image.width=960;image.height=540;
-  content.prepend(image);
-  const done=button('Вернуться на сайт','lead-close','btn');
-  content.append(done);
- }catch{
-  status.textContent='Заявку не удалось подтвердить. Проверьте соединение или напишите нам в Telegram.';
-  fallback.hidden=false;
- }finally{
-  pending=false;submit.disabled=false;form.removeAttribute('aria-busy');
- }
+document.addEventListener('dekoriya:project-received', () => {
+  selected=null;
+  fields.forEach(k=>setField(k,''));
+  const u=new URL(location.href);
+  u.searchParams.delete('case');
+  u.searchParams.delete('reference');
+  history.replaceState(null,'',u);
+  summary();
 });
-}
 function button(text,action,cls='btn outline'){const b=document.createElement('button');b.type='button';b.className=cls;b.dataset.action=action;b.textContent=text;return b}
 function open(title,copy=''){if(!dialog)return;returnFocus=document.activeElement;content.replaceChildren();const h=document.createElement('h2');h.className='dialog-title';h.id='dialog-heading';h.textContent=title;h.tabIndex=-1;content.append(h);if(copy){const p=document.createElement('p');p.className='dialog-copy';p.textContent=copy;content.append(p)}dialog.showModal();h.focus({preventScroll:true});dialog.scrollTop=0}
 dialog?.querySelector('.close').addEventListener('click',()=>dialog.close());
@@ -78,7 +49,7 @@ if(el.dataset.filter){filterPhotos(el.dataset.filter);return}
 if(el.dataset.railDir){const rail=el.closest('section').querySelector('[data-rail]');rail.scrollBy({left:Number(el.dataset.railDir)*rail.clientWidth*.82,behavior:reduce.matches?'instant':'smooth'});return}
 if(action==='guide'){open('Что подготовить перед оформлением',guide.map((x,i)=>(i+1)+'. '+x).join('\n'));content.append(button('Обсудить объект','dialog-contact','btn'));return}
 if(action==='dialog-contact'){dialog.close();contact();return}
-if(text==='Меню'||/menu/i.test(el.dataset.name||'')){open('Декория');for(const[id,label]of [['projects','Работы'],['palette','Идеи'],['services','Что оформляем'],['olesya','Олеся'],['contact','Обсудить объект']]){const a=document.createElement('a');a.href='#'+id;a.className='btn outline';a.textContent=label;a.addEventListener('click',()=>dialog.close());content.append(a)}return}
+if(text==='Меню'||/menu/i.test(el.dataset.name||'')){open('Декория');for(const[id,label]of [['projects','Работы'],['services','Что оформляем'],['palette','Стили'],['olesya','Олеся'],['quiz','Подобрать оформление'],['contact','Обсудить объект'],['tel:+79772666460','+7 (977) 266-64-60'],['https://t.me/+79772666460','Написать в Telegram']]){const a=document.createElement('a');a.href=id.includes(':')?id:'#'+id;a.className='btn outline';a.textContent=label;a.addEventListener('click',()=>dialog.close());content.append(a)}return}
 });
 const scale=()=>{const w=document.documentElement.clientWidth;document.documentElement.style.setProperty('--desktop-scale',w/1440);document.documentElement.style.setProperty('--mobile-scale',Math.min(w,640)/390)};scale();addEventListener('resize',scale,{passive:true});
 const progress=$('.reading-progress');let scheduled=false;
