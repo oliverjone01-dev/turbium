@@ -181,3 +181,7 @@ section{scroll-margin-top:100px}
 .lead-illustration { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; border-radius:8px; }
 .lead-shell:has(.lead-form:not([hidden])) .lead-illustration { display:none; }
 #dialog-content:has(.lead-success-photo) .dialog-title:focus { outline:none; }
+
+/* Keep the entire wide Surf Coffee sign readable in the portrait rail. */
+.v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image { background: #241820; }
+.v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image img { object-fit: contain; transform: none; }

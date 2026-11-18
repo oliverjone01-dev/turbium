@@ -24,7 +24,7 @@ for url in p.urls:
  if not u.path:
   if u.fragment:assert u.fragment in p.ids,url
  else:assert (R/u.path).exists(),url
-assert 'data-build="9.2.0"' in html and 'data-motion="v9"' in html
+assert 'data-build="9.3.0"' in html and 'data-motion="v9"' in html
 assert 'noindex' not in html and 'rel="canonical"' in html
 assert len(re.findall(r'<section\b',html))==14
 assert 'data-action="contact"' in re.search(r'<section[^>]+id="hero".*?</section>',html,re.S)[0]
@@ -42,7 +42,7 @@ for x in data['gallery']:
 assert html.count('data-hero-view=')==2 and 'id="hero-evening"' in html
 assert 'assets/v9/portfolio/' not in html and 'assets/v9/portfolio/' not in (R/'v9-motion.js').read_text()
 for page in (R/'projects').glob('*/index.html'):
- assert 'assets/v92/portfolio/' in page.read_text(),page
+ assert 'assets/v93/portfolio/' in page.read_text(),page
 preview=(R/'v9/index.html').read_text();assert 'location.replace' in preview and 'noindex' in preview
 for f in ['v81.css','v81-site.css','motion.css','v9.css','site-core.js','v9-motion.js']:
  assert (R/f).read_bytes()==(R/'wordpress/dekoriya-atelier'/f).read_bytes(),f+' theme drift'
@@ -50,5 +50,5 @@ manifest=json.loads((R/'wordpress/dekoriya-atelier/asset-manifest.json').read_te
 for f,h in manifest.items():assert hashlib.sha256((R/'wordpress/dekoriya-atelier'/f).read_bytes()).hexdigest()==h,f
 with zipfile.ZipFile(R/'wordpress/dekoriya-atelier-v9.zip') as z:
  assert z.read('dekoriya-atelier/site-core.js')==(R/'site-core.js').read_bytes()
- assert 'Version: 9.2.0' in z.read('dekoriya-atelier/style.css').decode()
+ assert 'Version: 9.3.0' in z.read('dekoriya-atelier/style.css').decode()
 print(f'PASS canonical v9: 14 sections, {len(p.urls)} URLs, {len(p.buttons)} buttons, 15 photos, two scripts, theme and ZIP parity')
