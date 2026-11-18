@@ -206,3 +206,14 @@ section{scroll-margin-top:100px}
 .v9-gallery-card:is([data-gallery-id="i-18"],[data-gallery-id="i-86"]) .v9-gallery-image img { object-fit:contain; transform:none; }
 .v9-gallery-card[data-gallery-id="i-77"]:hover .v9-gallery-image img,
 .v9-photo-link[href="./projects/britva/"]:hover img { transform:none; }
+
+/* Override the legacy two-column form and full-width input rules. */
+.lead-form, #brief-form.lead-form {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 15px;
+}
+.lead-form .lead-consent input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  padding: 0;
+}
