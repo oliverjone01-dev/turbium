@@ -185,3 +185,8 @@ section{scroll-margin-top:100px}
 /* Keep the entire wide Surf Coffee sign readable in the portrait rail. */
 .v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image { background: #241820; }
 .v9-gallery-card[data-gallery-id="i-37"] .v9-gallery-image img { object-fit: contain; transform: none; }
+/* Wider compositions and edge signage stay intact as the cards respond. */
+.v9-gallery-card:is([data-gallery-id="i-18"],[data-gallery-id="i-86"]) .v9-gallery-image { background:#241820; }
+.v9-gallery-card:is([data-gallery-id="i-18"],[data-gallery-id="i-86"]) .v9-gallery-image img { object-fit:contain; transform:none; }
+.v9-gallery-card[data-gallery-id="i-77"]:hover .v9-gallery-image img,
+.v9-photo-link[href="./projects/britva/"]:hover img { transform:none; }
