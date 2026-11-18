@@ -30,7 +30,7 @@ const STEPS = [
   { q:"Покажите ваш объект", hint:"Необязательно, но так эскиз получится точнее", type:"upload", optional:true,
     extra:"Пришлю позже",
     tip:"Фото фасада днём и примерная ширина двери — этого хватит для эскиза." },
-  { q:"Как с вами связаться?", hint:"Олеся посмотрит ответы и свяжется с вами", type:"contacts",
+  { q:"Как с вами связаться?", hint:"Оставьте телефон, чтобы обсудить ваш объект и эскиз.", type:"contacts",
     tip:"Укажите телефон, по которому удобно обсудить ваш объект." }
 ];
 const PCT = [0,20,40,60,80,90];
@@ -225,11 +225,21 @@ function renderFiles(pane) {
 }
 /* ---------- step transition ---------- */
 const stage = $("#stage");
+const quizCard = $("#quiz .card");
+const guidance = $("#quiz .aside");
+const compactGuidance = matchMedia("(max-width:820px)");
+function layoutGuidance() {
+  const pane = stage.firstElementChild;
+  const nav = pane?.querySelector(".nav");
+  if (compactGuidance.matches && nav) pane.insertBefore(guidance, nav);
+  else if (guidance.parentElement !== quizCard) quizCard.append(guidance);
+}
+compactGuidance.addEventListener("change", layoutGuidance);
 async function go(k, back){
   if (busy) return; busy = true;
   const old = stage.firstElementChild; const h0 = stage.offsetHeight;
   if (old && !calm()){ old.classList.add("out"); if (back) old.classList.add("back"); await wait(200); }
-  stage.innerHTML = paneHTML(k); const pane = stage.firstElementChild; bind(pane, k);
+  stage.innerHTML = paneHTML(k); const pane = stage.firstElementChild; layoutGuidance(); bind(pane, k);
   pane.querySelector("h3").focus({preventScroll:true});
   if (!calm()){ pane.classList.add("in"); if (back) pane.classList.add("back"); }
   const h1 = pane.offsetHeight;
@@ -279,6 +289,7 @@ async function submit(pane, form){
       await wait(700);
     }
     stage.innerHTML = `<div class="pane done-pane"><h3 tabindex="-1">Спасибо! Заявка получена.</h3><p>Свяжемся по указанному телефону, чтобы обсудить ваш объект и эскиз.</p><button type="button" class="btn" id="again">Пройти ещё раз ${arrow}</button></div>`;
+    layoutGuidance();
     stage.querySelector("h3").focus({preventScroll:true});
     photos = [];
     contactDraft = {name:"",phone:"",context:"",consent:false};
@@ -381,7 +392,7 @@ onScroll();
 /* ---------- start ---------- */
 lastMode = g.parentElement.clientWidth < 620;
 buildGarland();
-stage.innerHTML = paneHTML(0); bind(stage.firstElementChild, 0);
+stage.innerHTML = paneHTML(0); layoutGuidance(); bind(stage.firstElementChild, 0);
 $("#tip").innerHTML = `<p>${STEPS[0].tip}</p>`;
 paintGarland(0, false);
 const styleButtons = [...document.querySelectorAll("[data-style-pick]")];
