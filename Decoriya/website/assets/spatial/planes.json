@@ -1,0 +1,20 @@
+{
+  "entrance": [
+    "entrance-surface.svg",
+    "entrance-structure.svg",
+    "entrance-decor.svg",
+    "entrance-light.svg"
+  ],
+  "window": [
+    "window-surface.svg",
+    "window-structure.svg",
+    "window-decor.svg",
+    "window-light.svg"
+  ],
+  "interior": [
+    "interior-surface.svg",
+    "interior-structure.svg",
+    "interior-decor.svg",
+    "interior-light.svg"
+  ]
+}

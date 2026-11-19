@@ -1,0 +1,347 @@
+/* Quiz and season, adapted from the v10 handoff. */
+#quiz,#season {
+  --ivory:#f6f0e5;--white:#fffcf7;--ink:#281c20;--muted:#6d5a60;--line:#d4c6bd;
+  --rose:#e8d9d3;--burg:#57212f;--dark:#32131d;--gold:#e3b261;--error:#a73434;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  padding-inline:max(24px,env(safe-area-inset-left));
+  scroll-margin-top:96px;
+}
+#quiz{background:var(--ivory);color:var(--ink)}
+:where(#quiz,#season) .wrap{max-width:1312px;margin:0 auto}
+:where(#quiz,#season) .band{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+:where(#quiz,#season) .eyebrow{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--burg);margin:0}
+:where(#quiz,#season) h2{font-weight:400;font-size:clamp(34px,4.2vw,54px);line-height:1.08;letter-spacing:-.01em;margin:16px 0 0;text-wrap:balance}
+:where(#quiz,#season) .sub{color:var(--muted);max-width:660px;margin:16px 0 0}
+#quiz{padding-block:80px 96px}
+:where(#quiz,#season) .card{display:grid;grid-template-columns:minmax(0,1fr) 380px;margin-top:40px;background:var(--white);border:1px solid var(--line)}
+:where(#quiz,#season) .main{padding:48px;min-width:0;display:flex;flex-direction:column;gap:32px}
+:where(#quiz,#season) .counter{display:flex;justify-content:space-between;font-size:13px;font-weight:500;color:var(--muted)}
+:where(#quiz,#season) .counter .pct{color:var(--burg);font-variant-numeric:tabular-nums}
+:where(#quiz,#season) .garland{display:block;width:100%;height:auto;overflow:visible;margin-top:10px}
+:where(#quiz,#season) .garland .rail{stroke:var(--line);stroke-width:1}
+:where(#quiz,#season) .garland .rail-fill{stroke:var(--gold);stroke-width:2;transform-box:view-box;transform-origin:0 0;transition:transform .6s ease-in-out}
+:where(#quiz,#season) .b .thread,:where(#quiz,#season) .b .cap{transition:fill .4s, stroke .4s}
+:where(#quiz,#season) .b .thread{stroke:var(--line);stroke-width:1}
+:where(#quiz,#season) .b .cap{fill:var(--line)}
+:where(#quiz,#season) .b .sphere{fill:var(--white);stroke:var(--line);stroke-width:1.25;transition:fill .4s var(--ease), stroke .4s}
+:where(#quiz,#season) .b .glow{fill:var(--gold);opacity:0;transition:opacity .4s}
+:where(#quiz,#season) .b .hl{fill:var(--ivory);opacity:0;transition:opacity .4s}
+:where(#quiz,#season) .b .halo{fill:none;stroke:var(--burg);stroke-width:1;opacity:0;transform-box:fill-box;transform-origin:center}
+:where(#quiz,#season) .b.done .thread{stroke:var(--gold)}
+:where(#quiz,#season) .b.done .cap{fill:var(--gold)}
+:where(#quiz,#season) .b.done .sphere{fill:var(--gold);stroke:var(--gold)}
+:where(#quiz,#season) .b.done .glow{opacity:.55}
+:where(#quiz,#season) .b.done .hl{opacity:.75}
+:where(#quiz,#season) .b.current .thread{stroke:var(--gold)}
+:where(#quiz,#season) .b.current .cap{fill:var(--gold)}
+:where(#quiz,#season) .b.current .sphere{fill:var(--burg);stroke:var(--burg)}
+:where(#quiz,#season) .b.current .hl{opacity:.7}
+:where(#quiz,#season) .b.current .halo{animation:halo 2.4s ease-out infinite}
+:where(#quiz,#season) .swing{transform-box:view-box}
+:where(#quiz,#season) .swing.go{animation:swing .9s var(--ease)}
+:where(#quiz,#season) .b:hover .swing{animation:swing-soft .6s ease-in-out}
+@keyframes halo{0%{opacity:.45;transform:scale(1)}100%{opacity:0;transform:scale(1.35)}}
+@keyframes swing{0%{transform:rotate(0)}25%{transform:rotate(-8deg)}55%{transform:rotate(6deg)}80%{transform:rotate(-3deg)}100%{transform:rotate(0)}}
+@keyframes swing-soft{0%,100%{transform:rotate(0)}35%{transform:rotate(-3deg)}70%{transform:rotate(3deg)}}
+:where(#quiz,#season) .flash .b .glow{animation:flash .7s ease-out both}
+@keyframes flash{0%{opacity:.55}40%{opacity:1}100%{opacity:.55}}
+:where(#quiz,#season) .stage{position:relative;transition:height .3s var(--ease)}
+:where(#quiz,#season) .pane{display:flex;flex-direction:column;gap:28px}
+:where(#quiz,#season) .pane.out{animation:out .2s ease-in forwards}
+:where(#quiz,#season) .pane.in{animation:in .28s var(--ease) both}
+:where(#quiz,#season) .pane.out.back{animation-name:out-back}
+:where(#quiz,#season) .pane.in.back{animation-name:in-back}
+@keyframes out{to{opacity:0;transform:translateX(-24px)}}
+@keyframes in{from{opacity:0;transform:translateX(24px)}}
+@keyframes out-back{to{opacity:0;transform:translateX(24px)}}
+@keyframes in-back{from{opacity:0;transform:translateX(-24px)}}
+:where(#quiz,#season) .q h3{font-weight:400;font-size:clamp(24px,2.4vw,32px);line-height:1.2;margin:0;text-wrap:balance}
+:where(#quiz,#season) .q p{margin:6px 0 0;color:var(--muted);font-size:15px}
+:where(#quiz,#season) .opts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+:where(#quiz,#season) .opt{all:unset;box-sizing:border-box;cursor:pointer;background:var(--white);border:1px solid var(--line);display:flex;flex-direction:column;position:relative;
+  transition:transform .16s var(--ease), box-shadow .16s var(--ease), border-color .16s}
+:where(#quiz,#season) .opt .ph{aspect-ratio:186/150;overflow:hidden;background:var(--rose)}
+:where(#quiz,#season) .opt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+:where(#quiz,#season) .opt .lb{display:flex;gap:10px;align-items:center;padding:12px 14px 14px;font-weight:500;font-size:15px;line-height:1.25}
+:where(#quiz,#season) .radio{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line);position:relative;transition:border-color .16s}
+:where(#quiz,#season) .radio::after{content:"";position:absolute;inset:-1.5px;border-radius:50%;background:var(--burg);transform:scale(0);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+:where(#quiz,#season) .opt[aria-pressed="true"]{border:2px solid var(--burg)}
+:where(#quiz,#season) .opt[aria-pressed="true"] .radio{border-color:var(--burg)}
+:where(#quiz,#season) .opt[aria-pressed="true"] .radio::after{transform:scale(1)}
+:where(#quiz,#season) .opt:active{transform:scale(.98)}
+:where(#quiz,#season) .opt:focus-visible,:where(#quiz,#season) .pill:focus-visible,:where(#quiz,#season) .btn:focus-visible,:where(#quiz,#season) .link:focus-visible,:where(#quiz,#season) .upload:focus-within,:where(#quiz,#season) .field input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (hover:hover){
+:where(#quiz,#season) .opt:hover{transform:translateY(-4px);box-shadow:0 10px 24px -4px rgba(87,33,47,.16);border-color:var(--burg)}
+:where(#quiz,#season) .opt:hover img{transform:scale(1.04)}
+:where(#quiz,#season) .opt:hover .radio{border-color:var(--burg)}
+:where(#quiz,#season) .pill:hover{border-color:var(--burg);background:rgba(87,33,47,.04)}
+}
+:where(#quiz,#season) .pills{display:flex;flex-wrap:wrap;gap:12px}
+:where(#quiz,#season) .pill{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border:1px solid var(--line);border-radius:999px;background:var(--white);font-weight:500;font-size:15px;
+  position:relative;overflow:hidden;isolation:isolate;transition:color .25s, border-color .16s, background .16s}
+:where(#quiz,#season) .pill::before{content:"";position:absolute;inset:0;background:var(--burg);z-index:-1;clip-path:inset(0 100% 0 0);transition:clip-path .25s var(--ease)}
+:where(#quiz,#season) .pill .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line);transition:background .25s,border-color .25s}
+:where(#quiz,#season) .pill[aria-pressed="true"]{color:var(--ivory);border-color:var(--burg)}
+:where(#quiz,#season) .pill[aria-pressed="true"]::before{clip-path:inset(0 0 0 0)}
+:where(#quiz,#season) .pill[aria-pressed="true"] .dot{background:var(--ivory);border-color:var(--ivory)}
+:where(#quiz,#season) .pill:active{transform:scale(.98)}
+:where(#quiz,#season) .upload{display:flex;flex-direction:column;align-items:center;gap:6px;padding:40px 16px;border:1.5px dashed var(--line);background:var(--ivory);cursor:pointer;text-align:center;transition:border-color .2s, background .2s}
+:where(#quiz,#season) .upload:hover{border-color:var(--burg)}
+:where(#quiz,#season) .upload b{color:var(--burg);font-weight:500;font-size:18px}
+:where(#quiz,#season) .upload span{color:var(--muted);font-size:14px}
+:where(#quiz,#season) .upload input{position:absolute;opacity:0;width:1px;height:1px}
+:where(#quiz,#season) .files{display:flex;gap:8px;flex-wrap:wrap}
+:where(#quiz,#season) .files em{font-style:normal;font-size:13px;background:var(--rose);padding:4px 10px;border-radius:999px}
+:where(#quiz,#season) .form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+:where(#quiz,#season) .field{display:flex;flex-direction:column;gap:8px;font-size:14px}
+:where(#quiz,#season) .field label{color:var(--burg)}
+:where(#quiz,#season) .field input{height:52px;border:1px solid var(--line);background:var(--ivory);padding:0 14px;outline:none;transition:border-color .16s, box-shadow .16s}
+:where(#quiz,#season) .field input:focus{border-color:var(--burg)}
+:where(#quiz,#season) .field.err input{border-color:var(--error);animation:shake .3s}
+:where(#quiz,#season) .field small{color:var(--error);min-height:1em;font-size:13px}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+:where(#quiz,#season) .consent{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--muted);cursor:pointer}
+:where(#quiz,#season) .consent input{accent-color:var(--burg);width:18px;height:18px;margin:2px 0 0;flex:none}
+:where(#quiz,#season) .consent.err{color:var(--error)}
+:where(#quiz,#season) .link{color:var(--burg);text-decoration:underline;text-underline-offset:2px}
+:where(#quiz,#season) .nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+:where(#quiz,#season) .back{all:unset;cursor:pointer;color:var(--muted);font-weight:500;font-size:15px;transition:opacity .2s}
+:where(#quiz,#season) .back[disabled]{opacity:.35;cursor:default}
+:where(#quiz,#season) .nav .right{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+:where(#quiz,#season) .hint{font-size:13px;color:var(--muted)}
+:where(#quiz,#season) .btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:space-between;gap:20px;min-width:200px;height:56px;padding:0 24px;border-radius:999px;background:var(--burg);color:var(--ivory);font-weight:500;position:relative;overflow:hidden;transition:opacity .2s, transform .1s}
+:where(#quiz,#season) .btn svg{transition:transform .16s var(--ease)}
+:where(#quiz,#season) .btn:hover svg{transform:translate(3px,-3px)}
+:where(#quiz,#season) .btn:active{transform:scale(.98)}
+:where(#quiz,#season) .btn[aria-disabled="true"]{opacity:.4;cursor:not-allowed}
+:where(#quiz,#season) .btn.shine::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-50%;background:linear-gradient(100deg,transparent,rgba(255,252,247,.35),transparent);animation:shine .6s ease-out}
+@keyframes shine{to{left:120%}}
+:where(#quiz,#season) .btn.light{background:var(--ivory);color:var(--burg)}
+:where(#quiz,#season) .aside{background:var(--dark);color:var(--ivory);padding:40px;display:flex;flex-direction:column;gap:24px}
+:where(#quiz,#season) .who{display:flex;gap:16px;align-items:center}
+:where(#quiz,#season) .ava{width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);object-fit:cover;flex:none}
+:where(#quiz,#season) .ava.hop{animation:hop .4s var(--ease)}
+@keyframes hop{40%{transform:translateY(-4px)}}
+:where(#quiz,#season) .who b{display:block;font-weight:500;font-size:18px}
+:where(#quiz,#season) .who span{color:var(--rose);font-size:14px}
+:where(#quiz,#season) .bubble{background:var(--burg);border-radius:2px 16px 16px 16px;padding:20px 22px;min-height:132px}
+:where(#quiz,#season) .bubble .tag{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--rose)}
+:where(#quiz,#season) .bubble p{margin:10px 0 0;transition:opacity .2s}
+:where(#quiz,#season) .typing{display:inline-flex;gap:5px;margin-top:16px}
+:where(#quiz,#season) .typing i{width:6px;height:6px;border-radius:50%;background:var(--rose);animation:dot 1s infinite}
+:where(#quiz,#season) .typing i:nth-child(2){animation-delay:.15s}
+:where(#quiz,#season) .typing i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+:where(#quiz,#season) .gets{border-top:1px solid rgba(232,217,211,.2);padding-top:24px}
+:where(#quiz,#season) .gets h4{margin:0 0 14px;font-weight:500;font-size:14px}
+:where(#quiz,#season) .gets ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+:where(#quiz,#season) .gets li{display:flex;gap:12px;color:var(--rose);font-size:15px}
+:where(#quiz,#season) .gets li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px 1px rgba(227,178,97,.7);margin-top:8px}
+:where(#quiz,#season) .done-pane{align-items:flex-start}
+:where(#quiz,#season) .done-pane h3{font-weight:400;font-size:32px;margin:0}
+:where(#quiz,#season) .done-pane p{margin:0;color:var(--muted);max-width:520px}
+#season{background:var(--dark);color:var(--ivory);padding-block:88px 96px;overflow:hidden}
+#season .eyebrow{color:var(--rose)}
+#season .sub{color:var(--rose)}
+:where(#quiz,#season) .s-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+:where(#quiz,#season) .months{display:grid;grid-template-columns:2fr 2fr 1fr;margin-top:48px}
+:where(#quiz,#season) .months span{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--rose);border-top:1px solid rgba(232,217,211,.35);padding-top:8px;margin:0 8px}
+:where(#quiz,#season) .tl{display:block;width:100%;height:auto;overflow:visible}
+:where(#quiz,#season) .tl .rail{stroke:rgba(232,217,211,.35);stroke-width:1;transform-box:view-box;transform-origin:0 0;transition:transform 1.2s ease-in-out}
+:where(#quiz,#season) .tl .fill{stroke:var(--gold);stroke-width:2;transform-box:view-box;transform-origin:0 0;transition:transform 1.2s linear .2s}
+:where(#quiz,#season) .tb .thread{stroke:var(--gold);stroke-width:1;transform-box:fill-box;transform-origin:top;transition:transform .3s var(--ease)}
+:where(#quiz,#season) .tb .cap{fill:var(--gold)}
+:where(#quiz,#season) .tb .sphere{fill:transparent;stroke:var(--rose);stroke-width:1.25;transition:fill .4s, stroke .4s}
+:where(#quiz,#season) .tb .glow{fill:var(--gold);opacity:0;transition:opacity .5s}
+:where(#quiz,#season) .tb .hl{fill:var(--ivory);opacity:.35}
+:where(#quiz,#season) .tb .drop{transition:transform .5s var(--ease), opacity .3s}
+:where(#quiz,#season) .tb.lit .sphere{fill:var(--gold);stroke:var(--gold)}
+:where(#quiz,#season) .tb.lit .glow{opacity:.6}
+:where(#quiz,#season) .tb.lit .hl{opacity:.75}
+:where(#quiz,#season) .tb.jan .thread,:where(#quiz,#season) .tb.jan .cap{stroke:var(--rose);fill:var(--rose);opacity:.5}
+:where(#quiz,#season) .tb.jan.flicker .glow{animation:flicker .9s ease-out}
+@keyframes flicker{0%,100%{opacity:0}20%{opacity:.35}35%{opacity:.05}55%{opacity:.25}}
+#season.pre .tl .rail,#season.pre .tl .fill{transform:scaleX(0)}
+#season.pre .tb .thread{transform:scaleY(0)}
+#season.pre .tb .drop{transform:translateY(-24px);opacity:0}
+#season.pre .ms .photo{clip-path:inset(0 0 100% 0)}
+:where(#quiz,#season) .ms{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:8px}
+:where(#quiz,#season) .m{padding:0 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+:where(#quiz,#season) .m .photo{aspect-ratio:222/150;overflow:hidden;clip-path:inset(0);transition:clip-path .7s var(--ease)}
+:where(#quiz,#season) .m .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease)}
+:where(#quiz,#season) .m .photo.empty{border:1px dashed rgba(232,217,211,.5);display:grid;place-items:center;color:var(--rose);font-size:13px;opacity:.6}
+:where(#quiz,#season) .m:hover .photo img{transform:scale(1.03)}
+:where(#quiz,#season) .m .n{font-size:13px;font-weight:500;color:var(--gold)}
+:where(#quiz,#season) .m.jan .n{color:var(--rose)}
+:where(#quiz,#season) .m h4{margin:0;font-weight:500;font-size:22px;line-height:1.2}
+:where(#quiz,#season) .m p{margin:0;color:var(--rose);font-size:15px}
+:where(#quiz,#season) .m .marker,:where(#quiz,#season) .ms .vfill{display:none}
+:where(#quiz,#season) .s-note{margin:40px 0 0;font-size:13px;color:var(--rose);opacity:.7}
+@media (max-width:1100px){
+:where(#quiz,#season) .card{grid-template-columns:minmax(0,1fr) 320px}
+:where(#quiz,#season) .main{padding:36px}
+:where(#quiz,#season) .aside{padding:28px}
+:where(#quiz,#season) .opts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+#quiz{padding-block:48px}
+:where(#quiz,#season) .card{grid-template-columns:1fr;margin-top:24px}
+:where(#quiz,#season) .main{padding:24px 20px;gap:24px}
+:where(#quiz,#season) .opts{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+:where(#quiz,#season) .form{grid-template-columns:1fr}
+:where(#quiz,#season) .aside{padding:20px;gap:16px;order:2}
+:where(#quiz,#season) .aside .gets{display:none}
+:where(#quiz,#season) .who .ava{width:44px;height:44px}
+:where(#quiz,#season) .bubble{min-height:0;padding:14px 16px}
+:where(#quiz,#season) .nav .hint{display:none}
+:where(#quiz,#season) .btn{min-width:0}
+#season{padding-block:56px}
+:where(#quiz,#season) .months,:where(#quiz,#season) .tl{display:none}
+:where(#quiz,#season) .ms{grid-template-columns:1fr;margin-top:24px;position:relative;padding-left:36px}
+:where(#quiz,#season) .ms::before{content:"";position:absolute;left:12px;top:6px;bottom:0;width:1.5px;background:rgba(232,217,211,.35)}
+:where(#quiz,#season) .ms .vfill{display:block;position:absolute;left:12px;top:6px;width:2px;height:calc(var(--p,0) * (100% - 6px));background:var(--gold);box-shadow:0 0 8px rgba(227,178,97,.6)}
+:where(#quiz,#season) .m{padding:0 0 28px;position:relative}
+:where(#quiz,#season) .m .marker{display:block;position:absolute;left:-31px;top:4px;width:16px;height:16px;border-radius:50%;border:1.25px solid var(--rose);background:var(--dark);transition:background .4s,border-color .4s,box-shadow .4s}
+:where(#quiz,#season) .m .marker::after{content:"";position:absolute;width:5px;height:3.5px;border-radius:50%;background:var(--ivory);opacity:.35;top:4px;left:4px;transform:rotate(-25deg)}
+:where(#quiz,#season) .m.lit .marker{background:var(--gold);border-color:var(--gold);box-shadow:0 0 12px 1px rgba(227,178,97,.75);animation:swing .6s var(--ease)}
+:where(#quiz,#season) .m.lit .marker::after{opacity:.75}
+:where(#quiz,#season) .m .photo{order:3}
+:where(#quiz,#season) .m h4{font-size:19px}
+}
+
+/* Responsive layout shared by the v10 editorial blocks. */
+#quiz .nav { margin-top:auto; }
+#quiz .btn.next { min-width:180px; }
+#quiz .back { min-height:44px; }
+#quiz .back:focus-visible,#quiz .next:focus-visible,#quiz .files button:focus-visible,
+.lead-form :is(input,textarea,button,a):focus-visible,.v10-footer a:focus-visible {
+  outline:2px solid #b67924; outline-offset:3px;
+}
+#quiz .opt[aria-pressed=true] { border-width:1px; box-shadow:inset 0 0 0 1px var(--burg); }
+#quiz .opt .lb { min-height:54px; }
+#quiz .field textarea { width:100%; min-height:78px; border:1px solid var(--line); background:var(--ivory); padding:12px 14px; font:inherit; resize:vertical; }
+#quiz .quiz-context,#quiz .quiz-status,#quiz .lead-agreement { grid-column:1/-1; }
+#quiz .quiz-status,#quiz .step-error { margin:0; color:var(--muted); font-size:14px; }
+#quiz .quiz-status:empty,#quiz .step-error:empty { display:none; }
+#quiz .files button { border:1px solid var(--line); background:var(--ivory); border-radius:999px; padding:.4em 1em; min-height:44px; overflow-wrap:anywhere; }
+#quiz .flash-once { animation:flash .7s ease-out both; }
+#quiz .q h3:focus,#quiz .done-pane h3:focus { outline:none; }
+#quiz [data-unavailable] a,.v10-contact [data-unavailable] a { text-decoration:underline; }
+#season .s-head h2 { max-width:740px; }
+#season .s-head .btn { margin-bottom:4px; }
+#season .s-note { opacity:1; color:#decacb; }
+#season .ms .vfill { height:calc(100% - 6px); transform:scaleY(var(--p,0)); transform-origin:top; box-shadow:none; }
+
+#gallery .v9-gallery-rail { --gallery-height:366px; align-items:start; }
+#gallery .v9-gallery-card { width:calc(var(--gallery-height) * var(--photo-ratio)); flex:0 0 auto; }
+#gallery .v9-gallery-image { width:100%; height:var(--gallery-height); aspect-ratio:auto; background:none; }
+#gallery .v9-gallery-image img { width:100%; height:100%; object-fit:contain; transform:none; }
+#gallery .v9-gallery-caption { display:block; font-size:16px; padding-top:8px; }
+
+
+.lead-contact.v10-contact { background:#57212f; padding:80px max(24px,calc((100vw - 1312px)/2)); color:#f6f0e5; }
+.v10-contact .lead-shell { display:grid; grid-template-columns:minmax(0, .82fr) minmax(0, 1fr); align-items:start; gap:clamp(32px,9vw,135px); padding:0; min-height:0; }
+.v10-contact .lead-introduction { color:#f6f0e5; }
+.v10-contact .lead-introduction h2 { font-weight:400; line-height:1.03; font-size:clamp(38px,4.4vw,65px); }
+.v10-contact .lead-form { width:100%; max-width:none; padding:32px; background:#f6f0e5; color:#281c20; border-radius:10px; }
+.v10-contact .lead-form :is(input,textarea):not([type=checkbox]) { background:#fffcf7; color:#281c20; }
+.v10-contact .lead-form .btn { background:#57212f; color:#f6f0e5; border-radius:999px; justify-self:start; }
+.v10-contact .lead-form .btn[disabled] { opacity:.52; cursor:not-allowed; }
+.v10-contact .lead-form .brief-summary { background:#ece0d7; }
+#quiz .lead-agreement,#contact .lead-agreement { display:block; }
+#quiz .lead-consent,#contact .lead-consent { display:flex; align-items:center; gap:10px; min-height:44px; cursor:pointer; }
+#quiz .lead-consent input,#contact .lead-consent input { width:22px;height:22px; accent-color:#57212f; flex:0 0 auto; }
+.lead-doc-links { display:flex; flex-wrap:wrap; column-gap:16px; padding-left:32px; }
+.lead-doc-links a { display:inline-flex; align-items:center; min-height:36px; font-size:14px; text-decoration:underline; text-underline-offset:3px; color:#57212f; }
+#contact [data-error],#quiz [data-error] { color:#a73434; font-size:.875rem; margin:0; }
+:is(#contact,#quiz) [aria-invalid=true] { border-color:#a73434!important; }
+:is(#contact,#quiz) [data-unavailable] { margin:0; font-size:14px; }
+:is(#contact,#quiz) .lead-trap { position:absolute; clip-path:inset(50%); width:1px; height:1px; overflow:hidden; }
+
+.v10-footer { background:#f6f0e5; color:#281c20; padding:48px max(24px,calc((100vw - 1312px)/2)) 22px; border-top:1px solid #d4c6bd; }
+.v10-footer-grid { display:grid; grid-template-columns:1.18fr .88fr .65fr 1.1fr; gap:32px; }
+.v10-footer-grid > * { display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+.v10-footer h2 { font-size:11px; line-height:1.45; letter-spacing:.08em; font-weight:500; text-transform:uppercase; color:#57212f; margin:0 0 8px; }
+.v10-footer p,.v10-footer a { font-size:14px; line-height:1.5; margin:0; }
+.v10-footer a { color:#57212f; text-decoration:underline; text-underline-offset:3px; }
+.v10-footer .v10-footer-phone { font-size:clamp(18px,1.7vw,26px); font-weight:500; }
+.v10-footer .btn { margin-top:7px; text-decoration:none; background:transparent; border-color:#57212f; min-height:48px; }
+.v10-footer .v10-copyright { border-top:1px solid #d4c6bd; margin-top:32px; padding-top:16px; }
+
+@media (max-width:1020px) {
+  .v10-footer-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:820px) {
+  #quiz{padding-block:48px}
+  #quiz .main{padding-inline:16px}
+  #quiz .nav { align-items:stretch; }
+  #quiz .nav .right { flex:1 1 145px; justify-content:stretch; }
+  #quiz .btn.next { width:100%; min-width:0; height:auto; min-height:52px; padding-block:8px; }
+  #quiz .opt .lb { padding:10px 6px; font-size:13px; overflow-wrap:anywhere; gap:5px; }
+  #quiz .radio { width:14px;height:14px; }
+  #quiz .opt .ph { aspect-ratio:143/120; }
+  #quiz .aside { gap:12px; }
+  #season .s-head { gap:20px; }
+  #season .s-head h2 { margin-top:10px; }
+  #gallery .v9-gallery-rail { --gallery-height:min(192px,48vw); }
+  .lead-contact.v10-contact { padding-block:52px; }
+  .v10-contact .lead-shell { grid-template-columns:1fr; gap:24px; }
+  .v10-contact .lead-form { padding:20px; }
+  .lead-doc-links { flex-direction:column; }
+  .lead-doc-links a { min-height:44px; }
+  .v10-footer-grid { grid-template-columns:1fr; gap:26px; }
+  .v10-footer-grid > div:nth-child(2) a { min-height:48px; display:flex; align-items:center; }
+  .v10-footer nav { display:grid; grid-template-columns:1fr 1fr; gap:0 16px; }
+  .v10-footer nav h2 { grid-column:1/-1; }
+  .v10-footer nav a { display:flex; align-items:center; min-height:44px; }
+}
+@media (max-width:540px) {
+  #quiz,#season { padding-inline:max(20px,env(safe-area-inset-left)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #season .ms .vfill { transform:scaleY(1); }
+  :is(#quiz,#season) :is(.opt,.pill,.btn,.m .photo) :is(img,svg),#quiz .opt { transform:none!important; }
+}
+.v10-legal { max-width:760px; margin:auto; padding:40px 24px; color:#281c20; font-family:"Golos Text",sans-serif; line-height:1.55; }
+.v10-legal h1 { font-size:clamp(27px,4vw,46px); line-height:1.1; margin:22px 0 20px; overflow-wrap:anywhere; }
+.v10-legal h2 { font-size:20px; margin-top:22px; }
+.v10-legal a { color:#57212f; text-decoration:underline; }
+.v10-legal-note { background:#f6f0e5; color:#57212f; padding:14px; }
+
+.v10-style-pills { margin-block:0 26px; display:flex; flex-wrap:wrap; gap:10px; }
+.v10-style-pills button { border:1px solid #e8d9d3; color:#f6f0e5; padding:10px 16px; min-height:44px; background:transparent; border-radius:999px; }
+.v10-style-pills button[aria-pressed=true] { color:#57212f; background:#f6f0e5; }
+.v10-style-feature { display:grid; grid-template-columns:minmax(0,805fr) minmax(0,421fr); align-items:center; gap:48px; }
+.v10-style-feature[hidden] { display:none; }
+.v10-style-feature img { width:100%; height:auto; aspect-ratio:805/604; object-fit:cover; display:block; }
+.v10-style-feature h3 { font-size:clamp(28px,4vw,54px); line-height:1.1; font-weight:400; margin:14px 0; }
+.v10-style-feature p { max-width:410px; }
+.v10-style-feature .btn { background:#f6f0e5; color:#57212f; border-radius:999px; margin-top:20px; text-decoration:none; }
+.v10-style-thumbs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin-top:32px; }
+.v10-style-thumbs button { padding:0; background:transparent; border:0; text-align:left; color:#f6f0e5; }
+.v10-style-thumbs button img { display:block; aspect-ratio:416/220; width:100%; height:auto; object-fit:cover; margin-bottom:8px; }
+:is(.v10-style-pills,.v10-style-thumbs) button:focus-visible { outline:2px solid #e3b261; outline-offset:3px; }
+@media (max-width:820px) {
+  .v10-style-feature { grid-template-columns:1fr; gap:20px; }
+  .v10-style-thumbs { gap:12px; }
+  .v10-style-thumbs button { font-size:13px; overflow-wrap:anywhere; }
+  .v10-style-thumbs button img { aspect-ratio:104/80; }
+}
+
+#gallery .v9-gallery-card { max-width:none; }
+#contact .lead-form { grid-template-columns:minmax(0,1fr); }
+#contact .lead-consent,#quiz .lead-consent { flex-direction:row; align-items:flex-start; }
+#contact .lead-consent input,#quiz .lead-consent input { margin:2px 0 0; }
+#contact .lead-send { width:auto; min-height:48px; }
+#contact .lead-introduction p { max-width:410px; }
+@media (min-width:1200px) {
+  :is(#quiz,#season,#projects,#services,#gallery,#palette,#olesya,#questions,#contact) { scroll-margin-top:102px; }
+}
+#season .season-symbol { display:grid; place-items:center; color:#d8ad75; border:1px solid rgba(232,217,211,.21); background:radial-gradient(ellipse at center,#5d2b39,#34151f 72%); }
+#season .season-symbol svg { width:clamp(34px,5vw,60px);height:auto; }
+@media (max-width:820px) {
+  #quiz .pane > .aside { align-items:flex-start; display:flex; gap:10px; flex-direction:row; order:initial; padding:0; background:transparent; }
+  #quiz .pane > .aside .who > div { display:none; }
+  #quiz .pane > .aside .bubble { flex:1; color:#f6f0e5; background:#32131d; padding:14px; }
+  #quiz .pane > .aside .bubble p { font-size:14px; }
+}

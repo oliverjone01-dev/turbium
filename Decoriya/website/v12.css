@@ -1,0 +1,84 @@
+/* DEKORIYA v12: visual-canon fixes on top of v10.
+   Source: Figma «12 ДЕКОРИЯ / v12 • Чистовая». Loaded last; selectors keep the specificity
+   of the rules they correct, so pressed/hover/error states from v10 still win where intended. */
+
+#quiz, #season, #contact { --line-control: #968585; } /* 3.45:1 on #fffcf7, 3.1:1 on #f6f0e5 (WCAG 1.4.11) */
+
+/* W5 — boundaries of form controls and answer cards reach 3:1 */
+:where(#quiz,#season) .opt,
+:where(#quiz,#season) .pill,
+:where(#quiz,#season) .field input,
+:where(#quiz,#season) .upload { border-color: var(--line-control); }
+:where(#quiz,#season) .radio,
+:where(#quiz,#season) .pill .dot { border-color: var(--line-control); }
+#contact :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) { border-color: var(--line-control); }
+
+/* S5 / R8 — no coloured glow without offset, no decorative hover shadow */
+:where(#quiz,#season) .b .glow,
+:where(#quiz,#season) .tb .glow { display: none; }
+:where(#quiz,#season) .gets li::before { box-shadow: none; }
+@media (hover:hover) {
+  :where(#quiz,#season) .opt:hover { box-shadow: none; transform: none; }
+}
+@media (max-width:820px) {
+  :where(#quiz,#season) .ms .vfill { box-shadow: none; }
+  :where(#quiz,#season) .m.lit .marker { box-shadow: none; }
+}
+
+/* R16 — no text below 13 px; caps labels tracked */
+:where(#quiz,#season) .eyebrow,
+:where(#quiz,#season) .bubble .tag,
+:where(#quiz,#season) .months span,
+.v10-footer h2,
+.v9-section .v9-kicker, .v9-section .v9-image-note, .v9-business-tabs button>span:first-child,
+.v9-case-caption .v9-kicker, .v9-scene .scene-legend, .v9-scene .scene-legend-kicker,
+.v9-gallery-toolbar>p, .v9-gallery-caption .v9-kicker, .rail-controls>span,
+.v9-footer .v9-copyright, .v9-scene .scene-toggle-label, .v9-step-number, .v9-footer p,
+.gallery-load-status, .v9-image-status, .evening-kicker, .evening-credit, #hero .hero-views button,
+.eyebrow, .faq-native .eyebrow, .scene-legend, .scene-legend-kicker, .case-passport dt,
+.optional-label, .simple-form .context-reset, .v9-kicker, .v9-image-note, .v9-duties dt,
+.text-\[10px\], .text-\[11px\], .text-\[12px\] { font-size: 13px; }
+:where(#quiz,#season) .eyebrow, :where(#quiz,#season) .bubble .tag, :where(#quiz,#season) .months span,
+.v10-footer h2, .v9-section .v9-kicker { letter-spacing: .08em; }
+
+/* U07 — status on illustrations that show a result which does not exist yet */
+:where(#quiz,#season) .opt .ph { position: relative; }
+:where(#quiz,#season) .concept-tag {
+  position: absolute; top: 8px; left: 8px; z-index: 1;
+  padding: 4px 8px; border-radius: 999px; background: var(--ivory); color: var(--ink);
+  font-size: 13px; font-weight: 500; line-height: 1.2; pointer-events: none;
+}
+
+/* R3 / R6 — answers form one group (16 inside, 32 between groups) */
+:where(#quiz,#season) .pane { gap: 32px; }
+:where(#quiz,#season) .pane > .opts + .pills,
+:where(#quiz,#season) .pane > .files + .pills,
+:where(#quiz,#season) .pane > .pills + .form { margin-top: -16px; }
+:where(#quiz,#season) .garland { margin-top: 8px; }
+:where(#quiz,#season) .pills { gap: 8px; }
+/* expert column: Olesya + her tip are one group, the benefits list stands apart; no divider line */
+:where(#quiz,#season) .aside { gap: 16px; }
+:where(#quiz,#season) .bubble { padding: 24px; }
+:where(#quiz,#season) .gets { border-top: 0; padding-top: 0; margin-top: 32px; }
+:where(#quiz,#season) .gets h4 { margin: 0 0 16px; }
+:where(#quiz,#season) .gets ul { gap: 16px; }
+@media (max-width:820px) {
+  :where(#quiz,#season) .bubble { padding: 16px; }
+  :where(#quiz,#season) .aside .gets { margin-top: 0; }
+}
+/* season milestones: picture → text 16, number + title + description 8 */
+:where(#quiz,#season) .m { gap: 8px; padding: 0 24px; }
+:where(#quiz,#season) .m .photo { margin-bottom: 8px; }
+:where(#quiz,#season) .m .n { display: inline-flex; gap: 8px; align-items: baseline; }
+:where(#quiz,#season) .m .n-month { display: none; color: var(--rose); font-weight: 400; }
+@media (max-width:820px) {
+  :where(#quiz,#season) .m { padding: 0 0 24px; }
+  :where(#quiz,#season) .m .photo { margin: 8px 0 0; }
+  :where(#quiz,#season) .m .n-month { display: inline; }
+}
+
+/* W1 — «Назад» gets a 44 px target */
+:where(#quiz,#season) .back { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; padding-right: 8px; }
+
+/* S2 — vector arrows replacing the ↗ glyph keep the button rhythm */
+.btn-arrow, .v9-photo-arrow { flex: none; }

@@ -1,0 +1,65 @@
+{
+  "version": "v9-preview",
+  "assets": [
+    {
+      "file": "01-restaurant-front-768.webp",
+      "bytes": 72028,
+      "width": 768,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "01-restaurant-front-1536.webp",
+      "bytes": 340420,
+      "width": 1536,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "02-restaurant-angle-768.webp",
+      "bytes": 77184,
+      "width": 768,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "02-restaurant-angle-1536.webp",
+      "bytes": 349446,
+      "width": 1536,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "03-velvet-detail-768.webp",
+      "bytes": 76298,
+      "width": 768,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "03-velvet-detail-1536.webp",
+      "bytes": 309004,
+      "width": 1536,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "04-installation-768.webp",
+      "bytes": 86526,
+      "width": 768,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "04-installation-1536.webp",
+      "bytes": 374050,
+      "width": 1536,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "05-workshop-768.webp",
+      "bytes": 56938,
+      "width": 768,
+      "origin": "generated concept visualization, not client documentation"
+    },
+    {
+      "file": "05-workshop-1536.webp",
+      "bytes": 238184,
+      "width": 1536,
+      "origin": "generated concept visualization, not client documentation"
+    }
+  ]
+}
