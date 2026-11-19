@@ -8,7 +8,7 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
     $previous = array();
-    foreach (array('v81.css','v81-site.css','motion.css','v9.css','v10.css') as $i => $file) {
+    foreach (array('v81.css','v81-site.css','motion.css','v9.css','v10.css','v12.css') as $i => $file) {
         $handle = 'dekoriya-style-' . $i;
         wp_enqueue_style($handle, $uri . '/' . $file, $previous, hash_file('sha256', get_template_directory() . '/' . $file));
         $previous = array($handle);

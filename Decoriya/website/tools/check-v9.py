@@ -47,7 +47,7 @@ assert 'assets/v9/portfolio/' not in html and 'assets/v9/portfolio/' not in (R/'
 for page in (R/'projects').glob('*/index.html'):
  assert 'assets/v94/portfolio/' in page.read_text(),page
 preview=(R/'v9/index.html').read_text();assert 'location.replace' in preview and 'noindex' in preview
-for f in ['v81.css','v81-site.css','motion.css','v9.css','site-core.js','v9-motion.js','v10.css','v10-lead.js','v10.js','privacy/index.html','consent/index.html']:
+for f in ['v81.css','v81-site.css','motion.css','v9.css','site-core.js','v9-motion.js','v10.css','v12.css','v10-lead.js','v10.js','privacy/index.html','consent/index.html']:
  assert (R/f).read_bytes()==(R/'wordpress/dekoriya-atelier'/f).read_bytes(),f+' theme drift'
 manifest=json.loads((R/'wordpress/dekoriya-atelier/asset-manifest.json').read_text())
 for f,h in manifest.items():assert hashlib.sha256((R/'wordpress/dekoriya-atelier'/f).read_bytes()).hexdigest()==h,f

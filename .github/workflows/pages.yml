@@ -60,7 +60,7 @@ jobs:
           cp Decoriya/website/index.html Decoriya/website/site.css Decoriya/website/wow.css Decoriya/website/spatial.css Decoriya/website/app.js Decoriya/website/motion.js Decoriya/website/motion-config.js Decoriya/website/motion-map.html Decoriya/website/design-system.html Decoriya/website/qa.html _site/Decoriya/website/
           cp -r Decoriya/website/assets Decoriya/website/media _site/Decoriya/website/
           cp Decoriya/website/site-core.js Decoriya/website/v9-motion.js Decoriya/website/v9.css Decoriya/website/motion.css _site/Decoriya/website/
-          cp Decoriya/website/v10.css Decoriya/website/v10.js Decoriya/website/v10-lead.js _site/Decoriya/website/
+          cp Decoriya/website/v10.css Decoriya/website/v12.css Decoriya/website/v10.js Decoriya/website/v10-lead.js _site/Decoriya/website/
           cp -r Decoriya/website/privacy Decoriya/website/consent _site/Decoriya/website/
           cp Decoriya/website/v81.css Decoriya/website/v81-site.css Decoriya/website/v81.js Decoriya/website/cases.json Decoriya/website/sitemap.xml _site/Decoriya/website/
           cp -r Decoriya/website/projects _site/Decoriya/website/

@@ -12,26 +12,26 @@ const arrow = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-
 
 /* ---------- data from the Figma mock ---------- */
 const STEPS = [
-  { q:"Какой у вас объект?", hint:"Выберите один вариант", type:"photo",
-    opts:[["Кафе и ресторан","s1-cafe"],["Салон и услуги","s1-salon"],["Бутик и шоурум","s1-boutique"],["Офис, отель, ТЦ","s1-office"]],
-    extra:"Другое — опишу в конце",
-    tip:"В кафе и салоне вход первым встречает гостей. С него удобно начать подбор." },
-  { q:"Что хотите оформить?", hint:"Можно выбрать несколько вариантов", type:"photo", multi:true,
+  { q:"Какой у вас объект?", hint:"Выберите один вариант", type:"photo",
+    opts:[["Кафе и ресторан","s1-cafe"],["Салон и услуги","s1-salon"],["Бутик и шоурум","s1-boutique",1],["Офис, отель, ТЦ","s1-office",1]],
+    extra:"Другое — опишу в конце",
+    tip:"В кафе и салоне вход первым встречает гостей. С него удобно начать подбор." },
+  { q:"Что хотите оформить?", hint:"Можно выбрать несколько вариантов", type:"photo", multi:true,
     opts:[["Вход","s2-entry"],["Витрина","s2-window"],["Зал","s2-hall"],["Несколько зон","s2-multi"]],
-    extra:"Пока не знаю — нужен совет",
-    tip:"Если зон несколько, общая палитра свяжет вход, витрину и зал." },
-  { q:"Какое настроение ближе?", hint:"Это ориентир: в эскизе направления можно смешать", type:"photo",
+    extra:"Пока не знаю — нужен совет",
+    tip:"Если зон несколько, общая палитра свяжет вход, витрину и зал." },
+  { q:"Какое настроение ближе?", hint:"Концепты направлений: в эскизе их можно смешать", type:"photo",
     opts:[["Тёплая классика","s3-warm"],["Лёд и серебро","s3-ice"],["Русский орнамент","s3-russian"],["Мягкая пастель","s3-pastel"]],
-    extra:"Не знаю — подберите за меня",
-    tip:"Если сомневаетесь, выберите «Подберите за меня». Фото поможет учесть цвет фасада и вывеску." },
+    extra:"Не знаю — подберите за меня",
+    tip:"Если сомневаетесь, выберите «Подберите за меня». Фото поможет учесть цвет фасада и вывеску." },
   { q:"Когда нужен монтаж?", hint:"Выберите один вариант", type:"pills",
     opts:["До 1 декабря","1–15 декабря","16–25 декабря","Пока не знаю"],
-    tip:"Назовите желаемую дату сразу: по ней согласуем доступность монтажа." },
-  { q:"Покажите ваш объект", hint:"Необязательно, но так эскиз получится точнее", type:"upload", optional:true,
+    tip:"Назовите желаемую дату сразу: по ней согласуем доступность монтажа." },
+  { q:"Покажите ваш объект", hint:"Необязательно, но так эскиз получится точнее", type:"upload", optional:true,
     extra:"Пришлю позже",
-    tip:"Фото фасада днём и примерная ширина двери — этого хватит для эскиза." },
-  { q:"Как с вами связаться?", hint:"Оставьте телефон, чтобы обсудить ваш объект и эскиз.", type:"contacts",
-    tip:"Укажите телефон, по которому удобно обсудить ваш объект." }
+    tip:"Фото фасада днём и примерная ширина двери — этого хватит для эскиза." },
+  { q:"Как с вами связаться?", hint:"Оставьте телефон, чтобы обсудить ваш объект и эскиз.", type:"contacts",
+    tip:"Укажите телефон, по которому удобно обсудить ваш объект." }
 ];
 const PCT = [0,20,40,60,80,90];
 const answers = STEPS.map(() => new Set());
@@ -82,7 +82,7 @@ let pctNow = 0, pctAnimation = 0;
 function setPct(to){
   cancelAnimationFrame(pctAnimation);
   const from = pctNow; pctNow = to; const t0 = performance.now(), dur = calm() ? 0 : 500;
-  const tick = t => { const p = dur ? Math.min(1,(t-t0)/dur) : 1; $("#pct").textContent = `Подбор · ${Math.round(from+(to-from)*p)}%`; if (p<1) pctAnimation = requestAnimationFrame(tick); };
+  const tick = t => { const p = dur ? Math.min(1,(t-t0)/dur) : 1; $("#pct").textContent = `Подбор: ${Math.round(from+(to-from)*p)}%`; if (p<1) pctAnimation = requestAnimationFrame(tick); };
   pctAnimation = requestAnimationFrame(tick);
 }
 
@@ -98,20 +98,20 @@ async function setTip(text){
 }
 
 /* ---------- pane renderers ---------- */
-function optButton(label, img, pressed){
-  return `<button type="button" class="opt" aria-pressed="${pressed}" data-v="${label}"><span class="ph"><img src="${assets}${img}-400.webp" srcset="${assets}${img}-400.webp 400w, ${assets}${img}.webp 800w" sizes="(max-width: 820px) 42vw, (max-width: 1100px) 22vw, 210px" width="400" height="322" loading="lazy" decoding="async" alt=""></span><span class="lb"><span class="radio"></span>${label}</span></button>`;
+function optButton(label, img, pressed, concept){
+  return `<button type="button" class="opt" aria-pressed="${pressed}" data-v="${label}"><span class="ph">${concept ? '<span class="concept-tag">концепт</span>' : ""}<img src="${assets}${img}-400.webp" srcset="${assets}${img}-400.webp 400w, ${assets}${img}.webp 800w" sizes="(max-width: 820px) 42vw, (max-width: 1100px) 22vw, 210px" width="400" height="322" loading="lazy" decoding="async" alt=""></span><span class="lb"><span class="radio"></span>${label}</span></button>`;
 }
 function pill(label, pressed){ return `<button type="button" class="pill" aria-pressed="${pressed}" data-v="${label}"><span class="dot"></span>${label}</button>`; }
 function navHTML(k){
   const last = k === 5;
-  return `<div class="nav"><button type="button" class="back" ${k===0?"disabled":""}>← Назад</button>
+  return `<div class="nav"><button type="button" class="back" ${k===0?"disabled":""}>Назад</button>
     <div class="right"><span class="hint">${last ? "Ответим по телефону" : "Выберите вариант и нажмите «Далее»"}</span>
     <button type="${last?'submit':'button'}" ${last?'form="quiz-contact"':''} class="btn next" aria-disabled="true">${last ? "Получить эскиз бесплатно" : "Далее"} ${arrow}</button></div></div>`;
 }
 function paneHTML(k){
   const s = STEPS[k], a = answers[k];
   let body = "";
-  if (s.type === "photo") body = `<div class="opts" role="group" aria-labelledby="quiz-question">${s.opts.map(([l,i]) => optButton(l,i,a.has(l))).join("")}</div>`;
+  if (s.type === "photo") body = `<div class="opts" role="group" aria-labelledby="quiz-question">${s.opts.map(([l,i,c]) => optButton(l,i,a.has(l),c)).join("")}</div>`;
   if (s.type === "pills") body = `<div class="pills" role="group" aria-labelledby="quiz-question">${s.opts.map(l => pill(l,a.has(l))).join("")}</div>`;
   if (s.type === "upload") body = `<label class="upload"><input type="file" id="files" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="photo-status"><b>Добавить фото объекта</b><span>До 5 файлов JPEG, PNG или WebP, до 10 МБ каждый. Без людей и документов в кадре.</span></label>
     <p class="step-error" id="photo-status" role="status"></p><div class="files" id="filelist"></div>`;

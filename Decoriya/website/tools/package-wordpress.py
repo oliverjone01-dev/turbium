@@ -3,7 +3,7 @@ from pathlib import Path
 import re,json,shutil,zipfile,hashlib
 R=Path(__file__).resolve().parents[1];theme=R/'wordpress/dekoriya-atelier';theme.mkdir(exist_ok=True,parents=True)
 # Copy only the transitive assets needed by this homepage and the two case pages.
-files=['index.html','v81.css','v81-site.css','v81.js','motion.css','v9.css','site-core.js','v9-motion.js','v10.css','v10-lead.js','v10.js','privacy/index.html','consent/index.html','cases.json']
+files=['index.html','v81.css','v81-site.css','v81.js','motion.css','v9.css','site-core.js','v9-motion.js','v10.css','v12.css','v10-lead.js','v10.js','privacy/index.html','consent/index.html','cases.json']
 files += ['projects/'+p.name+'/index.html' for p in (R/'projects').iterdir() if p.is_dir()]
 refs=set(files) | {str(f.relative_to(R)) for f in (R/'assets/v10/panel').glob('*.webp')}
 for rel in files:
@@ -44,7 +44,7 @@ add_action('after_setup_theme', function () {
 add_action('wp_enqueue_scripts', function () {
     $uri = get_template_directory_uri();
     $previous = array();
-    foreach (array('v81.css','v81-site.css','motion.css','v9.css','v10.css') as $i => $file) {
+    foreach (array('v81.css','v81-site.css','motion.css','v9.css','v10.css','v12.css') as $i => $file) {
         $handle = 'dekoriya-style-' . $i;
         wp_enqueue_style($handle, $uri . '/' . $file, $previous, hash_file('sha256', get_template_directory() . '/' . $file));
         $previous = array($handle);

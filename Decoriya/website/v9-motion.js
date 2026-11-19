@@ -31,7 +31,7 @@ function asset(path) {
   }
   return url.href;
 }
-const concept=$('#palette');if(concept?.classList.contains('v9-section')){const load=imageController(concept),tabs=$$('[data-v9-view]',concept),variants=[['assets/v9/01-restaurant-front-editorial-768.webp','Хвоя задаёт форму. Бархат держит акцент.','Оформление следует архитектуре входа: хвойный портал, глубокий бордовый текстиль и два латунных фонаря.','Хвоя · бархат · латунь'],['assets/v9/02-restaurant-angle-editorial-768.webp','Вход виден в объёме.','Другой ракурс показывает, как оформление связано с проёмом и боковыми окнами.','Масштаб · глубина · пропорции'],['assets/v9/03-velvet-detail-editorial-768.webp','Материалы вблизи.','Направленный ворс бархата, мелкая хвоя и спокойный металлический блик. Детали работают в одной палитре.','Фактура · складки · отражения']];let chosen=0;function select(i){chosen=i;$('#v9-concept-panel',concept).setAttribute('aria-labelledby','v9-concept-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=variants[i];$('[data-v9-title]',concept).textContent=v[1];$('[data-v9-copy]',concept).textContent=v[2];$('[data-v9-materials]',concept).textContent=v[3];$('[data-action="choose-reference"]',concept).dataset.photo='concept-v9-'+i;load(asset(v[0]),'Пример оформления: '+v[1])}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%tabs.length:['ArrowLeft','ArrowUp'].includes(e.key)?(i-1+tabs.length)%tabs.length:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})});}
+const concept=$('#palette');if(concept?.classList.contains('v9-section')){const load=imageController(concept),tabs=$$('[data-v9-view]',concept),variants=[['assets/v9/01-restaurant-front-editorial-768.webp','Хвоя задаёт форму. Бархат держит акцент.','Оформление следует архитектуре входа: хвойный портал, глубокий бордовый текстиль и два латунных фонаря.','Хвоя, бархат, латунь'],['assets/v9/02-restaurant-angle-editorial-768.webp','Вход виден в объёме.','Другой ракурс показывает, как оформление связано с проёмом и боковыми окнами.','Масштаб, глубина, пропорции'],['assets/v9/03-velvet-detail-editorial-768.webp','Материалы вблизи.','Направленный ворс бархата, мелкая хвоя и спокойный металлический блик. Детали работают в одной палитре.','Фактура, складки, отражения']];let chosen=0;function select(i){chosen=i;$('#v9-concept-panel',concept).setAttribute('aria-labelledby','v9-concept-tab-'+i);tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(i===j));t.tabIndex=i===j?0:-1});const v=variants[i];$('[data-v9-title]',concept).textContent=v[1];$('[data-v9-copy]',concept).textContent=v[2];$('[data-v9-materials]',concept).textContent=v[3];$('[data-action="choose-reference"]',concept).dataset.photo='concept-v9-'+i;load(asset(v[0]),'Пример оформления: '+v[1])}tabs.forEach((t,i)=>{t.addEventListener('click',()=>select(i));t.addEventListener('keydown',e=>{const next=e.key==='Home'?0:e.key==='End'?tabs.length-1:['ArrowRight','ArrowDown'].includes(e.key)?(i+1)%tabs.length:['ArrowLeft','ArrowUp'].includes(e.key)?(i-1+tabs.length)%tabs.length:null;if(next!==null){e.preventDefault();select(next);tabs[next].focus()}})});}
 const process = $('#process');
 if (process?.classList.contains('v9-section')) {
   const load = imageController(process);
@@ -40,7 +40,7 @@ if (process?.classList.contains('v9-section')) {
     {
       image: 'assets/v9/06-survey-1440.webp',
       alt: 'Декоратор измеряет проём у входа без праздничного оформления',
-      caption: 'Иллюстрация этапа · обмер проёма',
+      caption: 'Иллюстрация этапа, обмер проёма',
       title: 'Смотрим на пространство.',
       copy: 'Обсуждаем вход, витрину или интерьер. Уточняем размеры, окружение и желаемую дату.',
       client: 'Показываете зону и рассказываете о задаче.',
@@ -49,7 +49,7 @@ if (process?.classList.contains('v9-section')) {
     {
       image: 'assets/v9/07-concept-sketch-1440.webp',
       alt: 'Эскиз оформления входа и образцы бархата и латуни на столе',
-      caption: 'Иллюстрация этапа · эскиз и образцы',
+      caption: 'Иллюстрация этапа, эскиз и образцы',
       title: 'Собираем характер оформления.',
       copy: 'Сопоставляем цвет, фактуру и свет с архитектурой и стилем вашего бизнеса.',
       client: 'Показываете примеры или готовое ТЗ.',
@@ -58,7 +58,7 @@ if (process?.classList.contains('v9-section')) {
     {
       image: 'assets/v9/05-workshop-768.webp',
       alt: 'Декораторы готовят хвою и текстиль за рабочим столом',
-      caption: 'Иллюстрация этапа · подготовка в мастерской',
+      caption: 'Иллюстрация этапа, подготовка в мастерской',
       title: 'Готовим композиции.',
       copy: 'Согласованный образ превращается в элементы, которые можно собрать и установить на объекте.',
       client: 'Подтверждаете состав и условия работ.',
@@ -67,7 +67,7 @@ if (process?.classList.contains('v9-section')) {
     {
       image: 'assets/v9/04-installation-768.webp',
       alt: 'Два декоратора закрепляют хвою на входе',
-      caption: 'Иллюстрация этапа · установка на объекте',
+      caption: 'Иллюстрация этапа, установка на объекте',
       title: 'Собираем оформление на месте.',
       copy: 'Монтаж связывает отдельные элементы с реальным пространством. Проходы и условия крепления обсуждаем заранее.',
       client: 'Обеспечиваете согласованный доступ.',
@@ -118,7 +118,7 @@ photoGallery?.addEventListener('click', event=>{
 // Native details stay functional without JavaScript. Animate only the visible body.
 $$('.v9-faq details,.v9-estimate').forEach(d=>{d.addEventListener('toggle',()=>{if(d.open){const box=$(':scope>div',d);move(box,[{opacity:.4,transform:'translateY(-8px)'},{opacity:1,transform:'none'}],280)}})});
 // Compact navigation appears only after the hero; no layout shift.
-const compact=document.createElement('nav');compact.className='v9-compact-nav';compact.setAttribute('aria-label','Быстрая навигация');compact.hidden=true;compact.innerHTML='<a href="#hero" aria-label="Декория — к началу"><img src="'+new URL('assets/logo.svg',scriptURL).href+'" alt="Декория" width="120" height="40"></a><a href="#projects">Работы</a><a href="#services">Что оформляем</a><a href="#palette">Стили</a><a href="#olesya">Олеся</a><button class="btn" type="button" data-action="contact">Обсудить объект ↗</button>';document.body.append(compact);if(hero)new IntersectionObserver(es=>{compact.hidden=es[0].isIntersecting||small.matches},{threshold:0}).observe(hero);
+const compact=document.createElement('nav');compact.className='v9-compact-nav';compact.setAttribute('aria-label','Быстрая навигация');compact.hidden=true;compact.innerHTML='<a href="#hero" aria-label="Декория — к началу"><img src="'+new URL('assets/logo.svg',scriptURL).href+'" alt="Декория" width="120" height="40"></a><a href="#projects">Работы</a><a href="#services">Что оформляем</a><a href="#palette">Стили</a><a href="#olesya">Олеся</a><button class="btn" type="button" data-action="contact">Обсудить объект <svg class="btn-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="1.6"/></svg></button>';document.body.append(compact);if(hero)new IntersectionObserver(es=>{compact.hidden=es[0].isIntersecting||small.matches},{threshold:0}).observe(hero);
 // Expert portrait has extra image area; motion stops outside the section.
 const expert=$('.v9-expert-image'),pattern=$('#contact');let depthRAF=0;function depth(){depthRAF=0;if(reduce.matches||!fine.matches||small.matches||document.hidden)return;if(expert){const r=expert.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight){const p=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight+r.height)));expert.style.setProperty('--expert-y',(-1-p*8).toFixed(2)+'%')}}}addEventListener('scroll',()=>{if(!depthRAF)depthRAF=requestAnimationFrame(depth)},{passive:true});if(pattern)new IntersectionObserver(es=>{if(es[0].isIntersecting){if(!reduce.matches)pattern.classList.add('v9-pattern-reveal')}},{threshold:.2}).observe(pattern);
 
