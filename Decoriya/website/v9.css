@@ -57,12 +57,14 @@ section{scroll-margin-top:100px}
 }
 .evening-stage { position: absolute; inset: 0; overflow: hidden; z-index: -1; }
 .evening-background { position: absolute; inset: -16px; }
-.evening-background img {
+.evening-background :is(img, video) {
   width: 100%; height: 100%; object-fit: cover; object-position: center 52%; display: block;
   filter: blur(4px);
   transform: translate3d(var(--stage-x,0),var(--stage-y,0),0) scale(1.024);
 }
-.evening-shade { position: absolute; inset: 0; background: linear-gradient(90deg,#251417 0%,#251417f2 22%,#231518a8 42%,#21131805 76%),linear-gradient(180deg,#170d12aa 0%,transparent 25%,transparent 78%,#180e14c9 100%); }
+.evening-video { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 200ms ease; }
+.evening-video.is-visible { opacity: 1; }
+.evening-shade { position: absolute; inset: 0; background: linear-gradient(90deg,#32131d 0%,#32131df5 22%,#2e1720b8 42%,#24151c05 76%),linear-gradient(180deg,#170d12aa 0%,transparent 25%,transparent 78%,#180e14c9 100%); }
 .evening-portrait {
   position: absolute; bottom: -9%; height: 100%; width: auto; max-width: none;
   left: 63%; transform: translate3d(calc(-50% + var(--portrait-x,0px)),var(--portrait-y,0),0);
@@ -103,7 +105,7 @@ section{scroll-margin-top:100px}
   .evening-actions { gap: 12px 19px; font-size: 14px; }
   .evening-actions .btn { min-height: 44px; padding-inline: 14px; }
   .evening-stage { top: 32%; }
-  .evening-background img { object-position: 74% 50%; }
+  .evening-background :is(img, video) { object-position: 74% 50%; }
   .evening-shade { background: linear-gradient(180deg,#27161d 2%,#27161de6 15%,#27161d24 42%,transparent 65%,#210e19ed 100%); }
   .evening-portrait { left: 43%; height: 70%; bottom: -4%; }
   .evening-credit { bottom: 85px; right: 22px; }
@@ -127,6 +129,7 @@ section{scroll-margin-top:100px}
 }
 @media (prefers-reduced-motion: reduce) {
   .evening-background img { transform: scale(1.024); }
+  .evening-video { display: none; }
   .evening-portrait { transform: translateX(-50%); }
 }
 
