@@ -131,12 +131,32 @@ const expert=$('.v9-expert-image'),pattern=$('#contact');let depthRAF=0;function
  const buttons=[...control.querySelectorAll('[data-hero-view]')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const fine=matchMedia('(hover:hover) and (pointer:fine)');
+ const video=stage.querySelector('.evening-video[data-src]');
+ let heroInView=!('IntersectionObserver' in window);
  let cover='evening',frame=0,animations=[];
  const reset=()=>{if(frame)cancelAnimationFrame(frame);frame=0;['stage-x','stage-y','portrait-x','portrait-y'].forEach(k=>stage.style.removeProperty('--'+k));};
  const cancel=()=>{animations.forEach(a=>a.cancel());animations=[];reset();};
+ function syncVideo(){
+  if(!video)return;
+  if(cover!=='evening'||!heroInView||document.hidden||reduced.matches||navigator.connection?.saveData){
+   video.pause();return;
+  }
+  if(video.ended||video.error||!video.paused)return;
+  if(!video.hasAttribute('src'))video.src=video.dataset.src;
+  video.play().catch(()=>{});
+ }
+ if(video){
+  video.addEventListener('playing',()=>video.classList.add('is-visible'));
+  video.addEventListener('error',()=>video.classList.remove('is-visible'));
+  document.addEventListener('visibilitychange',syncVideo);
+  if('IntersectionObserver' in window){
+   new IntersectionObserver(([entry])=>{heroInView=entry.isIntersecting;syncVideo();},{threshold:.1}).observe(root);
+  }
+ }
  function show(choice,url=true){
   cancel();cover=choice;const evening=choice==='evening';
   stage.hidden=!evening;root.classList.toggle('evening-active',evening);
+  syncVideo();
   buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.heroView===choice)));
   control.querySelector('[role=status]').textContent=evening?'Вечерний монтаж.':'Студия.';
   if(url){const next=new URL(location.href);if(evening)next.searchParams.delete('hero');else next.searchParams.set('hero','studio');history.replaceState(history.state,'',next);}
@@ -147,6 +167,7 @@ const expert=$('.v9-expert-image'),pattern=$('#contact');let depthRAF=0;function
  }
  control.hidden=false;buttons.forEach(b=>b.addEventListener('click',()=>show(b.dataset.heroView)));
  if(new URLSearchParams(location.search).get('hero')==='studio')show('studio',false);
+ else syncVideo();
  let x=0,y=0;
  stage.addEventListener('pointermove',e=>{
   if(cover!=='evening'||reduced.matches||!fine.matches||e.pointerType!=='mouse')return;
@@ -155,5 +176,5 @@ const expert=$('.v9-expert-image'),pattern=$('#contact');let depthRAF=0;function
   frame=requestAnimationFrame(()=>{frame=0;stage.style.setProperty('--stage-x',(-x*32).toFixed(1)+'px');stage.style.setProperty('--stage-y',(-y*19).toFixed(1)+'px');stage.style.setProperty('--portrait-x',(x*22).toFixed(1)+'px');stage.style.setProperty('--portrait-y',(y*14).toFixed(1)+'px');});
  },{passive:true});
  stage.addEventListener('pointerleave',reset);
- reduced.addEventListener('change',()=>{if(reduced.matches)cancel();});
+ reduced.addEventListener('change',()=>{if(reduced.matches)cancel();syncVideo();});
 })();

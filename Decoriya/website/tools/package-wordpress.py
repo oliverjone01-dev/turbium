@@ -8,7 +8,7 @@ files += ['projects/'+p.name+'/index.html' for p in (R/'projects').iterdir() if 
 refs=set(files) | {str(f.relative_to(R)) for f in (R/'assets/v10/panel').glob('*.webp')}
 for rel in files:
  s=(R/rel).read_text()
- for ref in re.findall(r'(?:\.\./|\./)?assets/[A-Za-z0-9_./-]+\.(?:webp|svg|png|jpg|woff2?)',s):
+ for ref in re.findall(r'(?:\.\./|\./)?assets/[A-Za-z0-9_./-]+\.(?:webp|svg|png|jpg|woff2?|mp4)',s):
   refs.add('assets/'+ref.split('assets/',1)[1])
 # Full gallery images are named in embedded JSON. All assets above remain source-identical.
 for rel in refs:
