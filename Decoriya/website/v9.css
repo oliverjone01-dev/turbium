@@ -105,9 +105,9 @@ section{scroll-margin-top:100px}
   .evening-actions { gap: 12px 19px; font-size: 14px; }
   .evening-actions .btn { min-height: 44px; padding-inline: 14px; }
   .evening-stage { top: 32%; }
-  .evening-background :is(img, video) { object-position: 74% 50%; }
+  .evening-background :is(img, video) { object-position: calc(74% + 14px) 50%; }
   .evening-shade { background: linear-gradient(180deg,#27161d 2%,#27161de6 15%,#27161d24 42%,transparent 65%,#210e19ed 100%); }
-  .evening-portrait { left: 43%; height: 70%; bottom: -4%; }
+  .evening-portrait { left: 37%; height: 70%; bottom: -4%; }
   .evening-credit { bottom: 85px; right: 22px; }
   .hero-views { bottom: 14px; }
 }
