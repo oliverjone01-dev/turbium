@@ -27,7 +27,7 @@ Theme Name: DEKORIYA Atelier Motion
 Theme URI: https://github.com/oliverjone01-dev/turbium/tree/main/Decoriya/website
 Author: DEKORIYA
 Description: Новогодняя главная v10: портфолио, подбор оформления и формы заявок.
-Version: 10.0.0
+Version: 12.0.0
 Requires at least: 6.6
 Requires PHP: 8.0
 Text Domain: dekoriya-atelier
@@ -121,7 +121,7 @@ add_action('template_redirect',function(){
 });
 ''')
 (theme/'header.php').write_text('''<?php if (!defined('ABSPATH')) { exit; } ?>
-<!doctype html><html <?php language_attributes(); ?> data-version="10.0" data-build="10.0.0" data-motion="v9" data-asset-base="<?php echo esc_url(trailingslashit(get_template_directory_uri())); ?>" data-home-url="<?php echo esc_url(home_url('/')); ?>"><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="<?php echo esc_url(get_template_directory_uri().'/assets/logo.svg'); ?>"><?php wp_head(); ?></head><body <?php body_class(); ?>><?php wp_body_open(); ?>
+<!doctype html><html <?php language_attributes(); ?> data-version="12.0" data-build="12.0.0" data-motion="v9" data-asset-base="<?php echo esc_url(trailingslashit(get_template_directory_uri())); ?>" data-home-url="<?php echo esc_url(home_url('/')); ?>"><head><meta charset="<?php bloginfo('charset'); ?>"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="<?php echo esc_url(get_template_directory_uri().'/assets/logo.svg'); ?>"><?php wp_head(); ?></head><body <?php body_class(); ?>><?php wp_body_open(); ?>
 ''')
 (theme/'footer.php').write_text("<?php if (!defined('ABSPATH')) { exit; } wp_footer(); ?></body></html>")
 (theme/'front-page.php').write_text("<?php if (!defined('ABSPATH')) { exit; } get_header(); echo dekoriya_render_landing(); get_footer();")

@@ -3,7 +3,7 @@ from pathlib import Path
 from html import escape as e
 import json,re,hashlib,os
 from urllib.parse import urlsplit
-R=Path(__file__).resolve().parents[1];T=R/'tools/templates';V='10.0.0'
+R=Path(__file__).resolve().parents[1];T=R/'tools/templates';V='12.0.0'
 data=json.loads((T/'site-data-v9.json').read_text())
 def read(name):return (T/(name+'-v9.html')).read_text()
 def btn(text,attrs='data-action="contact"',outline=False):return f'<button type="button" class="btn'+(' outline' if outline else '')+f'" {attrs}>{text}<svg class="btn-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" stroke="currentColor" stroke-width="1.6"/></svg></button>'
@@ -111,8 +111,8 @@ head=(R/'index.html').read_text().split('</head>')[0]
 head=re.sub(r'<script[^>]+src=[^>]+></script>','',head)
 head=re.sub(r'<link rel="stylesheet"[^>]+>','',head)
 head=re.sub(r'\sdata-motion="[^"]+"','',head)
-head=re.sub(r'data-version="[^"]+"','data-version="10.0"',head)
-head=re.sub(r'data-build="[^"]+"','data-build="10.0.0" data-motion="v9"',head)
+head=re.sub(r'data-version="[^"]+"','data-version="12.0"',head)
+head=re.sub(r'data-build="[^"]+"','data-build="12.0.0" data-motion="v9"',head)
 styles=['v81.css','v81-site.css','motion.css','v9.css','v10.css','v12.css'];scripts=['site-core.js','v9-motion.js','v10-lead.js','v10.js']
 def stamp(name):return hashlib.sha256((R/name).read_bytes()).hexdigest()[:10]
 head+=''.join(f'<link rel="stylesheet" href="./{n}?v={V}-{stamp(n)}">' for n in styles)
